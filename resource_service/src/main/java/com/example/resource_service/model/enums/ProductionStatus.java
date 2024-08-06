@@ -1,6 +1,6 @@
 package com.example.resource_service.model.enums;
 
-public enum ScheduleStatus {
+public enum ProductionStatus {
     PENDING,
     IN_PROGRESS,
     COMPLETED,

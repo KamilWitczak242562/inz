@@ -1,10 +1,7 @@
 package com.example.resource_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.resource_service.model.enums.ProductionStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -20,5 +17,6 @@ public class ProductionOrder {
     private String description;
     private String startDate;
     private String endDate;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ProductionStatus status;
 }

@@ -1,11 +1,9 @@
 package com.example.resource_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "suppliers")
@@ -19,4 +17,7 @@ public class Supplier {
     private String name;
     private String contactInfo;
     private String address;
+
+    @OneToMany
+    private List<Resource> resources;
 }

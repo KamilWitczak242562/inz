@@ -16,6 +16,7 @@ public class ProductionOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productionOrderId;
 
+    private Long machineId;
     private String description;
     private String startDate;
     private String endDate;

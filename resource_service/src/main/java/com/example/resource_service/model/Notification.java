@@ -1,11 +1,7 @@
 package com.example.resource_service.model;
 
 import com.example.resource_service.model.enums.NotificationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -18,6 +14,7 @@ public class Notification {
     private Long notificationId;
 
     private String timestamp;
+    @Enumerated(EnumType.STRING)
     private NotificationType type;
     private String message;
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/supplier")
@@ -18,30 +19,35 @@ public class SupplierController {
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllSuppliers() {
         List<Supplier> supplierList = supplierService.getAll();
-        return ResponseEntity.ok(supplierList);
+        return ResponseEntity.ok().body(Map.of("response", supplierList,
+                "ok", true));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getSupplierById(@PathVariable Long id) {
         Supplier supplier = supplierService.getById(id);
-        return ResponseEntity.ok(supplier);
+        return ResponseEntity.ok().body(Map.of("response", supplier,
+                "ok", true));
     }
 
     @PostMapping("/new")
     public ResponseEntity<?> createSupplier(@RequestBody Supplier supplier) {
         Supplier newSupplier = supplierService.create(supplier);
-        return ResponseEntity.ok(newSupplier);
+        return ResponseEntity.ok().body(Map.of("response", newSupplier,
+                "ok", true));
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<?> updateSupplier(@PathVariable Long id, @RequestBody Supplier supplier) {
         Supplier updatedSupplier = supplierService.update(id, supplier);
-        return ResponseEntity.ok(updatedSupplier);
+        return ResponseEntity.ok().body(Map.of("response", updatedSupplier,
+                "ok", true));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteSupplier(@PathVariable Long id) {
         boolean isDeleted = supplierService.delete(id);
-        return ResponseEntity.ok(isDeleted);
+        return ResponseEntity.ok().body(Map.of("response", isDeleted,
+                "ok", true));
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/resource")
@@ -18,30 +19,35 @@ public class ResourceController {
     @GetMapping("/getAll")
     public ResponseEntity<?> getAllResources() {
         List<Resource> resourceList = resourceService.getAll();
-        return ResponseEntity.ok(resourceList);
+        return ResponseEntity.ok().body(Map.of("response", resourceList,
+                "ok", true));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getResourceById(@PathVariable Long id) {
         Resource resource = resourceService.getById(id);
-        return ResponseEntity.ok(resource);
+        return ResponseEntity.ok().body(Map.of("response", resource,
+                "ok", true));
     }
 
     @PostMapping("/new")
     public ResponseEntity<?> createResource(@RequestBody Resource resource) {
         Resource newResource = resourceService.create(resource);
-        return ResponseEntity.ok(newResource);
+        return ResponseEntity.ok().body(Map.of("response", newResource,
+                "ok", true));
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<?> updateResource(@PathVariable Long id, @RequestBody Resource resource) {
         Resource updatedResource = resourceService.update(id, resource);
-        return ResponseEntity.ok(updatedResource);
+        return ResponseEntity.ok().body(Map.of("response", updatedResource,
+                "ok", true));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteResource(@PathVariable Long id) {
         boolean isDeleted = resourceService.delete(id);
-        return ResponseEntity.ok(isDeleted);
+        return ResponseEntity.ok().body(Map.of("response", isDeleted,
+                "ok", true));
     }
 }

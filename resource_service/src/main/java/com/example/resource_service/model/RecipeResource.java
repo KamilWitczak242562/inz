@@ -1,5 +1,6 @@
 package com.example.resource_service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,10 +15,12 @@ public class RecipeResource {
 
     @ManyToOne
     @JoinColumn(name = "recipeId")
+    @JsonBackReference
     private Recipe recipe;
 
     @ManyToOne
     @JoinColumn(name = "resourceId")
+    @JsonBackReference
     private Resource resource;
 
     private Double quantity;

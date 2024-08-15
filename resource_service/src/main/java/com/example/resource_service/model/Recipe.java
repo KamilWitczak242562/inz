@@ -1,5 +1,7 @@
 package com.example.resource_service.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +20,6 @@ public class Recipe {
     private String description;
 
     @OneToMany(mappedBy = "recipe")
+    @JsonManagedReference
     List<RecipeResource> recipeResourceList;
 }

@@ -1,7 +1,12 @@
 plugins {
 	id 'java'
+	id 'application'
 	id 'org.springframework.boot' version '3.3.2'
 	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+application {
+	mainClass.set('com.example.resource_service.ResourceServiceApplication')
 }
 
 group = 'com.example'
@@ -33,7 +38,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-api', version: '2.6.0'
 

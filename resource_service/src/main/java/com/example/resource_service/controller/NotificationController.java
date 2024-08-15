@@ -4,12 +4,11 @@ import com.example.resource_service.model.Notification;
 import com.example.resource_service.service.NotificationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/notification")
 @AllArgsConstructor
 public class NotificationController {

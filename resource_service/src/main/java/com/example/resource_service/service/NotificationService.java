@@ -9,30 +9,34 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class NotificationService {
+public class NotificationService implements ServiceTemplate<Notification> {
     private final NotificationRepo notificationRepo;
 
-    public List<Notification> getAllNotifications() {
+    public List<Notification> getAll() {
         return notificationRepo.findAll();
     }
 
-    public Notification getNotificationById(Long id) {
-        return notificationRepo.findById(id).orElse(null);
+    public Notification getById(Long id) {
+        return notificationRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("No such notification"));
     }
 
-    public Notification saveNotification(Notification notification) {
+    public Notification create(Notification notification) {
         return notificationRepo.save(notification);
     }
 
-    public Notification updateNotification(Notification notification) {
-        return notificationRepo.save(notification);
+    public Notification update(Long id, Notification notification) {
+        Notification notificationToChange = notificationRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("No such notification"));
+        notificationToChange.setMessage(notification.getMessage());
+        notificationToChange.setType(notification.getType());
+        notificationToChange.setTimestamp(notification.getTimestamp());
+        return notificationRepo.save(notificationToChange);
     }
 
     public List<Notification> getNotificationsByType(String type) {
         return notificationRepo.findAllByType(type);
     }
 
-    public boolean deleteNotification(Long id) {
+    public boolean delete(Long id) {
         if (notificationRepo.existsById(id)) {
             notificationRepo.deleteById(id);
             return true;

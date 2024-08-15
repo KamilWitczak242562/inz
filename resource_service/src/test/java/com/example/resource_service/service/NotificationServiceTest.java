@@ -56,7 +56,7 @@ class NotificationServiceTest {
 
         when(notificationRepo.findAll()).thenReturn(Arrays.asList(notification1, notification2));
 
-        List<Notification> notifications = notificationService.getAllNotifications();
+        List<Notification> notifications = notificationService.getAll();
 
         assertNotNull(notifications);
         assertEquals(2, notifications.size());
@@ -74,7 +74,7 @@ class NotificationServiceTest {
 
         when(notificationRepo.findById(1L)).thenReturn(Optional.of(notification));
 
-        Notification foundNotification = notificationService.getNotificationById(1L);
+        Notification foundNotification = notificationService.getById(1L);
 
         assertNotNull(foundNotification);
         assertEquals(notification, foundNotification);
@@ -90,7 +90,7 @@ class NotificationServiceTest {
 
         when(notificationRepo.save(notification)).thenReturn(notification);
 
-        Notification savedNotification = notificationService.saveNotification(notification);
+        Notification savedNotification = notificationService.create(notification);
 
 
         assertNotNull(savedNotification);
@@ -106,8 +106,9 @@ class NotificationServiceTest {
         notification.setMessage("Updated Message");
 
         when(notificationRepo.save(notification)).thenReturn(notification);
+        when(notificationRepo.findById(1L)).thenReturn(Optional.of(notification));
 
-        Notification updatedNotification = notificationService.updateNotification(notification);
+        Notification updatedNotification = notificationService.update(1L, notification);
 
         assertNotNull(updatedNotification);
         assertEquals(notification, updatedNotification);
@@ -141,7 +142,7 @@ class NotificationServiceTest {
     public void testDeleteNotificationSuccess() {
         when(notificationRepo.existsById(1L)).thenReturn(true);
 
-        boolean result = notificationService.deleteNotification(1L);
+        boolean result = notificationService.delete(1L);
 
         assertTrue(result);
         verify(notificationRepo, times(1)).deleteById(1L);
@@ -151,7 +152,7 @@ class NotificationServiceTest {
     public void testDeleteNotificationFailure() {
         when(notificationRepo.existsById(1L)).thenReturn(false);
 
-        boolean result = notificationService.deleteNotification(1L);
+        boolean result = notificationService.delete(1L);
 
         assertFalse(result);
         verify(notificationRepo, never()).deleteById(1L);

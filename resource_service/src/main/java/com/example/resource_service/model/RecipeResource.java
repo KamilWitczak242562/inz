@@ -1,11 +1,6 @@
 package com.example.resource_service.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -18,9 +13,11 @@ public class RecipeResource {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "recipeId")
     private Recipe recipe;
 
     @ManyToOne
+    @JoinColumn(name = "resourceId")
     private Resource resource;
 
     private Double quantity;

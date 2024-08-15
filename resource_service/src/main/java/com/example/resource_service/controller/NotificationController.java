@@ -17,7 +17,7 @@ public class NotificationController {
 
     @GetMapping("/getAll")
     public ResponseEntity<?> getNotifications() {
-        List<Notification> notificationList = notificationService.getAllNotifications();
+        List<Notification> notificationList = notificationService.getAll();
         return ResponseEntity.ok(notificationList);
     }
 
@@ -29,25 +29,25 @@ public class NotificationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getNotificationById(@PathVariable Long id) {
-        Notification notification = notificationService.getNotificationById(id);
+        Notification notification = notificationService.getById(id);
         return ResponseEntity.ok(notification);
     }
 
     @PostMapping("/new")
     public ResponseEntity<?> createNotification(@RequestBody Notification notification) {
-        Notification newNotification = notificationService.saveNotification(notification);
+        Notification newNotification = notificationService.create(notification);
         return ResponseEntity.ok(newNotification);
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<?> updateNotification(@PathVariable Long id, @RequestBody Notification notification) {
-        Notification newNotification = notificationService.updateNotification(notification);
+        Notification newNotification = notificationService.update(id, notification);
         return ResponseEntity.ok(newNotification);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteNotification(@PathVariable Long id) {
-        boolean isDeleted = notificationService.deleteNotification(id);
+        boolean isDeleted = notificationService.delete(id);
         return ResponseEntity.ok(isDeleted);
     }
 }

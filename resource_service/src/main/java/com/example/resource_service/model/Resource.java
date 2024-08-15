@@ -3,6 +3,8 @@ package com.example.resource_service.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "resources")
 @Data
@@ -17,4 +19,7 @@ public class Resource {
     private Double currentStock;
     private String unit;
     private Double reorderLevel;
+
+    @OneToMany(mappedBy = "resource")
+    List<RecipeResource> recipeResourceList;
 }

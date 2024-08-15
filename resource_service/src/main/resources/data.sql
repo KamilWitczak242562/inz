@@ -1,8 +1,10 @@
+DELETE FROM suppliers_resources;
 DELETE FROM recipe_resources;
 DELETE FROM resources;
 DELETE FROM recipes;
 DELETE FROM suppliers;
-DELETE FROM suppliers_resources;
+DELETE FROM notifications;
+DELETE FROM production_orders;
 
 ALTER TABLE recipe_resources AUTO_INCREMENT = 1;
 ALTER TABLE resources AUTO_INCREMENT = 1;

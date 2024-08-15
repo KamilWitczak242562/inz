@@ -5,6 +5,8 @@ import com.example.resource_service.repository.NotificationRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -28,7 +30,6 @@ public class NotificationService implements ServiceTemplate<Notification> {
         Notification notificationToChange = notificationRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("No such notification"));
         notificationToChange.setMessage(notification.getMessage());
         notificationToChange.setType(notification.getType());
-        notificationToChange.setTimestamp(notification.getTimestamp());
         return notificationRepo.save(notificationToChange);
     }
 

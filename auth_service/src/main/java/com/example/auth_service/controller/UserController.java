@@ -2,6 +2,7 @@ package com.example.auth_service.controller;
 
 import com.example.auth_service.model.User;
 import com.example.auth_service.service.UserService;
+import com.example.auth_service.session.SessionManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,14 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
         User user = userService.logInUser(credentials.get("email"), credentials.get("password"));
+        SessionManager.createSession(user);
         return ResponseEntity.ok().body(Map.of("response", user, "ok", true));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(@RequestBody String email) {
+        SessionManager.removeSession(email);
+        return ResponseEntity.ok().body(Map.of("response", "Logged out", "ok", true));
     }
 
     @DeleteMapping("/{id}")

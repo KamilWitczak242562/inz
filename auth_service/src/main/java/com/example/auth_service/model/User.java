@@ -1,5 +1,6 @@
 package com.example.auth_service.model;
 
+import com.example.auth_service.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,5 +18,8 @@ public class User {
     private String email;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.USER;
 
 }

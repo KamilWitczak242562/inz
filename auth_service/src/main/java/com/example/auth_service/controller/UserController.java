@@ -70,9 +70,15 @@ public class UserController {
         return ResponseEntity.ok().body(Map.of("response", user, "ok", true));
     }
 
-    @GetMapping
+    @GetMapping("/gelAll")
     public ResponseEntity<?> getAllUsers() {
         List<User> users = userService.getAll();
         return ResponseEntity.ok().body(Map.of("response", users, "ok", true));
+    }
+
+    @PostMapping("/checkSession")
+    public ResponseEntity<?> checkSession(@RequestBody String email) {
+        boolean response = SessionManager.isSession(email);
+        return ResponseEntity.ok().body(Map.of("response", response, "ok", true));
     }
 }

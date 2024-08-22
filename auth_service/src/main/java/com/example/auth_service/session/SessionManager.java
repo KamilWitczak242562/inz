@@ -5,7 +5,7 @@ import lombok.Data;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @Data
 public class SessionManager {
-    private static Map<String, Session> sessions;
+    private static Map<String, Session> sessions = new HashMap<>();
     private static int maintain = 60;
 
     static {

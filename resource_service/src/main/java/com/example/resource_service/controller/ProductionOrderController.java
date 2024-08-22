@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/productionOrder")
+@RequestMapping("/productionOrder")
 @AllArgsConstructor
 public class ProductionOrderController {
     private final ProductionOrderService productionOrderService;

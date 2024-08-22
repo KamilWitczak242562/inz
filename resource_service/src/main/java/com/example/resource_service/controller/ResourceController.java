@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/resource")
+@RequestMapping("/resource")
 @AllArgsConstructor
 public class ResourceController {
     private final ResourceService resourceService;

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/notification")
+@RequestMapping("/notification")
 @AllArgsConstructor
 public class NotificationController {
     private final NotificationService notificationService;

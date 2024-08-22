@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1/recipe")
+@RequestMapping("/recipe")
 @AllArgsConstructor
 public class RecipeController {
     private final RecipeService recipeService;

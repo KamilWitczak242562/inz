@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "notifications")
 @Data
@@ -16,7 +18,7 @@ public class Notification {
 
     @CreationTimestamp
     @Column(name = "timestamp", nullable = false, updatable = false)
-    private String timestamp;
+    private LocalDateTime timestamp;
     @Enumerated(EnumType.STRING)
     private NotificationType type;
     private String message;

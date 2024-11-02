@@ -16,6 +16,7 @@ public abstract class Machine {
     @Enumerated(EnumType.STRING)
     private State state;
 
+    private String name;
     private LocalDateTime startWork;
     private LocalDateTime endWork;
     private int capacity;

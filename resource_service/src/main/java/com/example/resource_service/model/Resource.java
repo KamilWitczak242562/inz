@@ -21,7 +21,4 @@ public class Resource {
     private String unit;
     private Double reorderLevel;
 
-    @OneToMany(mappedBy = "resource")
-    @JsonManagedReference
-    List<RecipeResource> recipeResourceList;
 }

@@ -1,12 +1,12 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.springframework.boot' version '3.3.4'
+    id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
 application {
-    mainClass.set('com.example.planning_service.PlanningServiceApplication')
+    mainClass.set('com.example.recipe_management_service.RecipeManagementServiceApplication')
 }
 
 group = 'com.example'
@@ -29,18 +29,20 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+    implementation 'mysql:mysql-connector-java'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
-    implementation 'mysql:mysql-connector-java'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-api', version: '2.6.0'
+
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()

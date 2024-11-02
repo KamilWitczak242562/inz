@@ -38,7 +38,6 @@ public class ResourceService implements ServiceTemplate<Resource> {
         resourceToChange.setUnit(entity.getUnit());
         resourceToChange.setReorderLevel(entity.getReorderLevel());
         resourceToChange.setCurrentStock(entity.getCurrentStock());
-        resourceToChange.setRecipeResourceList(entity.getRecipeResourceList());
         return resourceRepo.save(resourceToChange);
     }
 

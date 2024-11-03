@@ -7,5 +7,7 @@ import lombok.Data;
 @Data
 public class Pump extends Block{
     private Integer rpm;
-    private Boolean circulation;
+    private Integer circulationTimeInOut;
+    private Integer circulationTimeOutIn;
+
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name = "recipes")
@@ -17,7 +18,9 @@ public class Recipe {
     private String description;
 
     @ElementCollection
-    private List<Long> resourcesIds;
-
+    @CollectionTable(name = "recipe_resources", joinColumns = @JoinColumn(name = "recipe_id"))
+    @MapKeyColumn(name = "resource_id")
+    @Column(name = "quantity")
+    private Map<Long, Double> resourcesQuantities;
 
 }

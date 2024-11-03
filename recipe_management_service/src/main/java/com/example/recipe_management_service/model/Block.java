@@ -11,9 +11,10 @@ import java.util.List;
 public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long blockId;
 
     @ManyToMany(mappedBy = "blocks")
     private List<Program> programs;
+
 
 }

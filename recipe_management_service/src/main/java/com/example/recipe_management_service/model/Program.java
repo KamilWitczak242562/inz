@@ -12,7 +12,7 @@ import java.util.List;
 public class Program {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long programId;
 
     private String name;
 

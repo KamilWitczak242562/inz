@@ -39,18 +39,9 @@ VALUES (101, 'Order for product A', '2024-08-01', '2024-08-05', 'PENDING'),
        (103, 'Order for product C', '2024-08-11', '2024-08-15', 'IN_PROGRESS');
 
 INSERT INTO resources (name, description, current_stock, unit, reorder_level)
-VALUES ('Steel', 'High-grade steel', 500.0, 'kg', 100.0),
-       ('Aluminum', 'Aluminum alloy', 200.0, 'kg', 50.0),
-       ('Copper', 'Copper wire', 300.0, 'm', 75.0);
-
-INSERT INTO recipes (name, description)
-VALUES ('Recipe 1', 'Description for Recipe 1'),
-       ('Recipe 2', 'Description for Recipe 2');
-
-INSERT INTO recipe_resources (recipe_id, resource_id, quantity)
-VALUES (1, 1, 100.0),
-       (1, 2, 50.0),
-       (2, 3, 150.0);
+VALUES ('Blue Dye', 'High-quality blue dye for fabrics', 500.0, 'l', 50.0),
+       ('Water', 'Filtered water for dyeing processes', 1000.0, 'l', 200.0),
+       ('Red Dye', 'High-quality red dye for fabrics', 300.0, 'l', 30.0);
 
 INSERT INTO suppliers (name, contact_info, address)
 VALUES ('Supplier A', '123-456-7890', '123 Supplier Street, Supplier City'),

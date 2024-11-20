@@ -1,5 +1,6 @@
 package com.example.recipe_management_service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Block {
     private Long blockId;
 
     @ManyToMany(mappedBy = "blocks")
+    @JsonIgnore
     private List<Program> programs;
 
 

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -53,8 +54,12 @@ public class RecipeService implements ServiceTemplate<Recipe> {
         }
     }
 
+    /***
+     * REMEMBER TO CHANGE BASE URL AFTER DOCKER INFRA
+     */
     private ResourceDto getResourceById(Long resourceId) {
         return webClientBuilder.baseUrl("http://localhost:8080/api/v1/resources/resource/")
+                .build()
                 .get()
                 .uri(uriBuilder -> uriBuilder.path("/{id}").build(resourceId))
                 .retrieve()
@@ -62,15 +67,29 @@ public class RecipeService implements ServiceTemplate<Recipe> {
                 .block();
     }
 
-    public void synchronizeResourcesWithExternalAPI(Long recipeId) {
+    public void addResourceToRecipe(Long recipeId, Long resourceId, Double quantity) {
+        Recipe recipe = getById(recipeId);
+        if (recipe.getResourcesQuantities().containsKey(resourceId)) {
+            throw new IllegalArgumentException("Resource is already part of the recipe.");
+        }
+        recipe.getResourcesQuantities().put(resourceId, quantity);
+        recipeRepository.save(recipe);
+    }
+
+    public void removeResourceFromRecipe(Long recipeId, Long resourceId) {
+        Recipe recipe = getById(recipeId);
+        if (!recipe.getResourcesQuantities().containsKey(resourceId)) {
+            throw new IllegalArgumentException("Resource is not part of the recipe.");
+        }
+        recipe.getResourcesQuantities().remove(resourceId);
+        recipeRepository.save(recipe);
+    }
+
+    public List<ResourceDto> fetchResourcesForRecipe(Long recipeId) {
         Recipe recipe = getById(recipeId);
         List<Long> resourceIds = recipe.getResourcesQuantities().keySet().stream().collect(Collectors.toList());
-        List<ResourceDto> resources = fetchResourcesForRecipe(resourceIds);
-
-        for (ResourceDto resource : resources) {
-            recipe.getResourcesQuantities().put(resource.getResourceId(), recipe.getResourcesQuantities().get(resource.getResourceId()));
-        }
-
-        recipeRepository.save(recipe);
+        return resourceIds.stream()
+                .map(this::getResourceById)
+                .collect(Collectors.toList());
     }
 }

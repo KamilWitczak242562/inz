@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build:
+      context: ./api_gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - api-network
+      - service-network
+    depends_on:
+      - recipe-service
+      - machine-service
+      - auth-service
+      - resource-service
+
+  recipe-service:
+    build:
+      context: ./recipe_management_service
+    expose:
+      - "8081"
+    networks:
+      - service-network
+
+  machine-service:
+    build:
+      context: ./machine_service
+    expose:
+      - "8082"
+    networks:
+      - service-network
+
+  auth-service:
+    build:
+      context: ./auth_service
+    expose:
+      - "8083"
+    networks:
+      - service-network
+
+  resource-service:
+    build:
+      context: ./resource_service
+    expose:
+      - "8084"
+    networks:
+      - service-network
+
+networks:
+  api-network:
+    driver: bridge
+  service-network:
+    driver: bridge

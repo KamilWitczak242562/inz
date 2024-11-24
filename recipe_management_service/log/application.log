@@ -1,25 +1,19 @@
-2024-11-20T15:46:02.194+01:00  INFO 13948 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Starting RecipeManagementServiceApplication using Java 22.0.1 with PID 13948 (G:\Sem VII\inz\recipe_management_service\build\classes\java\main started by kamil in G:\Sem VII\inz\recipe_management_service)
-2024-11-20T15:46:02.195+01:00 DEBUG 13948 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-11-20T15:46:02.195+01:00  INFO 13948 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
-2024-11-20T15:46:02.792+01:00  INFO 13948 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-20T15:46:02.915+01:00  INFO 13948 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 5 JPA repository interfaces.
-2024-11-20T15:46:03.313+01:00  INFO 13948 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-11-20T15:46:03.323+01:00  INFO 13948 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-11-20T15:46:03.323+01:00  INFO 13948 --- [recipe_management_service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-11-20T15:46:03.378+01:00  INFO 13948 --- [recipe_management_service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-11-20T15:46:03.378+01:00  INFO 13948 --- [recipe_management_service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1152 ms
-2024-11-20T15:46:03.491+01:00  INFO 13948 --- [recipe_management_service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-20T15:46:03.537+01:00  INFO 13948 --- [recipe_management_service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-11-20T15:46:03.569+01:00  INFO 13948 --- [recipe_management_service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-11-20T15:46:03.837+01:00  INFO 13948 --- [recipe_management_service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-20T15:46:03.861+01:00  INFO 13948 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-11-20T15:46:04.107+01:00  INFO 13948 --- [recipe_management_service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2e1291a4
-2024-11-20T15:46:04.108+01:00  INFO 13948 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-11-20T15:46:04.996+01:00  INFO 13948 --- [recipe_management_service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-11-20T15:46:05.074+01:00  INFO 13948 --- [recipe_management_service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-20T15:46:05.429+01:00  WARN 13948 --- [recipe_management_service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-20T15:46:06.057+01:00  INFO 13948 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2024-11-20T15:46:06.065+01:00  INFO 13948 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Started RecipeManagementServiceApplication in 4.189 seconds (process running for 4.681)
-2024-11-20T15:47:29.634+01:00  INFO 13948 --- [recipe_management_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-20T15:47:29.636+01:00  INFO 13948 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-11-20T15:47:29.642+01:00  INFO 13948 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-24T23:16:27.419+01:00  INFO 20504 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Starting RecipeManagementServiceApplicationTests using Java 22.0.1 with PID 20504 (started by kamil in G:\Sem VII\inz\recipe_management_service)
+2024-11-24T23:16:27.491+01:00 DEBUG 20504 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-11-24T23:16:27.492+01:00  INFO 20504 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2024-11-24T23:16:28.189+01:00  INFO 20504 --- [recipe_management_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-24T23:16:28.323+01:00  INFO 20504 --- [recipe_management_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 126 ms. Found 5 JPA repository interfaces.
+2024-11-24T23:16:28.743+01:00  INFO 20504 --- [recipe_management_service] [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-24T23:16:28.815+01:00  INFO 20504 --- [recipe_management_service] [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-24T23:16:28.851+01:00  INFO 20504 --- [recipe_management_service] [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-24T23:16:29.155+01:00  INFO 20504 --- [recipe_management_service] [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-24T23:16:29.182+01:00  INFO 20504 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-24T23:16:29.470+01:00  INFO 20504 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dde1bf5
+2024-11-24T23:16:29.472+01:00  INFO 20504 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-24T23:16:30.437+01:00  INFO 20504 --- [recipe_management_service] [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-24T23:16:30.536+01:00  INFO 20504 --- [recipe_management_service] [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-24T23:16:31.098+01:00  WARN 20504 --- [recipe_management_service] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-24T23:16:32.172+01:00  INFO 20504 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Started RecipeManagementServiceApplicationTests in 5.104 seconds (process running for 6.195)
+2024-11-24T23:16:32.632+01:00  INFO 20504 --- [recipe_management_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-24T23:16:32.634+01:00  INFO 20504 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-24T23:16:32.641+01:00  INFO 20504 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

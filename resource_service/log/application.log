@@ -17,3 +17,63 @@
 2024-11-24T23:19:42.776+01:00  INFO 21116 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-24T23:19:42.778+01:00  INFO 21116 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-11-24T23:19:42.787+01:00  INFO 21116 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-25T20:09:06.266+01:00  INFO 1700 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Starting ResourceServiceApplicationTests using Java 22.0.1 with PID 1700 (started by kamil in G:\Sem VII\inz\resource_service)
+2024-11-25T20:09:06.268+01:00 DEBUG 1700 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-11-25T20:09:06.270+01:00  INFO 1700 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-11-25T20:09:07.315+01:00  INFO 1700 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-25T20:09:07.380+01:00  INFO 1700 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 3 JPA repository interfaces.
+2024-11-25T20:09:07.968+01:00  INFO 1700 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-25T20:09:08.046+01:00  INFO 1700 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-25T20:09:08.098+01:00  INFO 1700 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-25T20:09:08.511+01:00  INFO 1700 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-25T20:09:08.543+01:00  INFO 1700 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-25T20:09:08.947+01:00  INFO 1700 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7976e536
+2024-11-25T20:09:08.950+01:00  INFO 1700 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-25T20:09:09.041+01:00  WARN 1700 --- [Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-25T20:09:10.142+01:00  INFO 1700 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-25T20:09:10.224+01:00  INFO 1700 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T20:09:10.999+01:00  WARN 1700 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-25T20:09:11.929+01:00  INFO 1700 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Started ResourceServiceApplicationTests in 6.095 seconds (process running for 7.579)
+2024-11-25T20:09:12.535+01:00  INFO 1700 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T20:09:12.537+01:00  INFO 1700 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-25T20:09:12.550+01:00  INFO 1700 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-25T20:11:52.759+01:00  INFO 16668 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Starting ResourceServiceApplicationTests using Java 22.0.1 with PID 16668 (started by kamil in G:\Sem VII\inz\resource_service)
+2024-11-25T20:11:52.761+01:00 DEBUG 16668 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-11-25T20:11:52.761+01:00  INFO 16668 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-11-25T20:11:53.501+01:00  INFO 16668 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-25T20:11:53.558+01:00  INFO 16668 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2024-11-25T20:11:53.974+01:00  INFO 16668 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-25T20:11:54.030+01:00  INFO 16668 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-25T20:11:54.063+01:00  INFO 16668 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-25T20:11:54.375+01:00  INFO 16668 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-25T20:11:54.404+01:00  INFO 16668 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-25T20:11:54.733+01:00  INFO 16668 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@45311a99
+2024-11-25T20:11:54.735+01:00  INFO 16668 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-25T20:11:54.781+01:00  WARN 16668 --- [Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-25T20:11:55.612+01:00  INFO 16668 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-25T20:11:55.673+01:00  INFO 16668 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T20:11:56.230+01:00  WARN 16668 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-25T20:11:56.882+01:00  INFO 16668 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Started ResourceServiceApplicationTests in 4.433 seconds (process running for 5.542)
+2024-11-25T20:11:57.331+01:00  INFO 16668 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T20:11:57.333+01:00  INFO 16668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-25T20:11:57.341+01:00  INFO 16668 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-25T21:40:35.716+01:00  INFO 18340 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Starting ResourceServiceApplicationTests using Java 22.0.1 with PID 18340 (started by kamil in G:\Sem VII\inz\resource_service)
+2024-11-25T21:40:35.717+01:00 DEBUG 18340 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-11-25T21:40:35.718+01:00  INFO 18340 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-11-25T21:40:36.456+01:00  INFO 18340 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-25T21:40:36.509+01:00  INFO 18340 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2024-11-25T21:40:36.930+01:00  INFO 18340 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-25T21:40:36.994+01:00  INFO 18340 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-25T21:40:37.030+01:00  INFO 18340 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-25T21:40:37.340+01:00  INFO 18340 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-25T21:40:37.369+01:00  INFO 18340 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-25T21:40:37.671+01:00  INFO 18340 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7976e536
+2024-11-25T21:40:37.674+01:00  INFO 18340 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-25T21:40:37.726+01:00  WARN 18340 --- [Test worker] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-25T21:40:38.546+01:00  INFO 18340 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-25T21:40:38.633+01:00  INFO 18340 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T21:40:39.219+01:00  WARN 18340 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-25T21:40:39.893+01:00  INFO 18340 --- [Test worker] c.e.r.ResourceServiceApplicationTests    : Started ResourceServiceApplicationTests in 4.492 seconds (process running for 5.59)
+2024-11-25T21:40:40.312+01:00  INFO 18340 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-25T21:40:40.314+01:00  INFO 18340 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-25T21:40:40.322+01:00  INFO 18340 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

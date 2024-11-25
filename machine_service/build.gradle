@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-    mainClass.set('com.example.auth_service.AuthServiceApplication')
+    mainClass.set('com.example.machine_service.MachineServiceApplication')
 }
 
 group = 'com.example'

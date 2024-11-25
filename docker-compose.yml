@@ -4,51 +4,137 @@ services:
   api-gateway:
     build:
       context: ./api_gateway
+    container_name: api-gateway
     ports:
       - "8080:8080"
     networks:
-      - api-network
-      - service-network
+      - app-network
     depends_on:
       - recipe-service
-      - machine-service
       - auth-service
+      - machine-service
       - resource-service
 
   recipe-service:
     build:
       context: ./recipe_management_service
+    container_name: recipe-service
     expose:
       - "8081"
     networks:
-      - service-network
+      - app-network
+    depends_on:
+      - mysql-recipe
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-recipe:3306/recipes
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
 
-  machine-service:
-    build:
-      context: ./machine_service
-    expose:
-      - "8082"
+  mysql-recipe:
+    image: mysql:8.0
+    container_name: mysql-recipe
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: recipes
     networks:
-      - service-network
+      - app-network
 
   auth-service:
     build:
       context: ./auth_service
+    container_name: auth-service
     expose:
       - "8083"
     networks:
-      - service-network
+      - app-network
+    depends_on:
+      - mysql-auth
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-auth:3306/users
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+
+  mysql-auth:
+    image: mysql:8.0
+    container_name: mysql-auth
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: users
+    networks:
+      - app-network
+
+  machine-service:
+    build:
+      context: ./machine_service
+    container_name: machine-service
+    expose:
+      - "8082"
+    networks:
+      - app-network
+    depends_on:
+      - mysql-machine
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-machine:3306/machines
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+
+  mysql-machine:
+    image: mysql:8.0
+    container_name: mysql-machine
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: machines
+    networks:
+      - app-network
 
   resource-service:
     build:
       context: ./resource_service
+    container_name: resource-service
     expose:
       - "8084"
     networks:
-      - service-network
+      - app-network
+    depends_on:
+      - mysql-resource
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-resource:3306/resources
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+
+  mysql-resource:
+    image: mysql:8.0
+    container_name: mysql-resource
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: resources
+    networks:
+      - app-network
 
 networks:
-  api-network:
-    driver: bridge
-  service-network:
+  app-network:
     driver: bridge

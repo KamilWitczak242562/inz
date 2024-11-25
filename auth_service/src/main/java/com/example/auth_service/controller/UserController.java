@@ -1,8 +1,8 @@
 package com.example.auth_service.controller;
 
 import com.example.auth_service.model.User;
+import com.example.auth_service.service.JWTService;
 import com.example.auth_service.service.UserService;
-import com.example.auth_service.session.SessionManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ import java.util.Map;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final JWTService jwtService;
 
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User user) {
@@ -26,15 +27,39 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
         User user = userService.logInUser(credentials.get("email"), credentials.get("password"));
-        SessionManager.createSession(user);
-        return ResponseEntity.ok().body(Map.of("response", user, "ok", true));
+        String jwt = jwtService.generateToken(user);
+        return ResponseEntity.ok().body(Map.of(
+                "response", "Logged in successfully",
+                "token", jwt,
+                "ok", true
+        ));
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser(@RequestBody String email) {
-        SessionManager.removeSession(email);
-        return ResponseEntity.ok().body(Map.of("response", "Logged out", "ok", true));
+    @PostMapping("/verifyToken")
+    public ResponseEntity<?> verifyToken(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+        boolean isValid = jwtService.validateToken(token);
+        return ResponseEntity.ok().body(Map.of(
+                "response", isValid,
+                "ok", true
+        ));
     }
+
+    @GetMapping("/role")
+    public ResponseEntity<?> getUserRole(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("response", "Invalid token", "ok", false));
+        }
+
+        String token = authHeader.substring(7);
+        if (!jwtService.validateToken(token)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("response", "Invalid or expired token", "ok", false));
+        }
+
+        String role = jwtService.getRoleFromToken(token);
+        return ResponseEntity.ok().body(Map.of("response", role, "ok", true));
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
@@ -76,9 +101,4 @@ public class UserController {
         return ResponseEntity.ok().body(Map.of("response", users, "ok", true));
     }
 
-    @PostMapping("/checkSession")
-    public ResponseEntity<?> checkSession(@RequestBody String email) {
-        boolean response = SessionManager.isSession(email);
-        return ResponseEntity.ok().body(Map.of("response", response, "ok", true));
-    }
 }

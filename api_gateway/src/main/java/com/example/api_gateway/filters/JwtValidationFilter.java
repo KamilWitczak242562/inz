@@ -13,6 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Order(1)
@@ -43,13 +44,13 @@ public class JwtValidationFilter implements GlobalFilter {
 
         return webClientBuilder.build()
                 .post()
-                .uri("http://auth-service:8083/api/v1/auth/verifyToken")
-                .bodyValue(token)
+                .uri("http://auth-service:8083/api/v1/auth/user/verifyToken")
+                .bodyValue(Map.of("token", token))
                 .retrieve()
-                .toEntity(Boolean.class)
+                .toEntity(Map.class)
                 .flatMap(response -> {
-                    if (Boolean.TRUE.equals(response.getBody())) {
-                        //return checkRoleIfNeeded(path, token, exchange, chain);
+                    Map<String, Object> body = response.getBody();
+                    if (body != null && Boolean.TRUE.equals(body.get("response"))) {
                         return chain.filter(exchange);
                     } else {
                         exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);

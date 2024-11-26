@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     networks:
       - app-network
+      - service-network
     depends_on:
       - recipe-service
       - auth-service
@@ -22,9 +23,10 @@ services:
     expose:
       - "8081"
     networks:
-      - app-network
+      - service-network
     depends_on:
-      - mysql-recipe
+      mysql-recipe:
+        condition: service_healthy
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-recipe:3306/recipes
@@ -43,7 +45,13 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: recipes
     networks:
-      - app-network
+      - service-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   auth-service:
     build:
@@ -52,9 +60,10 @@ services:
     expose:
       - "8083"
     networks:
-      - app-network
+      - service-network
     depends_on:
-      - mysql-auth
+      mysql-auth:
+        condition: service_healthy
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-auth:3306/users
@@ -73,7 +82,13 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: users
     networks:
-      - app-network
+      - service-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   machine-service:
     build:
@@ -82,9 +97,10 @@ services:
     expose:
       - "8082"
     networks:
-      - app-network
+      - service-network
     depends_on:
-      - mysql-machine
+      mysql-machine:
+        condition: service_healthy
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-machine:3306/machines
@@ -103,7 +119,13 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: machines
     networks:
-      - app-network
+      - service-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   resource-service:
     build:
@@ -112,9 +134,10 @@ services:
     expose:
       - "8084"
     networks:
-      - app-network
+      - service-network
     depends_on:
-      - mysql-resource
+      mysql-resource:
+        condition: service_healthy
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-resource:3306/resources
@@ -133,8 +156,16 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: resources
     networks:
-      - app-network
+      - service-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 networks:
   app-network:
+    driver: bridge
+  service-network:
     driver: bridge

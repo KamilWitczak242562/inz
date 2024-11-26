@@ -55,3 +55,22 @@
 2024-11-25T21:39:52.118+01:00  INFO 740 --- [recipe_management_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-25T21:39:52.120+01:00  INFO 740 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-11-25T21:39:52.128+01:00  INFO 740 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-11-26T22:24:43.890+01:00  INFO 16284 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Starting RecipeManagementServiceApplicationTests using Java 22.0.1 with PID 16284 (started by kamil in G:\Sem VII\inz\recipe_management_service)
+2024-11-26T22:24:43.892+01:00 DEBUG 16284 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-11-26T22:24:43.893+01:00  INFO 16284 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2024-11-26T22:24:44.733+01:00  INFO 16284 --- [recipe_management_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-26T22:24:44.873+01:00  INFO 16284 --- [recipe_management_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 133 ms. Found 5 JPA repository interfaces.
+2024-11-26T22:24:45.365+01:00  INFO 16284 --- [recipe_management_service] [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-26T22:24:45.442+01:00  INFO 16284 --- [recipe_management_service] [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-26T22:24:45.485+01:00  INFO 16284 --- [recipe_management_service] [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-26T22:24:45.800+01:00  INFO 16284 --- [recipe_management_service] [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-26T22:24:45.826+01:00  INFO 16284 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-26T22:24:46.127+01:00  INFO 16284 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6297cb4b
+2024-11-26T22:24:46.129+01:00  INFO 16284 --- [recipe_management_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-26T22:24:47.099+01:00  INFO 16284 --- [recipe_management_service] [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-26T22:24:47.192+01:00  INFO 16284 --- [recipe_management_service] [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26T22:24:47.794+01:00  WARN 16284 --- [recipe_management_service] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-26T22:24:48.613+01:00  INFO 16284 --- [recipe_management_service] [Test worker] .RecipeManagementServiceApplicationTests : Started RecipeManagementServiceApplicationTests in 5.11 seconds (process running for 6.336)
+2024-11-26T22:24:49.075+01:00  INFO 16284 --- [recipe_management_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26T22:24:49.078+01:00  INFO 16284 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-26T22:24:49.086+01:00  INFO 16284 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

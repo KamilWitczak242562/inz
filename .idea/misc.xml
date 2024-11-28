@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/api_gateway" />
+    <file type="web" url="file://$PROJECT_DIR$/auth_service" />
+    <file type="web" url="file://$PROJECT_DIR$/client" />
+    <file type="web" url="file://$PROJECT_DIR$/machine_service" />
+    <file type="web" url="file://$PROJECT_DIR$/planning_service" />
+    <file type="web" url="file://$PROJECT_DIR$/recipe_management_service" />
+    <file type="web" url="file://$PROJECT_DIR$/reporting_service" />
+    <file type="web" url="file://$PROJECT_DIR$/resource_service" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="22" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

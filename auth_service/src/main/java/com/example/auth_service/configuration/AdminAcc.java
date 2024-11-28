@@ -21,8 +21,8 @@ public class AdminAcc {
             String adminEmail = "admin@example.com";
             if (userRepo.findByEmail(adminEmail).isEmpty()) {
                 User admin = new User();
-                admin.setFirstName("Admin");
-                admin.setLastName("Account");
+                admin.setFirstName("Janusz");
+                admin.setLastName("Kowalski");
                 admin.setEmail(adminEmail);
                 admin.setPassword(BCrypt.hashpw("admin123", BCrypt.gensalt()));
                 admin.setRole(Role.ADMIN);

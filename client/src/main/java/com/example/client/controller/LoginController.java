@@ -1,0 +1,77 @@
+package com.example.client.controller;
+
+import com.example.client.utils.Utils;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+
+import java.awt.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static com.example.client.utils.Utils.showAlert;
+import static com.example.client.utils.Utils.switchToView;
+
+public class LoginController {
+    @FXML
+    private TextField loginField;
+
+    @FXML
+    private TextField passwordField;
+
+    private String logIn(String email, String password) {
+        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Email i hasło nie mogą być puste.");
+        }
+
+        String requestBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:8080/api/v1/auth/user/login"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody, StandardCharsets.UTF_8))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                ObjectMapper mapper = new ObjectMapper();
+                Map<String, Object> responseBody = mapper.readValue(response.body(), Map.class);
+                Utils.setAuthToken((String) responseBody.get("token"));
+                return "success";
+            } else {
+                throw new IllegalArgumentException("Nie udało się zalogować: " + response.body());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Wystąpił błąd podczas logowania: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    protected void logIn() {
+        String login = loginField.getText();
+        String password = passwordField.getText();
+
+        try {
+            String result = logIn(login, password);
+
+            if ("success".equals(result)) {
+                switchToView("main-view.fxml");
+            }
+        } catch (Exception e) {
+            showAlert("Błąd", e.getMessage());
+        }
+    }
+}

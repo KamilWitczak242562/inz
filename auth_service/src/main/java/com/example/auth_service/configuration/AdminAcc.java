@@ -18,13 +18,13 @@ public class AdminAcc {
     @Bean
     public ApplicationRunner initAdminAccount() {
         return args -> {
-            String adminEmail = "admin@example.com";
+            String adminEmail = "admin";
             if (userRepo.findByEmail(adminEmail).isEmpty()) {
                 User admin = new User();
                 admin.setFirstName("Janusz");
                 admin.setLastName("Kowalski");
                 admin.setEmail(adminEmail);
-                admin.setPassword(BCrypt.hashpw("admin123", BCrypt.gensalt()));
+                admin.setPassword(BCrypt.hashpw("admin", BCrypt.gensalt()));
                 admin.setRole(Role.ADMIN);
 
                 userRepo.save(admin);

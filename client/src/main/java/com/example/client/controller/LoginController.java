@@ -2,14 +2,8 @@ package com.example.client.controller;
 
 import com.example.client.utils.Utils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -19,8 +13,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static com.example.client.utils.Utils.showAlert;
-import static com.example.client.utils.Utils.switchToView;
+import static com.example.client.utils.Utils.*;
 
 public class LoginController {
     @FXML
@@ -71,7 +64,7 @@ public class LoginController {
                 switchToView("main-view.fxml");
             }
         } catch (Exception e) {
-            showAlert("Błąd", e.getMessage());
+            showAlert(e.getMessage());
         }
     }
 }

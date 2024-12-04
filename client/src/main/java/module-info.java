@@ -4,8 +4,12 @@ module com.example.client {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
+    requires static lombok;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    requires org.kordamp.ikonli.javafx;
 
 
+    opens com.example.client.model.machine to com.fasterxml.jackson.databind;
     opens com.example.client to javafx.fxml;
     exports com.example.client;
     exports com.example.client.controller;

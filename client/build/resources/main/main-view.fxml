@@ -10,14 +10,14 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.controller.MainController">
    <children>
-      <HBox layoutX="0.0" layoutY="0.0" prefWidth="1000.0" style="-fx-background-color: #2E7D32; -fx-text-fill: white;">
+      <HBox layoutX="0.0" layoutY="0.0" prefWidth="1000.0" style="-fx-background-color: #2E7D32;">
          <children>
             <MenuBar style="-fx-background-color: transparent;" prefWidth="800.0">
                <menus>
-                  <Menu text="Opcje" style="-fx-text-fill: white;">
+                  <Menu text="Options" style="-fx-text-fill: white;">
                      <items>
-                        <MenuItem text="Wyloguj" onAction="#logout"/>
-                        <MenuItem text="Wyjdź" onAction="#exitApplication"/>
+                        <MenuItem text="Logout" onAction="#logout"/>
+                        <MenuItem text="Exit" onAction="#exitApplication"/>
                      </items>
                   </Menu>
                </menus>
@@ -26,16 +26,18 @@
       </HBox>
       <HBox layoutX="0.0" layoutY="50.0" prefWidth="1000.0" alignment="CENTER">
          <children>
-            <Label text="Witaj w DyeFlow" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #424242;"/>
+            <Label text="Welcome to DyeFlow" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #424242;"/>
          </children>
       </HBox>
       <HBox spacing="20.0" layoutX="50.0" layoutY="200.0" alignment="CENTER" prefWidth="900.0">
          <children>
-            <Button text="Widok 1" prefHeight="150.0" prefWidth="150.0" onAction="#goToView1" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-            <Button text="Widok 2" prefHeight="150.0" prefWidth="150.0" onAction="#goToView2" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-            <Button text="Widok 3" prefHeight="150.0" prefWidth="150.0" onAction="#goToView3" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-            <Button text="Widok 4" prefHeight="150.0" prefWidth="150.0" onAction="#goToView4" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-            <Button text="Widok 5" prefHeight="150.0" prefWidth="150.0" onAction="#goToView5" style="-fx-background-color: #A5D6A7; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+            <Button text="View 1" prefHeight="150.0" prefWidth="150.0" onAction="#goToView1" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+            <Button text="View 2" prefHeight="150.0" prefWidth="150.0" onAction="#goToView2" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+            <Button text="View 3" prefHeight="150.0" prefWidth="150.0" onAction="#goToView3" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+            <Button text="View 4" prefHeight="150.0" prefWidth="150.0" onAction="#goToView4" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+            <Button text="" fx:id="machineViewButton" prefHeight="150.0" prefWidth="150.0"
+                    onAction="#goToView5"
+                    style="-fx-background-color: #A5D6A7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
          </children>
       </HBox>
    </children>

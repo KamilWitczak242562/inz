@@ -2,8 +2,15 @@ package com.example.client.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Popup;
+import javafx.util.Duration;
 
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
@@ -16,15 +23,45 @@ public class Utils {
     }
 
     public static void setAuthToken(String authToken) {
-        authToken = authToken;
+        Utils.authToken = authToken;
     }
 
-    public static void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    public static void showAlert(String message) {
+        Platform.runLater(() -> {
+            Stage stage = (Stage) Stage.getWindows().stream()
+                    .filter(window -> window instanceof Stage && ((Stage) window).isShowing())
+                    .findFirst()
+                    .orElse(null);
+
+            if (stage == null) return;
+
+            Popup popup = new Popup();
+
+            Label notification = new Label(message);
+            notification.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10px; -fx-font-size: 14px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+
+            StackPane container = new StackPane(notification);
+            container.setStyle("-fx-padding: 10px;");
+            container.setAlignment(Pos.TOP_CENTER);
+
+            popup.getContent().add(container);
+            popup.setAutoHide(true);
+            popup.show(stage);
+
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(500), container);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(500), container);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setDelay(Duration.seconds(2));
+
+            fadeIn.setOnFinished(e -> fadeOut.play());
+            fadeOut.setOnFinished(e -> popup.hide());
+
+            fadeIn.play();
+        });
     }
 
     public static void switchToView(String fxmlFile) {

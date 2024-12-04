@@ -1,2 +1,2 @@
 JAVA_VERSION="22.0.1"
-MODULES="java.base com.fasterxml.jackson.annotation com.fasterxml.jackson.core java.datatransfer java.xml java.prefs java.desktop java.logging com.fasterxml.jackson.databind java.net.http javafx.base jdk.unsupported javafx.graphics javafx.controls java.scripting javafx.fxml com.example.client com.example.merged.module"
+MODULES="java.base com.fasterxml.jackson.annotation com.fasterxml.jackson.core java.datatransfer java.xml java.prefs java.desktop java.logging com.fasterxml.jackson.databind com.fasterxml.jackson.datatype.jsr310 java.net.http javafx.base jdk.unsupported javafx.graphics javafx.controls java.scripting javafx.fxml org.kordamp.ikonli.core org.kordamp.ikonli.javafx com.example.client com.example.merged.module"

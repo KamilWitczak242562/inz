@@ -11,11 +11,12 @@
     <children>
         <VBox alignment="CENTER" layoutX="100.0" layoutY="50.0" prefWidth="400.0" spacing="20.0">
             <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Witaj, proszę się zalogować!" />
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Welcome, please log in!" />
                 <TextField fx:id="loginField" prefWidth="300.0" promptText="Email" />
-                <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Hasło" />
-                <Button fx:id="logInButton" onAction="#logIn" prefWidth="300.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Zaloguj" />
+                <PasswordField fx:id="passwordField" prefWidth="300.0" promptText="Password" />
+                <Button fx:id="logInButton" onAction="#logIn" prefWidth="300.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Log In" />
             </children>
         </VBox>
     </children>
 </AnchorPane>
+

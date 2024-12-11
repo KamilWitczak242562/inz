@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set folders=api_gateway recipe_management_service auth_service machine_service resource_service
+set folders=api_gateway recipe_management_service auth_service machine_service resource_service planning_service
 
 for %%f in (%folders%) do (
     echo Building project in folder: %%f

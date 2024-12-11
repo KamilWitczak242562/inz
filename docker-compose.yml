@@ -15,6 +15,7 @@ services:
       - auth-service
       - machine-service
       - resource-service
+      - planning-service
 
   recipe-service:
     build:
@@ -155,6 +156,43 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: resources
+    networks:
+      - service-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  planning-service:
+    build:
+      context: ./planning_service
+    container_name: planning-service
+    expose:
+      - "8085"
+    networks:
+      - service-network
+    depends_on:
+      mysql-planning:
+        condition: service_healthy
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-planning:3306/planning
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+
+  mysql-planning:
+    image: mysql:8.0
+    container_name: mysql-planning
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: planning
     networks:
       - service-network
     healthcheck:

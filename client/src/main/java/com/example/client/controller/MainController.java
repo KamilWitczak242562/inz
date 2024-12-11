@@ -28,8 +28,39 @@ public class MainController {
     @FXML
     private Button machineViewButton;
 
+    @FXML
+    private HBox buttonContainer;
+
+    @FXML
+    private Button userManagementButton;
+
     public void initialize() {
         checkMachineStatus();
+        addRoleBasedControls();
+        if ("ADMIN".equalsIgnoreCase(getRole())) {
+            userManagementButton.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void goToUserManagement() {
+        switchToView("user-management-view.fxml");
+    }
+
+    private void addRoleBasedControls() {
+        if ("ADMIN".equalsIgnoreCase(getRole())) {
+            createButton("Create User", "#FF8C00", "create-user-view.fxml");
+        }
+        createButton("Change Password", "#FFA500", "change-password-view.fxml");
+    }
+
+    private void createButton(String text, String color, String viewFile) {
+        Button roleButton = new Button(text);
+        roleButton.setPrefHeight(150.0);
+        roleButton.setPrefWidth(150.0);
+        roleButton.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
+        roleButton.setOnAction(event -> switchToView(viewFile));
+        Platform.runLater(() -> buttonContainer.getChildren().add(roleButton));
     }
 
     public void checkMachineStatus() {

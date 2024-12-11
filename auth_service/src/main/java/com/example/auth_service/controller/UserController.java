@@ -28,9 +28,13 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody Map<String, String> credentials) {
         User user = userService.logInUser(credentials.get("email"), credentials.get("password"));
         String jwt = jwtService.generateToken(user);
+        String role = jwtService.getRoleFromToken(jwt);
+        String email = user.getEmail();
         return ResponseEntity.ok().body(Map.of(
                 "response", "Logged in successfully",
                 "token", jwt,
+                "role", role,
+                "email", email,
                 "ok", true
         ));
     }
@@ -95,7 +99,7 @@ public class UserController {
         return ResponseEntity.ok().body(Map.of("response", user, "ok", true));
     }
 
-    @GetMapping("/gelAll")
+    @GetMapping("/getAll")
     public ResponseEntity<?> getAllUsers() {
         List<User> users = userService.getAll();
         return ResponseEntity.ok().body(Map.of("response", users, "ok", true));

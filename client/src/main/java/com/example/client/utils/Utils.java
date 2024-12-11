@@ -17,6 +17,24 @@ import javafx.stage.Screen;
 
 public class Utils {
     private static String authToken;
+    private static String role;
+    private static String email;
+
+    public static String getEmail() {
+        return email;
+    }
+
+    public static void setEmail(String email) {
+        Utils.email = email;
+    }
+
+    public static String getRole() {
+        return role;
+    }
+
+    public static void setRole(String role) {
+        Utils.role = role;
+    }
 
     public static String getAuthToken() {
         return authToken;

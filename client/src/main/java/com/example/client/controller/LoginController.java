@@ -24,7 +24,7 @@ public class LoginController {
 
     private String logIn(String email, String password) {
         if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Email i hasło nie mogą być puste.");
+            throw new IllegalArgumentException("Email and password cannot be empty.");
         }
 
         String requestBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
@@ -43,12 +43,14 @@ public class LoginController {
                 ObjectMapper mapper = new ObjectMapper();
                 Map<String, Object> responseBody = mapper.readValue(response.body(), Map.class);
                 Utils.setAuthToken((String) responseBody.get("token"));
+                Utils.setRole((String) responseBody.get("role"));
+                Utils.setEmail((String) responseBody.get("email"));
                 return "success";
             } else {
-                throw new IllegalArgumentException("Nie udało się zalogować: " + response.body());
+                throw new IllegalArgumentException("Failed to log in: " + response.body());
             }
         } catch (Exception e) {
-            throw new RuntimeException("Wystąpił błąd podczas logowania: " + e.getMessage());
+            throw new RuntimeException("An error occurred during login: " + e.getMessage());
         }
     }
 

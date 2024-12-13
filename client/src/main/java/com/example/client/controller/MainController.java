@@ -2,14 +2,17 @@ package com.example.client.controller;
 
 import com.example.client.model.machine.Dryer;
 import com.example.client.model.machine.Dyeing;
+import com.example.client.utils.Utils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import org.kordamp.ikonli.javafx.FontIcon;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -32,14 +35,12 @@ public class MainController {
     private HBox buttonContainer;
 
     @FXML
-    private Button userManagementButton;
+    private MenuBar menuBar;
 
     public void initialize() {
         checkMachineStatus();
         addRoleBasedControls();
-        if ("ADMIN".equalsIgnoreCase(getRole())) {
-            userManagementButton.setVisible(true);
-        }
+        addCommonControls();
     }
 
     @FXML
@@ -47,20 +48,70 @@ public class MainController {
         switchToView("user-management-view.fxml");
     }
 
-    private void addRoleBasedControls() {
-        if ("ADMIN".equalsIgnoreCase(getRole())) {
-            createButton("Create User", "#FF8C00", "create-user-view.fxml");
-        }
-        createButton("Change Password", "#FFA500", "change-password-view.fxml");
+    @FXML
+    private void changePassword() {
+        switchToView("change-password-view.fxml");
     }
 
-    private void createButton(String text, String color, String viewFile) {
-        Button roleButton = new Button(text);
-        roleButton.setPrefHeight(150.0);
-        roleButton.setPrefWidth(150.0);
-        roleButton.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
-        roleButton.setOnAction(event -> switchToView(viewFile));
-        Platform.runLater(() -> buttonContainer.getChildren().add(roleButton));
+    @FXML
+    private void goToView1() {
+        switchToView("view1.fxml");
+    }
+
+    @FXML
+    private void goToView2() {
+        switchToView("view2.fxml");
+    }
+
+    @FXML
+    private void goToView3() {
+        switchToView("view3.fxml");
+    }
+
+    @FXML
+    private void goToView4() {
+        switchToView("resource-view.fxml");
+    }
+
+    @FXML
+    private void goToView5() {
+        switchToView("machine-view.fxml");
+    }
+
+    @FXML
+    private void logout() {
+        Utils.setAuthToken(null);
+        Utils.setEmail(null);
+        Utils.setRole(null);
+        switchToView("login-view.fxml");
+    }
+
+    @FXML
+    private void exitApplication() {
+        System.exit(0);
+    }
+
+    private void addRoleBasedControls() {
+        if ("ADMIN".equalsIgnoreCase(getRole())) {
+            Menu userMenu = new Menu("User Management");
+
+            MenuItem manageUsers = new MenuItem("Manage Users");
+            manageUsers.setOnAction(event -> goToUserManagement());
+
+            MenuItem createUser = new MenuItem("Create User");
+            createUser.setOnAction(event -> switchToView("create-user-view.fxml"));
+
+            userMenu.getItems().addAll(manageUsers, createUser);
+            menuBar.getMenus().add(userMenu);
+        }
+    }
+
+    private void addCommonControls() {
+        Menu accountMenu = new Menu("Account");
+        MenuItem changePassword = new MenuItem("Change Password");
+        changePassword.setOnAction(event -> changePassword());
+        accountMenu.getItems().add(changePassword);
+        menuBar.getMenus().add(accountMenu);
     }
 
     public void checkMachineStatus() {
@@ -120,42 +171,5 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    @FXML
-    private void goToView1() {
-        switchToView("view1.fxml");
-    }
-
-    @FXML
-    private void goToView2() {
-        switchToView("view2.fxml");
-    }
-
-    @FXML
-    private void goToView3() {
-        switchToView("view3.fxml");
-    }
-
-    @FXML
-    private void goToView4() {
-        switchToView("view4.fxml");
-    }
-
-    @FXML
-    private void goToView5() {
-        switchToView("machine-view.fxml");
-    }
-
-    @FXML
-    private void logout() {
-        switchToView("login-view.fxml");
-    }
-
-    @FXML
-    private void exitApplication() {
-        System.exit(0);
     }
 }

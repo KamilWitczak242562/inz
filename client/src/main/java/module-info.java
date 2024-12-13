@@ -12,6 +12,7 @@ module com.example.client {
 
     opens com.example.client.model.machine to com.fasterxml.jackson.databind;
     opens com.example.client.model.user to javafx.base, com.fasterxml.jackson.databind;
+    opens com.example.client.model.resource to javafx.base, com.fasterxml.jackson.databind;
 
     opens com.example.client to javafx.fxml;
     exports com.example.client;

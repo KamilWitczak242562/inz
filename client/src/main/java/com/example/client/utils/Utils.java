@@ -19,6 +19,11 @@ public class Utils {
     private static String authToken;
     private static String role;
     private static String email;
+    private static final String CLIENT_SECRET = "2be4986e4bf057b65a0bb9fad7b0df44";
+
+    public static String getClientSecret() {
+        return CLIENT_SECRET;
+    }
 
     public static String getEmail() {
         return email;

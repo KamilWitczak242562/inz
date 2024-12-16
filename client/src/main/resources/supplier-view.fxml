@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.client.controller.SupplierController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.client.controller.resources.SupplierController">
     <children>
-        <Button fx:id="addSupplierButton" layoutX="20.0" layoutY="20.0" text="Add Supplier" />
-        <Button fx:id="goToResourcesButton" layoutX="150.0" layoutY="20.0" text="Go to Resources" />
-        <Button fx:id="goToMainViewButton" layoutX="280.0" layoutY="20.0" text="Go to Main View" />
-        <Button layoutX="420.0" layoutY="20.0" onAction="#refreshSuppliers" text="Refresh Suppliers" />
+        <Button fx:id="addSupplierButton" layoutX="262.0" layoutY="20.0" text="Add Supplier" />
+        <Button fx:id="goToResourcesButton" layoutX="142.0" layoutY="20.0" text="Go to Resources" />
+        <Button fx:id="goToMainViewButton" layoutX="20.0" layoutY="20.0" text="Go to Main View" />
+        <Button layoutX="798.0" layoutY="20.0" onAction="#refreshSuppliers" text="Refresh Suppliers" />
 
         <ScrollPane layoutX="20.0" layoutY="80.0" prefHeight="600.0" prefWidth="900.0">
             <content>
-                <GridPane fx:id="supplierGrid" hgap="20.0" vgap="20.0"/>
+                <GridPane fx:id="supplierGrid" hgap="20.0" vgap="20.0" />
             </content>
         </ScrollPane>
     </children>

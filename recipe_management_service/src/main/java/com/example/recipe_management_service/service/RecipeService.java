@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 public class RecipeService implements ServiceTemplate<Recipe> {
 
     private final RecipeRepo recipeRepository;
-    private final WebClient.Builder webClientBuilder;
 
     @Override
     public List<Recipe> getAll() {
@@ -54,18 +53,6 @@ public class RecipeService implements ServiceTemplate<Recipe> {
         }
     }
 
-    /***
-     * REMEMBER TO CHANGE BASE URL AFTER DOCKER INFRA
-     */
-    private ResourceDto getResourceById(Long resourceId) {
-        return webClientBuilder.baseUrl("http://localhost:8080/api/v1/resources/resource/")
-                .build()
-                .get()
-                .uri(uriBuilder -> uriBuilder.path("/{id}").build(resourceId))
-                .retrieve()
-                .bodyToMono(ResourceDto.class)
-                .block();
-    }
 
     public void addResourceToRecipe(Long recipeId, Long resourceId, Double quantity) {
         Recipe recipe = getById(recipeId);
@@ -85,11 +72,4 @@ public class RecipeService implements ServiceTemplate<Recipe> {
         recipeRepository.save(recipe);
     }
 
-    public List<ResourceDto> fetchResourcesForRecipe(Long recipeId) {
-        Recipe recipe = getById(recipeId);
-        List<Long> resourceIds = recipe.getResourcesQuantities().keySet().stream().collect(Collectors.toList());
-        return resourceIds.stream()
-                .map(this::getResourceById)
-                .collect(Collectors.toList());
-    }
 }

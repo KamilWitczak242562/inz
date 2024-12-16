@@ -20,4 +20,10 @@ module com.example.client {
     opens com.example.client.controller to javafx.fxml;
     exports com.example.client.utils;
     opens com.example.client.utils to javafx.fxml;
+    exports com.example.client.controller.user;
+    opens com.example.client.controller.user to javafx.fxml;
+    exports com.example.client.controller.machine;
+    opens com.example.client.controller.machine to javafx.fxml;
+    exports com.example.client.controller.resources;
+    opens com.example.client.controller.resources to javafx.fxml;
 }

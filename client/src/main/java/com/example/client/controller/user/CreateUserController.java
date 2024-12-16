@@ -1,4 +1,4 @@
-package com.example.client.controller;
+package com.example.client.controller.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -64,6 +64,7 @@ public class CreateUserController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/auth/user/register"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();

@@ -125,6 +125,7 @@ public class MainController {
             HttpRequest dryerRequest = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/machine/dryer/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
             HttpResponse<String> dryerResponse = client.send(dryerRequest, HttpResponse.BodyHandlers.ofString());
@@ -135,6 +136,7 @@ public class MainController {
             HttpRequest dyeingRequest = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/machine/dyeing/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
             HttpResponse<String> dyeingResponse = client.send(dyeingRequest, HttpResponse.BodyHandlers.ofString());

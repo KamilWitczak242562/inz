@@ -1,4 +1,4 @@
-package com.example.client.controller;
+package com.example.client.controller.user;
 
 import com.example.client.model.user.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -52,6 +52,7 @@ public class UserManagementController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/auth/user/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
 
@@ -117,6 +118,7 @@ public class UserManagementController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/auth/user/" + selectedUser.getUserId()))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .DELETE()
                     .build();
 

@@ -1,4 +1,4 @@
-package com.example.client.controller;
+package com.example.client.controller.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
@@ -51,6 +51,7 @@ public class ChangePasswordController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/auth/user/change-password"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .header("Content-Type", "application/json")
                     .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();

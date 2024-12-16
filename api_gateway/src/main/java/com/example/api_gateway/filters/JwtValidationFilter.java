@@ -34,9 +34,15 @@ public class JwtValidationFilter implements GlobalFilter {
 
         HttpHeaders headers = exchange.getRequest().getHeaders();
         String authHeader = headers.getFirst(HttpHeaders.AUTHORIZATION);
+        String clientHeader = headers.getFirst("Client");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
+        }
+
+        if (clientHeader == null || !clientHeader.equals("2be4986e4bf057b65a0bb9fad7b0df44")) {
+            exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
             return exchange.getResponse().setComplete();
         }
 
@@ -63,36 +69,5 @@ public class JwtValidationFilter implements GlobalFilter {
                 });
     }
 
-    private Mono<Void> checkRoleIfNeeded(String path, String token, ServerWebExchange exchange, GatewayFilterChain chain) {
-        String requiredRole = determineRequiredRole(path);
-
-        if (requiredRole == null) {
-            return chain.filter(exchange);
-        }
-
-        return webClientBuilder.build()
-                .post()
-                .uri("http://auth-service:8083/api/v1/auth/role")
-                .bodyValue(token)
-                .retrieve()
-                .toEntity(String.class)
-                .flatMap(response -> {
-                    if (requiredRole.equalsIgnoreCase(response.getBody())) {
-                        return chain.filter(exchange);
-                    } else {
-                        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
-                        return exchange.getResponse().setComplete();
-                    }
-                });
-    }
-
-    private String determineRequiredRole(String path) {
-        if (path.startsWith("/api/v1/admin")) {
-            return "ADMIN";
-        } else if (path.startsWith("/api/v1/manager")) {
-            return "MANAGER";
-        }
-        return null;
-    }
 }
 

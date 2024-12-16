@@ -1,4 +1,4 @@
-package com.example.client.controller;
+package com.example.client.controller.resources;
 
 import com.example.client.model.resource.Resource;
 import com.example.client.model.resource.Supplier;
@@ -63,6 +63,7 @@ public class SupplierController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/resources/resource/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
 
@@ -88,6 +89,7 @@ public class SupplierController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/resources/supplier/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
 
@@ -203,6 +205,7 @@ public class SupplierController {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:8080/api/v1/supplier/" + (isEdit ? "update" : "new")))
                         .header("Authorization", "Bearer " + getAuthToken())
+                        .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -246,6 +249,7 @@ public class SupplierController {
                     HttpRequest deleteRequest = HttpRequest.newBuilder()
                             .uri(URI.create("http://localhost:8080/api/v1/resources/supplier/" + supplier.getSupplierId()))
                             .header("Authorization", "Bearer " + getAuthToken())
+                            .header("Client", getClientSecret())
                             .DELETE()
                             .build();
 

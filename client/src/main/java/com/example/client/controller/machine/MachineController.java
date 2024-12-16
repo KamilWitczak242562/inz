@@ -1,4 +1,4 @@
-package com.example.client.controller;
+package com.example.client.controller.machine;
 
 import com.example.client.model.machine.*;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -33,8 +33,15 @@ public class MachineController {
     private Button addDyeingButton;
 
     public void initialize() {
-        addDryerButton.setOnAction(e -> addDryer());
-        addDyeingButton.setOnAction(e -> addDyeing());
+        if ("ADMIN".equals(getRole())) {
+            addDryerButton.setVisible(true);
+            addDyeingButton.setVisible(true);
+            addDryerButton.setOnAction(e -> addDryer());
+            addDyeingButton.setOnAction(e -> addDyeing());
+        } else {
+            addDryerButton.setVisible(false);
+            addDyeingButton.setVisible(false);
+        }
         loadMachines();
     }
 
@@ -54,6 +61,7 @@ public class MachineController {
             HttpRequest dryerRequest = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/machine/dryer/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
             HttpResponse<String> dryerResponse = client.send(dryerRequest, HttpResponse.BodyHandlers.ofString());
@@ -64,6 +72,7 @@ public class MachineController {
             HttpRequest dyeingRequest = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/machine/dyeing/getAll"))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .GET()
                     .build();
             HttpResponse<String> dyeingResponse = client.send(dyeingRequest, HttpResponse.BodyHandlers.ofString());
@@ -123,6 +132,11 @@ public class MachineController {
     }
 
     private void addDyeing() {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to add dyeing machines.");
+            return;
+        }
+
         Stage addStage = new Stage();
         addStage.setTitle("Add Dyeing Machine");
 
@@ -165,6 +179,7 @@ public class MachineController {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:8080/api/v1/machine/dyeing/new"))
                         .header("Authorization", "Bearer " + getAuthToken())
+                        .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -219,6 +234,11 @@ public class MachineController {
         deleteButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white;");
         deleteButton.setOnAction(e -> deleteMachine(machine, detailsStage));
 
+        if (!"ADMIN".equals(getRole())) {
+            updateButton.setVisible(false);
+            deleteButton.setVisible(false);
+        }
+
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> detailsStage.close());
 
@@ -230,6 +250,11 @@ public class MachineController {
     }
 
     private void updateMachine(Machine machine) {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to update machines.");
+            return;
+        }
+
         Stage updateStage = new Stage();
         updateStage.setTitle("Update Machine");
 
@@ -295,6 +320,7 @@ public class MachineController {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:8080/api/v1/machine/" + apiEndpoint + machine.getMachineId()))
                         .header("Authorization", "Bearer " + getAuthToken())
+                        .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -335,6 +361,11 @@ public class MachineController {
 
 
     private void addDryer() {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to add dryers.");
+            return;
+        }
+
         Stage addStage = new Stage();
         addStage.setTitle("Add Dryer");
 
@@ -378,6 +409,7 @@ public class MachineController {
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create("http://localhost:8080/api/v1/machine/dryer/new"))
                         .header("Authorization", "Bearer " + getAuthToken())
+                        .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                         .build();
@@ -407,6 +439,11 @@ public class MachineController {
     }
 
     private void deleteMachine(Machine machine, Stage detailsStage) {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to delete machines.");
+            return;
+        }
+
         try {
             String apiEndpoint = machine instanceof Dryer ? "dryer/" : "dyeing/";
 
@@ -414,6 +451,7 @@ public class MachineController {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://localhost:8080/api/v1/machine/" + apiEndpoint + machine.getMachineId()))
                     .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
                     .DELETE()
                     .build();
 

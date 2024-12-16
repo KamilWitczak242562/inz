@@ -101,14 +101,4 @@ public class RecipeController {
         }
     }
 
-    @GetMapping("/{recipeId}/resources")
-    public ResponseEntity<?> fetchResourcesForRecipe(@PathVariable Long recipeId) {
-        try {
-            List<ResourceDto> resources = recipeService.fetchResourcesForRecipe(recipeId);
-            return ResponseEntity.ok(Map.of("response", resources, "ok", true));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Map.of("response", e.getMessage(), "ok", false));
-        }
-    }
 }

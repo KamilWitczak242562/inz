@@ -33,8 +33,8 @@
             <children>
                 <Button text="View 1" prefHeight="150.0" prefWidth="150.0" onAction="#goToView1" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
                 <Button text="View 2" prefHeight="150.0" prefWidth="150.0" onAction="#goToView2" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="View 3" prefHeight="150.0" prefWidth="150.0" onAction="#goToView3" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="Resource View" prefHeight="150.0" prefWidth="150.0" onAction="#goToView4" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+                <Button text="Planning View" prefHeight="150.0" prefWidth="150.0" onAction="#goToView3" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
+                <Button text="" fx:id="resourceViewButton" prefHeight="150.0" prefWidth="150.0" onAction="#goToView4" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
                 <Button text="" fx:id="machineViewButton" prefHeight="150.0" prefWidth="150.0" onAction="#goToView5" style="-fx-background-color: #A5D6A7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
             </children>
         </HBox>

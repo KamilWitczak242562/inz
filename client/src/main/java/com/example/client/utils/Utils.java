@@ -78,7 +78,7 @@ public class Utils {
             FadeTransition fadeOut = new FadeTransition(Duration.millis(500), container);
             fadeOut.setFromValue(1);
             fadeOut.setToValue(0);
-            fadeOut.setDelay(Duration.seconds(2));
+            fadeOut.setDelay(Duration.seconds(5));
 
             fadeIn.setOnFinished(e -> fadeOut.play());
             fadeOut.setOnFinished(e -> popup.hide());

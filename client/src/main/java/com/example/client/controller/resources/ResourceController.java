@@ -68,9 +68,15 @@ public class ResourceController {
 
             resourceGrid.getChildren().clear();
             int col = 0;
+            int row = 0;
+
             for (Resource resource : resources) {
                 StackPane resourceTile = createResourceTile(resource);
-                resourceGrid.add(resourceTile, col++, 0);
+                resourceGrid.add(resourceTile, col++, row);
+                if (col >= 3) {
+                    col = 0;
+                    row++;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +87,12 @@ public class ResourceController {
     private StackPane createResourceTile(Resource resource) {
         StackPane tile = new StackPane();
         tile.setPrefSize(250, 120);
-        tile.setStyle("-fx-background-color: #e8f5e9; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-background-radius: 10;");
+
+        if (resource.getCurrentStock() < resource.getReorderLevel()) {
+            tile.setStyle("-fx-background-color: #FF5252; -fx-border-color: #e8f5e9; -fx-border-radius: 10; -fx-background-radius: 10;");
+        } else {
+            tile.setStyle("-fx-background-color: #e8f5e9; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-background-radius: 10;");
+        }
 
         Label nameLabel = new Label("Name: " + resource.getName());
         nameLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");

@@ -2,6 +2,7 @@ package com.example.client.controller;
 
 import com.example.client.model.machine.Dryer;
 import com.example.client.model.machine.Dyeing;
+import com.example.client.model.resource.Resource;
 import com.example.client.utils.Utils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import javafx.application.Platform;
@@ -35,10 +36,14 @@ public class MainController {
     private HBox buttonContainer;
 
     @FXML
+    private Button resourceViewButton;
+
+    @FXML
     private MenuBar menuBar;
 
     public void initialize() {
         checkMachineStatus();
+        checkResourceStatus();
         addRoleBasedControls();
         addCommonControls();
     }
@@ -65,7 +70,7 @@ public class MainController {
 
     @FXML
     private void goToView3() {
-        switchToView("view3.fxml");
+        switchToView("planning-view.fxml");
     }
 
     @FXML
@@ -113,6 +118,57 @@ public class MainController {
         accountMenu.getItems().add(changePassword);
         menuBar.getMenus().add(accountMenu);
     }
+
+    public void checkResourceStatus() {
+        HttpClient client = HttpClient.newHttpClient();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/api/v1/resources/resource/getAll"))
+                    .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            Map<String, Object> responseMap = mapper.readValue(response.body(), Map.class);
+            List<Resource> resources = mapper.convertValue(responseMap.get("response"),
+                    mapper.getTypeFactory().constructCollectionType(List.class, Resource.class));
+
+            boolean hasLowStock = resources.stream().anyMatch(resource -> resource.getCurrentStock() < resource.getReorderLevel());
+
+            Platform.runLater(() -> {
+                if (resourceViewButton != null) {
+                    VBox buttonContent = new VBox(5);
+                    buttonContent.setStyle("-fx-alignment: center;");
+
+                    Text buttonText = new Text("Resource View");
+                    buttonText.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #424242;");
+
+                    Text warningText = new Text();
+                    warningText.setStyle("-fx-font-size: 14px; -fx-fill: red;");
+
+                    if (hasLowStock) {
+                        warningText.setText("Low stock detected");
+                        resourceViewButton.setStyle("-fx-background-color: #ffe6e6; -fx-text-fill: black;");
+                    } else {
+                        warningText.setText("");
+                        resourceViewButton.setStyle("-fx-background-color: #e6ffe6; -fx-text-fill: black;");
+                    }
+
+                    buttonContent.getChildren().setAll(buttonText, warningText);
+                    resourceViewButton.setGraphic(buttonContent);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void checkMachineStatus() {
         HttpClient client = HttpClient.newHttpClient();

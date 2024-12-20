@@ -157,18 +157,32 @@ public class SupplierController {
             resourcesBox.getChildren().add(new Label("No resources available."));
         }
 
+        Button updateButton = new Button("Update");
+        updateButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        updateButton.setOnAction(e -> openSupplierForm(supplier, true));
+
+        Button deleteButton = new Button("Delete");
+        deleteButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
+        deleteButton.setOnAction(e -> showDeleteConfirmation(supplier, stage));
+
+        if (!getRole().equals("ADMIN")) {
+            deleteButton.setVisible(false);
+            updateButton.setVisible(false);
+        }
+
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> stage.close());
 
         formBox.getChildren().addAll(
                 nameLabel, contactLabel, addressLabel,
-                resourcesLabel, resourcesBox, closeButton
+                resourcesLabel, resourcesBox, updateButton, deleteButton, closeButton
         );
 
         Scene scene = new Scene(formBox, 500, 450);
         stage.setScene(scene);
         stage.show();
     }
+
 
     private void addSupplier() {
         openSupplierForm(new Supplier(), false);

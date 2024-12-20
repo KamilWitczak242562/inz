@@ -40,6 +40,7 @@ public class JobService implements ServiceTemplate<Job> {
         jobToUpdate.setMachineId(job.getMachineId());
         jobToUpdate.setProgramId(job.getProgramId());
         jobToUpdate.setRecipeId(job.getRecipeId());
+        jobToUpdate.setDryer(job.isDryer());
 
         return jobRepo.save(jobToUpdate);
     }

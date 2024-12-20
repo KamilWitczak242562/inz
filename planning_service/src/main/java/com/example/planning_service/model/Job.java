@@ -21,6 +21,8 @@ public class Job {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long jobId;
 
+    private boolean isDryer;
+
     private LocalDateTime startTime;
 
     private LocalDateTime endTime;

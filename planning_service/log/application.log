@@ -1,108 +1,19 @@
-2024-12-11T13:17:10.176+01:00  INFO 12328 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 12328 (started by kamil in G:\Sem VII\inz\planning_service)
-2024-12-11T13:17:10.177+01:00 DEBUG 12328 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-12-11T13:17:10.178+01:00  INFO 12328 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2024-12-11T13:17:11.012+01:00  INFO 12328 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-11T13:17:11.084+01:00  INFO 12328 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 1 JPA repository interface.
-2024-12-11T13:17:11.807+01:00  INFO 12328 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-11T13:17:11.962+01:00  INFO 12328 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-11T13:17:12.031+01:00  INFO 12328 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-11T13:17:12.396+01:00  INFO 12328 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-11T13:17:12.437+01:00  INFO 12328 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-11T13:17:12.885+01:00  INFO 12328 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a661215
-2024-12-11T13:17:12.887+01:00  INFO 12328 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-11T13:17:13.695+01:00  INFO 12328 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-11T13:17:13.923+01:00  INFO 12328 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:17:14.400+01:00  WARN 12328 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-11T13:17:15.012+01:00  INFO 12328 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 5.281 seconds (process running for 6.482)
-2024-12-11T13:17:15.531+01:00  INFO 12328 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:17:15.534+01:00  INFO 12328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-11T13:17:15.546+01:00  INFO 12328 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-11T13:20:40.115+01:00  INFO 10704 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 10704 (started by kamil in G:\Sem VII\inz\planning_service)
-2024-12-11T13:20:40.117+01:00 DEBUG 10704 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-12-11T13:20:40.118+01:00  INFO 10704 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2024-12-11T13:20:40.896+01:00  INFO 10704 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-11T13:20:40.944+01:00  INFO 10704 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interface.
-2024-12-11T13:20:41.370+01:00  INFO 10704 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-11T13:20:41.451+01:00  INFO 10704 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-11T13:20:41.493+01:00  INFO 10704 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-11T13:20:41.859+01:00  INFO 10704 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-11T13:20:41.891+01:00  INFO 10704 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-11T13:20:42.223+01:00  INFO 10704 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f80d8c
-2024-12-11T13:20:42.225+01:00  INFO 10704 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-11T13:20:43.033+01:00  INFO 10704 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-11T13:20:43.078+01:00  INFO 10704 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:20:43.546+01:00  WARN 10704 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-11T13:20:44.105+01:00  INFO 10704 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 4.334 seconds (process running for 5.678)
-2024-12-11T13:20:44.635+01:00  INFO 10704 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:20:44.637+01:00  INFO 10704 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-11T13:20:44.649+01:00  INFO 10704 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-11T13:21:09.285+01:00  INFO 18568 --- [main] c.e.p.PlanningServiceApplication         : Starting PlanningServiceApplication v0.0.1-SNAPSHOT using Java 22.0.1 with PID 18568 (G:\Sem VII\inz\planning_service\build\libs\planning_service-0.0.1-SNAPSHOT.jar started by kamil in G:\Sem VII\inz\planning_service)
-2024-12-11T13:21:09.290+01:00 DEBUG 18568 --- [main] c.e.p.PlanningServiceApplication         : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-12-11T13:21:09.291+01:00  INFO 18568 --- [main] c.e.p.PlanningServiceApplication         : No active profile set, falling back to 1 default profile: "default"
-2024-12-11T13:21:10.390+01:00  INFO 18568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-11T13:21:10.460+01:00  INFO 18568 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 1 JPA repository interface.
-2024-12-11T13:21:11.088+01:00  INFO 18568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
-2024-12-11T13:21:11.104+01:00  INFO 18568 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-11T13:21:11.104+01:00  INFO 18568 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-12-11T13:21:11.140+01:00  INFO 18568 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-11T13:21:11.141+01:00  INFO 18568 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1788 ms
-2024-12-11T13:21:11.338+01:00  INFO 18568 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-11T13:21:11.404+01:00  INFO 18568 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-11T13:21:11.445+01:00  INFO 18568 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-11T13:21:11.841+01:00  INFO 18568 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-11T13:21:11.879+01:00  INFO 18568 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-11T13:21:12.244+01:00  INFO 18568 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e04abc5
-2024-12-11T13:21:12.247+01:00  INFO 18568 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-11T13:21:13.103+01:00  INFO 18568 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-11T13:21:13.153+01:00  INFO 18568 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:21:13.530+01:00  WARN 18568 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-11T13:21:14.005+01:00  INFO 18568 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path '/'
-2024-12-11T13:21:14.023+01:00  INFO 18568 --- [main] c.e.p.PlanningServiceApplication         : Started PlanningServiceApplication in 5.424 seconds (process running for 6.091)
-2024-12-11T13:27:38.421+01:00  INFO 18568 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:27:38.423+01:00  INFO 18568 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-11T13:27:38.431+01:00  INFO 18568 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-11T13:28:54.137+01:00  INFO 2112 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 2112 (started by kamil in G:\Sem VII\inz\planning_service)
-2024-12-11T13:28:54.138+01:00 DEBUG 2112 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-12-11T13:28:54.139+01:00  INFO 2112 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2024-12-11T13:28:54.890+01:00  INFO 2112 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-11T13:28:54.939+01:00  INFO 2112 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interface.
-2024-12-11T13:28:55.343+01:00  INFO 2112 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-11T13:28:55.406+01:00  INFO 2112 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-11T13:28:55.438+01:00  INFO 2112 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-11T13:28:55.737+01:00  INFO 2112 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-11T13:28:55.767+01:00  INFO 2112 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-11T13:28:56.069+01:00  INFO 2112 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f80d8c
-2024-12-11T13:28:56.072+01:00  INFO 2112 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-11T13:28:56.877+01:00  INFO 2112 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-11T13:28:56.924+01:00  INFO 2112 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:28:57.438+01:00  WARN 2112 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-11T13:28:58.304+01:00  INFO 2112 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 4.498 seconds (process running for 5.649)
-2024-12-11T13:28:58.743+01:00  INFO 2112 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:28:58.745+01:00  INFO 2112 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-11T13:28:58.754+01:00  INFO 2112 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-11T13:30:59.099+01:00  INFO 10708 --- [main] c.e.p.PlanningServiceApplication         : Starting PlanningServiceApplication using Java 22.0.1 with PID 10708 (G:\Sem VII\inz\planning_service\build\classes\java\main started by kamil in G:\Sem VII\inz\planning_service)
-2024-12-11T13:30:59.103+01:00 DEBUG 10708 --- [main] c.e.p.PlanningServiceApplication         : Running with Spring Boot v3.3.4, Spring v6.1.13
-2024-12-11T13:30:59.105+01:00  INFO 10708 --- [main] c.e.p.PlanningServiceApplication         : No active profile set, falling back to 1 default profile: "default"
-2024-12-11T13:31:01.232+01:00  INFO 10708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-11T13:31:01.362+01:00  INFO 10708 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113 ms. Found 1 JPA repository interface.
-2024-12-11T13:31:02.751+01:00  INFO 10708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8085 (http)
-2024-12-11T13:31:02.790+01:00  INFO 10708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-11T13:31:02.792+01:00  INFO 10708 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
-2024-12-11T13:31:02.931+01:00  INFO 10708 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-11T13:31:02.932+01:00  INFO 10708 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3717 ms
-2024-12-11T13:31:03.275+01:00  INFO 10708 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-11T13:31:03.408+01:00  INFO 10708 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-11T13:31:03.509+01:00  INFO 10708 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-11T13:31:04.196+01:00  INFO 10708 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-11T13:31:04.271+01:00  INFO 10708 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-11T13:31:04.879+01:00  INFO 10708 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e8d9bb6
-2024-12-11T13:31:04.884+01:00  INFO 10708 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-11T13:31:06.531+01:00  INFO 10708 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-11T13:31:06.592+01:00  INFO 10708 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-11T13:31:07.214+01:00  WARN 10708 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-11T13:31:08.003+01:00  INFO 10708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8085 (http) with context path '/'
-2024-12-11T13:31:08.017+01:00  INFO 10708 --- [main] c.e.p.PlanningServiceApplication         : Started PlanningServiceApplication in 10.054 seconds (process running for 10.842)
-2024-12-11T13:31:47.797+01:00  INFO 10708 --- [http-nio-8085-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-12-11T13:31:47.797+01:00  INFO 10708 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-12-11T13:31:47.798+01:00  INFO 10708 --- [http-nio-8085-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-12-11T13:31:48.519+01:00  INFO 10708 --- [http-nio-8085-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 286 ms
+2024-12-19T23:54:35.730+01:00  INFO 876 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 876 (started by kamil in G:\Sem VII\inz\planning_service)
+2024-12-19T23:54:35.812+01:00 DEBUG 876 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
+2024-12-19T23:54:35.814+01:00  INFO 876 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-12-19T23:54:36.525+01:00  INFO 876 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-19T23:54:36.574+01:00  INFO 876 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 1 JPA repository interface.
+2024-12-19T23:54:36.986+01:00  INFO 876 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-19T23:54:37.047+01:00  INFO 876 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-19T23:54:37.078+01:00  INFO 876 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-19T23:54:37.378+01:00  INFO 876 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-19T23:54:37.411+01:00  INFO 876 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-19T23:54:37.720+01:00  INFO 876 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b632442
+2024-12-19T23:54:37.723+01:00  INFO 876 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-19T23:54:38.523+01:00  INFO 876 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-19T23:54:38.662+01:00  INFO 876 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-19T23:54:39.177+01:00  WARN 876 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-19T23:54:39.742+01:00  INFO 876 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 4.326 seconds (process running for 5.505)
+2024-12-19T23:54:40.235+01:00  INFO 876 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-19T23:54:40.238+01:00  INFO 876 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-19T23:54:40.277+01:00  INFO 876 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

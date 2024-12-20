@@ -19,6 +19,7 @@ public class AdminAcc {
     public ApplicationRunner initAdminAccount() {
         return args -> {
             String adminEmail = "admin";
+            String userEmail = "user";
             if (userRepo.findByEmail(adminEmail).isEmpty()) {
                 User admin = new User();
                 admin.setFirstName("Janusz");
@@ -28,9 +29,21 @@ public class AdminAcc {
                 admin.setRole(Role.ADMIN);
 
                 userRepo.save(admin);
+
+                User user = new User();
+                user.setFirstName("Jan");
+                user.setLastName("Nowak");
+                user.setEmail(userEmail);
+                user.setPassword(BCrypt.hashpw("user", BCrypt.gensalt()));
+                user.setRole(Role.USER);
+
+                userRepo.save(admin);
+
                 System.out.println("Admin account created: " + adminEmail);
+                System.out.println("User account created: " + userEmail);
             } else {
                 System.out.println("Admin account already exists: " + adminEmail);
+                System.out.println("User account already exists: " + userEmail);
             }
         };
     }

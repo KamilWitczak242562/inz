@@ -75,20 +75,20 @@ public class ProgramController {
         }
     }
 
-    @PostMapping("/{programId}/addBlock")
-    public ResponseEntity<?> addBlockToProgram(@PathVariable Long programId, @RequestBody Block block) {
+    @PostMapping("/{programId}/addBlock/{blockId}")
+    public ResponseEntity<?> addBlockToProgram(@PathVariable Long programId, @PathVariable Long blockId) {
         try {
-            if (block == null || block.getBlockId() == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(Map.of("response", "Invalid Block data", "ok", false));
-            }
-            programService.addBlockToProgram(programId, block);
+            programService.addBlockToProgram(programId, blockId);
             return ResponseEntity.ok(Map.of("response", "Block added successfully", "ok", true));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("response", e.getMessage(), "ok", false));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("response", "An unexpected error occurred", "ok", false));
         }
     }
+
 
     @DeleteMapping("/{programId}/removeBlock/{blockId}")
     public ResponseEntity<?> removeBlockFromProgram(@PathVariable Long programId, @PathVariable Long blockId) {

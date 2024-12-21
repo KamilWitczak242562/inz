@@ -13,11 +13,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -278,7 +281,6 @@ public class PlanningController {
     }
 
 
-
     private ObservableList<String> extractNames(List<Map<String, Object>> data) {
         return FXCollections.observableArrayList(
                 data.stream().map(item -> item.get("name").toString()).toList()
@@ -487,7 +489,231 @@ public class PlanningController {
         }
     }
 
-    private void showJobDetails(Job job) {
-        showAlert("Job Details: " + job.toString());
+    private String findNameByIdSafe(List<Map<String, Object>> data, Long id, String idKey) {
+        return data.stream()
+                .filter(item -> item.containsKey(idKey) && id.equals(Long.parseLong(item.get(idKey).toString())))
+                .map(item -> item.get("name").toString())
+                .findFirst()
+                .orElse("Unknown");
     }
+
+    private String formatDateTime(LocalDateTime dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return dateTime.format(formatter);
+    }
+
+
+    private void showJobDetails(Job job) {
+        Stage detailsStage = new Stage();
+        detailsStage.setTitle("Job Details: " + job.getJobId());
+
+        GridPane detailsGrid = new GridPane();
+        detailsGrid.setStyle("-fx-padding: 20; -fx-alignment: center; -fx-background-color: #F0F8FF; -fx-border-color: #B0C4DE; -fx-border-width: 2;");
+        detailsGrid.setHgap(10);
+        detailsGrid.setVgap(10);
+
+        detailsGrid.add(createStyledLabel("Job ID:"), 0, 0);
+        detailsGrid.add(createValueLabel(String.valueOf(job.getJobId())), 1, 0);
+
+        detailsGrid.add(createStyledLabel("Machine:"), 0, 1);
+        detailsGrid.add(createValueLabel(findNameByIdSafe(machinesCache, job.getMachineId(), "machineId")), 1, 1);
+
+        detailsGrid.add(createStyledLabel("Program:"), 0, 2);
+        detailsGrid.add(createValueLabel(findNameByIdSafe(programsCache, job.getProgramId(), "programId")), 1, 2);
+
+        detailsGrid.add(createStyledLabel("Recipe:"), 0, 3);
+        detailsGrid.add(createValueLabel(findNameByIdSafe(recipesCache, job.getRecipeId(), "id")), 1, 3);
+
+        detailsGrid.add(createStyledLabel("Start Time:"), 0, 4);
+        detailsGrid.add(createValueLabel(formatDateTime(job.getStartTime())), 1, 4);
+
+        String formattedEndTime = (job.getEndTime() != null) ? formatDateTime(job.getEndTime()) : "Not finished";
+        detailsGrid.add(createStyledLabel("End Time:"), 0, 5);
+        detailsGrid.add(createValueLabel(formattedEndTime), 1, 5);
+
+        Button updateButton = new Button("Update");
+        updateButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        updateButton.setOnAction(e -> updateJob(job, detailsStage));
+
+        Button deleteButton = new Button("Delete");
+        deleteButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
+        deleteButton.setOnAction(e -> {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Deletion");
+            confirmationAlert.setHeaderText("Are you sure you want to delete this job?");
+            confirmationAlert.setContentText("This action cannot be undone.");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    deleteJob(job, detailsStage);
+                }
+            });
+        });
+
+        if (!"ADMIN".equals(getRole())) {
+            updateButton.setVisible(false);
+            deleteButton.setVisible(false);
+        }
+
+        Button closeButton = new Button("Close");
+        closeButton.setStyle("-fx-background-color: #808080; -fx-text-fill: white;");
+        closeButton.setOnAction(e -> detailsStage.close());
+
+        HBox actionButtons = new HBox(10, updateButton, deleteButton, closeButton);
+        actionButtons.setStyle("-fx-alignment: center;");
+
+        VBox mainLayout = new VBox(20, detailsGrid, actionButtons);
+        mainLayout.setStyle("-fx-padding: 20; -fx-alignment: center; -fx-background-color: #F0F8FF;");
+
+        Scene scene = new Scene(mainLayout, 450, 450);
+        detailsStage.setScene(scene);
+        detailsStage.show();
+    }
+
+    private Label createStyledLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-weight: bold; -fx-font-size: 14;");
+        return label;
+    }
+
+    private Label createValueLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-size: 14; -fx-text-fill: #333;");
+        return label;
+    }
+
+
+    private void deleteJob(Job job, Stage detailsStage) {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to delete jobs.");
+            return;
+        }
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/api/v1/planning/job/" + job.getJobId()))
+                    .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
+                    .DELETE()
+                    .build();
+
+            client.send(request, HttpResponse.BodyHandlers.ofString());
+            detailsStage.close();
+            loadJobs();
+        } catch (Exception e) {
+            showAlert("Failed to delete job: " + e.getMessage());
+        }
+    }
+
+    private void updateJob(Job job, Stage detailsStage) {
+        if (!"ADMIN".equals(getRole())) {
+            showAlert("You don't have permission to update jobs.");
+            return;
+        }
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Update Job: " + job.getJobId());
+
+        GridPane updateGrid = new GridPane();
+        updateGrid.setStyle("-fx-padding: 20; -fx-alignment: center; -fx-background-color: #F0F8FF; -fx-border-color: #B0C4DE; -fx-border-width: 2;");
+        updateGrid.setHgap(20);
+        updateGrid.setVgap(15);
+
+        ComboBox<String> machineComboBox = new ComboBox<>(extractNames(machinesCache));
+        machineComboBox.setValue(findNameByIdSafe(machinesCache, job.getMachineId(), "machineId"));
+
+        ComboBox<String> programComboBox = new ComboBox<>(extractNames(programsCache));
+        programComboBox.setValue(findNameByIdSafe(programsCache, job.getProgramId(), "programId"));
+
+        ComboBox<String> recipeComboBox = new ComboBox<>(extractNames(recipesCache));
+        recipeComboBox.setValue(findNameByIdSafe(recipesCache, job.getRecipeId(), "id"));
+
+        DatePicker startDatePicker = new DatePicker(job.getStartTime().toLocalDate());
+        TextField startHourField = new TextField(String.valueOf(job.getStartTime().getHour()));
+        TextField startMinuteField = new TextField(String.valueOf(job.getStartTime().getMinute()));
+
+        DatePicker endDatePicker = new DatePicker(job.getEndTime().toLocalDate());
+        TextField endHourField = new TextField(String.valueOf(job.getEndTime().getHour()));
+        TextField endMinuteField = new TextField(String.valueOf(job.getEndTime().getMinute()));
+
+        Button saveButton = new Button("Save");
+        saveButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 120px;");
+        saveButton.setOnAction(e -> {
+            try {
+                int startHour = Integer.parseInt(startHourField.getText());
+                int startMinute = Integer.parseInt(startMinuteField.getText());
+                int endHour = Integer.parseInt(endHourField.getText());
+                int endMinute = Integer.parseInt(endMinuteField.getText());
+
+                job.setMachineId(findIdByNameSafe(machinesCache, machineComboBox.getValue(), "machineId"));
+                job.setProgramId(findIdByNameSafe(programsCache, programComboBox.getValue(), "programId"));
+                job.setRecipeId(findIdByNameSafe(recipesCache, recipeComboBox.getValue(), "id"));
+                job.setStartTime(LocalDateTime.of(startDatePicker.getValue(), LocalTime.of(startHour, startMinute)));
+                job.setEndTime(LocalDateTime.of(endDatePicker.getValue(), LocalTime.of(endHour, endMinute)));
+
+                HttpClient client = HttpClient.newHttpClient();
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.registerModule(new JavaTimeModule());
+                String requestBody = mapper.writeValueAsString(job);
+
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("http://localhost:8080/api/v1/planning/job/" + job.getJobId()))
+                        .header("Authorization", "Bearer " + getAuthToken())
+                        .header("Client", getClientSecret())
+                        .header("Content-Type", "application/json")
+                        .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
+                        .build();
+
+                client.send(request, HttpResponse.BodyHandlers.ofString());
+                updateStage.close();
+                detailsStage.close();
+                loadJobs();
+            } catch (Exception ex) {
+                showAlert("Failed to update job: " + ex.getMessage());
+            }
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setStyle("-fx-background-color: #808080; -fx-text-fill: white; -fx-font-size: 14px; -fx-pref-width: 120px;");
+        cancelButton.setOnAction(e -> updateStage.close());
+
+        updateGrid.add(createStyledLabel("Machine"), 0, 0);
+        updateGrid.add(machineComboBox, 1, 0);
+
+        updateGrid.add(createStyledLabel("Program"), 0, 1);
+        updateGrid.add(programComboBox, 1, 1);
+
+        updateGrid.add(createStyledLabel("Recipe"), 0, 2);
+        updateGrid.add(recipeComboBox, 1, 2);
+
+        updateGrid.add(createStyledLabel("Start Date"), 0, 3);
+        updateGrid.add(startDatePicker, 1, 3);
+
+        updateGrid.add(createStyledLabel("Start Time"), 0, 4);
+        updateGrid.add(new HBox(10, createSmallLabel("Hour"), startHourField, createSmallLabel("Minute"), startMinuteField), 1, 4);
+
+        updateGrid.add(createStyledLabel("End Date"), 0, 5);
+        updateGrid.add(endDatePicker, 1, 5);
+
+        updateGrid.add(createStyledLabel("End Time"), 0, 6);
+        updateGrid.add(new HBox(10, createSmallLabel("Hour"), endHourField, createSmallLabel("Minute"), endMinuteField), 1, 6);
+
+        HBox actionButtons = new HBox(20, saveButton, cancelButton);
+        actionButtons.setStyle("-fx-alignment: center;");
+
+        VBox mainLayout = new VBox(30, updateGrid, actionButtons);
+        mainLayout.setStyle("-fx-padding: 30; -fx-alignment: center; -fx-background-color: #F0F8FF;");
+
+        Scene scene = new Scene(mainLayout, 700, 750);
+        updateStage.setScene(scene);
+        updateStage.show();
+    }
+
+    private Label createSmallLabel(String text) {
+        Label label = new Label(text);
+        label.setStyle("-fx-font-size: 12px; -fx-text-fill: #333;");
+        return label;
+    }
+
 }

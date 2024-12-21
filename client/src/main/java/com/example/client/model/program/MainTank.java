@@ -11,4 +11,14 @@ public class MainTank extends Block{
     private Integer holdTemperatureTime;
     private Boolean isDrainActive;
 
+    public void updatePropertiesFrom(Block block) {
+        if (block instanceof MainTank mainTank) {
+            this.fillLevel = mainTank.getFillLevel();
+            this.isHotWater = mainTank.getIsHotWater();
+            this.targetTemperature = mainTank.getTargetTemperature();
+            this.temperatureIncreaseRate = mainTank.getTemperatureIncreaseRate();
+            this.holdTemperatureTime = mainTank.getHoldTemperatureTime();
+            this.isDrainActive = mainTank.getIsDrainActive();
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.example.recipe_management_service.service;
 
 import com.example.recipe_management_service.model.Program;
 import com.example.recipe_management_service.model.Block;
+import com.example.recipe_management_service.repository.BlockRepo;
 import com.example.recipe_management_service.repository.ProgramRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProgramService implements ServiceTemplate<Program> {
     private final ProgramRepo programRepository;
+    private final BlockRepo blockRepo;
 
     @Override
     public List<Program> getAll() {
@@ -48,7 +50,9 @@ public class ProgramService implements ServiceTemplate<Program> {
         }
     }
 
-    public void addBlockToProgram(Long programId, Block block) {
+    public void addBlockToProgram(Long programId, Long blockId) {
+        Block block = blockRepo.findById(blockId)
+                .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + programId));;
         Program program = programRepository.findById(programId)
                 .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + programId));
         program.getBlocks().add(block);

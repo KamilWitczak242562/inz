@@ -31,5 +31,9 @@ module com.example.client {
     opens com.example.client.controller.resources to javafx.fxml;
     opens com.example.client.controller.planning to javafx.fxml;
     exports com.example.client.controller.planning;
+    opens com.example.client.controller.recipe to javafx.fxml;
+    exports com.example.client.controller.recipe;
+    opens com.example.client.controller.program to javafx.fxml;
+    exports com.example.client.controller.program;
 
 }

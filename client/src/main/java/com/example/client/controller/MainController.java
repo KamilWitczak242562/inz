@@ -60,12 +60,12 @@ public class MainController {
 
     @FXML
     private void goToView1() {
-        switchToView("view1.fxml");
+        switchToView("program-view.fxml");
     }
 
     @FXML
     private void goToView2() {
-        switchToView("view2.fxml");
+        switchToView("recipe-view.fxml");
     }
 
     @FXML

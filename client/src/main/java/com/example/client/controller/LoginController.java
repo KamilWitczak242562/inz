@@ -1,17 +1,16 @@
 package com.example.client.controller;
 
 import com.example.client.utils.Utils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import static com.example.client.utils.Utils.*;
 

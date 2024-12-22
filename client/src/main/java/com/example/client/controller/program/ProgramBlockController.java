@@ -1,15 +1,16 @@
 package com.example.client.controller.program;
 
 import com.example.client.model.program.*;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URI;
@@ -24,54 +25,40 @@ import static com.example.client.utils.Utils.*;
 
 public class ProgramBlockController {
 
+    private final HttpClient httpClient = HttpClient.newHttpClient();
+    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     @FXML
     private GridPane programGrid;
-
     @FXML
     private Button addProgramButton;
-
     @FXML
-    private Button addBlockButton;
-
+    private Button goToBlocksButton;
     @FXML
     private Button refreshButton;
-
-    private final HttpClient httpClient = HttpClient.newHttpClient();
-    private final ObjectMapper objectMapper = new ObjectMapper()
-            .registerModule(new JavaTimeModule())
-            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
 
     public void initialize() {
         if ("ADMIN".equals(getRole())) {
             addProgramButton.setVisible(true);
-            addBlockButton.setVisible(true);
-            addProgramButton.setOnAction(e -> addProgram());
-            addBlockButton.setOnAction(e -> addBlock());
+            addProgramButton.setOnAction(e -> handleAddProgramButton());
         } else {
             addProgramButton.setVisible(false);
-            addBlockButton.setVisible(false);
+            goToBlocksButton.setVisible(false);
         }
         refreshButton.setOnAction(e -> refresh());
+        goToBlocksButton.setOnAction(e -> switchToView("block-view.fxml"));
         loadPrograms();
     }
 
     @FXML
     private void loadPrograms() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/program/getAll"))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .GET()
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/program/getAll")).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).GET().build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.body() != null && !response.body().isEmpty()) {
                 Map<String, Object> responseMap = objectMapper.readValue(response.body(), Map.class);
-                List<Program> programs = objectMapper.convertValue(responseMap.get("response"),
-                        objectMapper.getTypeFactory().constructCollectionType(List.class, Program.class));
+                List<Program> programs = objectMapper.convertValue(responseMap.get("response"), objectMapper.getTypeFactory().constructCollectionType(List.class, Program.class));
 
                 programGrid.getChildren().clear();
 
@@ -82,9 +69,10 @@ public class ProgramBlockController {
                     programGrid.add(programTile, 0, rowIndex);
 
                     int colIndex = 1;
-                    for (Block block : program.getBlocks()) {
-                        String blockType = getBlockType(block);
-                        programGrid.add(createBlockTile(block, blockType), colIndex++, rowIndex);
+                    for (Long block : program.getBlockIds()) {
+                        Block blockObj = fetchBlockById(block);
+                        String blockType = getBlockType(blockObj);
+                        programGrid.add(createBlockTile(blockObj, blockType), colIndex++, rowIndex);
                     }
                     rowIndex++;
                 }
@@ -93,6 +81,29 @@ public class ProgramBlockController {
             e.printStackTrace();
         }
     }
+
+    private Block fetchBlockById(Long blockId) {
+        try {
+            String url = "http://localhost:8080/api/v1/recipes/blocks/" + blockId;
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).GET().build();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                Map<String, Object> responseMap = objectMapper.readValue(response.body(), Map.class);
+                if (responseMap.containsKey("response") && responseMap.get("response") != null) {
+                    return objectMapper.convertValue(responseMap.get("response"), Block.class);
+                } else {
+                    throw new IllegalArgumentException("Block data is missing in the response.");
+                }
+            } else {
+                throw new IllegalArgumentException("Failed to fetch block. HTTP Status: " + response.statusCode());
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error fetching block with ID: " + blockId, e);
+        }
+    }
+
 
     private String getBlockType(Block block) {
         if (block instanceof MainTank) {
@@ -117,7 +128,7 @@ public class ProgramBlockController {
 
         Label idLabel = new Label("Program ID: " + program.getProgramId());
         Label nameLabel = new Label("Name: " + program.getName());
-        Label blocksLabel = new Label("Blocks: " + program.getBlocks().size());
+        Label blocksLabel = new Label("Blocks: " + program.getBlockIds().size());
 
         Button updateButton = new Button("Update");
         updateButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
@@ -168,7 +179,7 @@ public class ProgramBlockController {
         addBlockButton.setOnAction(e -> {
             try {
                 Block selectedBlock = findBlockByName(blockComboBox.getValue());
-                addBlockToProgram(program.getProgramId(), Long.valueOf(selectedBlock.getBlockId()));
+                addBlockToProgram(program.getProgramId(), selectedBlock.getBlockId());
             } catch (Exception ex) {
                 showAlert("Failed to add block: " + ex.getMessage());
             }
@@ -179,7 +190,7 @@ public class ProgramBlockController {
         removeBlockButton.setOnAction(e -> {
             try {
                 Block selectedBlock = findBlockByName(blockComboBox.getValue());
-                removeBlockFromProgram(program.getProgramId(), Long.valueOf(selectedBlock.getBlockId()));
+                removeBlockFromProgram(program.getProgramId(), selectedBlock.getBlockId());
             } catch (Exception ex) {
                 showAlert("Failed to remove block: " + ex.getMessage());
             }
@@ -190,13 +201,7 @@ public class ProgramBlockController {
         saveButton.setOnAction(e -> {
             try {
                 program.setName(programNameField.getText());
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:8080/api/v1/recipes/program/update"))
-                        .header("Authorization", "Bearer " + getAuthToken())
-                        .header("Client", getClientSecret())
-                        .header("Content-Type", "application/json")
-                        .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(program)))
-                        .build();
+                HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/program/update")).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).header("Content-Type", "application/json").PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(program))).build();
 
                 httpClient.send(request, HttpResponse.BodyHandlers.ofString());
                 updateStage.close();
@@ -234,12 +239,7 @@ public class ProgramBlockController {
     private Block findBlockByName(String blockName) {
         try {
             String blockId = blockName.split(",")[0].replace("Block ID: ", "").trim();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/blocks/" + blockId))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .GET()
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/blocks/" + blockId)).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).GET().build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -266,12 +266,7 @@ public class ProgramBlockController {
         try {
             String url = "http://localhost:8080/api/v1/recipes/program/" + programId + "/addBlock/" + blockId;
 
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(url))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .POST(HttpRequest.BodyPublishers.noBody())
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).POST(HttpRequest.BodyPublishers.noBody()).build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -299,12 +294,7 @@ public class ProgramBlockController {
     @FXML
     private void removeBlockFromProgram(Long programId, Long blockId) {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/program/" + programId + "/removeBlock/" + blockId))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .DELETE()
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/program/" + programId + "/removeBlock/" + blockId)).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).DELETE().build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             Map<String, Object> responseMap = objectMapper.readValue(response.body(), Map.class);
@@ -318,12 +308,7 @@ public class ProgramBlockController {
     private List<String> fetchAvailableBlocks() {
         List<String> blocks = new ArrayList<>();
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/blocks/getAll"))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .GET()
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/blocks/getAll")).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).GET().build();
 
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -339,10 +324,7 @@ public class ProgramBlockController {
                 return blocks;
             }
 
-            List<Block> availableBlocks = objectMapper.convertValue(
-                    responseMap.get("response"),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, Block.class)
-            );
+            List<Block> availableBlocks = objectMapper.convertValue(responseMap.get("response"), objectMapper.getTypeFactory().constructCollectionType(List.class, Block.class));
 
 
             for (Block block : availableBlocks) {
@@ -361,15 +343,11 @@ public class ProgramBlockController {
         description.append("Block ID: ").append(block.getBlockId()).append(", Type: ").append(block.getDtype());
 
         if (block instanceof MainTank mainTank) {
-            description.append(", Fill Level: ").append(mainTank.getFillLevel())
-                    .append(", Hot Water: ").append(mainTank.getIsHotWater())
-                    .append(", Target Temp: ").append(mainTank.getTargetTemperature());
+            description.append(", Fill Level: ").append(mainTank.getFillLevel()).append(", Hot Water: ").append(mainTank.getIsHotWater()).append(", Target Temp: ").append(mainTank.getTargetTemperature());
         } else if (block instanceof SecondaryTank secondaryTank) {
-            description.append(", Mixer Active: ").append(secondaryTank.getIsMixerActive())
-                    .append(", Chemical Dose: ").append(secondaryTank.getChemicalDose());
+            description.append(", Mixer Active: ").append(secondaryTank.getIsMixerActive()).append(", Chemical Dose: ").append(secondaryTank.getChemicalDose());
         } else if (block instanceof Pump pump) {
-            description.append(", RPM: ").append(pump.getRpm())
-                    .append(", Circ Time In-Out: ").append(pump.getCirculationTimeInOut());
+            description.append(", RPM: ").append(pump.getRpm()).append(", Circ Time In-Out: ").append(pump.getCirculationTimeInOut());
         }
         return description.toString();
     }
@@ -378,12 +356,7 @@ public class ProgramBlockController {
     @FXML
     private void deleteProgram(Program program, Stage detailsStage) {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/program/delete/" + program.getProgramId()))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .DELETE()
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/program/delete/" + program.getProgramId())).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).DELETE().build();
             httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             detailsStage.close();
             loadPrograms();
@@ -394,30 +367,145 @@ public class ProgramBlockController {
 
 
     @FXML
-    private void addProgram() {
+    private void handleAddProgramButton() {
+        Stage addProgramStage = new Stage();
+        addProgramStage.setTitle("Add New Program");
+
+        VBox mainBox = new VBox(20);
+        mainBox.setStyle("-fx-padding: 20; -fx-background-color: #F9F9F9; -fx-alignment: center;");
+
+        TextField programNameField = new TextField();
+        programNameField.setPromptText("Enter Program Name");
+        programNameField.setStyle("-fx-font-size: 14px; -fx-pref-width: 300px;");
+
+        Label blockLabel = new Label("Select Blocks:");
+        blockLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+
+        ListView<String> blockListView = new ListView<>();
+        blockListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        blockListView.setPrefSize(600, 400);
+
+        List<Block> availableBlocks = fetchAvailableBlocksAsObjects();
+        availableBlocks.forEach(block -> {
+            String displayText = generateDetailedBlockDescription(block);
+            blockListView.getItems().add(displayText);
+        });
+
+        Button addButton = new Button("Add Program");
+        addButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
+        addButton.setOnAction(e -> {
+            String programName = programNameField.getText().trim();
+            List<String> selectedBlockDescriptions = blockListView.getSelectionModel().getSelectedItems();
+
+            if (programName.isEmpty()) {
+                showAlert("Program name is required.");
+                return;
+            }
+
+            if (selectedBlockDescriptions.isEmpty()) {
+                showAlert("At least one block must be selected.");
+                return;
+            }
+
+            List<Block> selectedBlocks = availableBlocks.stream().filter(block -> selectedBlockDescriptions.contains(generateDetailedBlockDescription(block))).toList();
+
+            List<Long> blocksIds = new ArrayList<>();
+            for (Block block : selectedBlocks) {
+                blocksIds.add(block.getBlockId());
+            }
+            addProgram(programName, blocksIds);
+            addProgramStage.close();
+        });
+
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white; -fx-font-weight: bold;");
+        cancelButton.setOnAction(e -> addProgramStage.close());
+
+        HBox buttonBox = new HBox(20, addButton, cancelButton);
+        buttonBox.setStyle("-fx-alignment: center;");
+
+        mainBox.getChildren().addAll(new Label("Add New Program"), programNameField, blockLabel, blockListView, buttonBox);
+
+        Scene scene = new Scene(mainBox, 700, 600);
+        addProgramStage.setScene(scene);
+        addProgramStage.show();
+    }
+
+
+    private String generateDetailedBlockDescription(Block block) {
+        StringBuilder description = new StringBuilder();
+        description.append("ID: ").append(block.getBlockId()).append(", Type: ").append(getBlockType(block));
+
+        if (block instanceof MainTank mainTank) {
+            description.append(", Fill Level: ").append(mainTank.getFillLevel()).append(", Hot Water: ").append(mainTank.getIsHotWater() ? "Yes" : "No").append(", Target Temp: ").append(mainTank.getTargetTemperature()).append(", Temp Increase Rate: ").append(mainTank.getTemperatureIncreaseRate()).append(", Hold Temp Time: ").append(mainTank.getHoldTemperatureTime()).append(", Drain Active: ").append(mainTank.getIsDrainActive() ? "Yes" : "No");
+        } else if (block instanceof SecondaryTank secondaryTank) {
+            description.append(", Fill Level: ").append(secondaryTank.getFillLevel()).append(", Hot Water: ").append(secondaryTank.getIsHotWater() ? "Yes" : "No").append(", Target Temp: ").append(secondaryTank.getTargetTemperature()).append(", Temp Increase Rate: ").append(secondaryTank.getTemperatureIncreaseRate()).append(", Hold Temp Time: ").append(secondaryTank.getHoldTemperatureTime()).append(", Drain Active: ").append(secondaryTank.getIsDrainActive() ? "Yes" : "No").append(", Mixer Active: ").append(secondaryTank.getIsMixerActive() ? "Yes" : "No").append(", Chemical Dose: ").append(secondaryTank.getChemicalDose()).append(", Dye Dose: ").append(secondaryTank.getDyeDose());
+        } else if (block instanceof Pump pump) {
+            description.append(", RPM: ").append(pump.getRpm()).append(", Circ Time In-Out: ").append(pump.getCirculationTimeInOut()).append(", Circ Time Out-In: ").append(pump.getCirculationTimeOutIn());
+        }
+
+        return description.toString();
+    }
+
+
+    private List<Block> fetchAvailableBlocksAsObjects() {
+        List<Block> blocks = new ArrayList<>();
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/program/new"))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .POST(HttpRequest.BodyPublishers.noBody())
-                    .build();
-            httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            loadPrograms();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/blocks/getAll")).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).GET().build();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.body() == null || response.body().isEmpty()) {
+                showAlert("Failed to fetch blocks: Empty response from server.");
+                return blocks;
+            }
+
+            Map<String, Object> responseMap = objectMapper.readValue(response.body(), Map.class);
+
+            if (!responseMap.containsKey("response") || responseMap.get("response") == null) {
+                showAlert("No blocks found in response.");
+                return blocks;
+            }
+
+            blocks = objectMapper.convertValue(responseMap.get("response"), objectMapper.getTypeFactory().constructCollectionType(List.class, Block.class));
+
         } catch (Exception e) {
             e.printStackTrace();
+            showAlert("Failed to fetch blocks: " + e.getMessage());
+        }
+        return blocks;
+    }
+
+
+    private void addProgram(String programName, List<Long> blocksIds) {
+        try {
+            String url = "http://localhost:8080/api/v1/recipes/program/new";
+            Program newProgram = new Program();
+            newProgram.setName(programName);
+            newProgram.setBlockIds(blocksIds);
+
+            String requestBody = objectMapper.writeValueAsString(newProgram);
+
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(requestBody)).build();
+
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200 || response.statusCode() == 201) {
+                showAlert("Program added successfully!");
+                loadPrograms();
+            } else {
+                showAlert("Failed to add program. HTTP Status: " + response.statusCode());
+            }
+        } catch (Exception e) {
+            showAlert("Failed to add program: " + e.getMessage());
         }
     }
+
 
     @FXML
     private void addBlock() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8080/api/v1/recipes/program/addBlock"))
-                    .header("Authorization", "Bearer " + getAuthToken())
-                    .header("Client", getClientSecret())
-                    .POST(HttpRequest.BodyPublishers.noBody())
-                    .build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("http://localhost:8080/api/v1/recipes/program/addBlock")).header("Authorization", "Bearer " + getAuthToken()).header("Client", getClientSecret()).POST(HttpRequest.BodyPublishers.noBody()).build();
             httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             loadPrograms();
         } catch (Exception e) {
@@ -442,10 +530,7 @@ public class ProgramBlockController {
 
         VBox content = new VBox();
         content.setStyle("-fx-alignment: center; -fx-spacing: 10;");
-        content.getChildren().addAll(
-                new Label("Program ID: " + program.getProgramId()),
-                new Label("Name: " + program.getName())
-        );
+        content.getChildren().addAll(new Label("Program ID: " + program.getProgramId()), new Label("Name: " + program.getName()));
         tile.getChildren().add(content);
         return tile;
     }
@@ -457,10 +542,7 @@ public class ProgramBlockController {
 
         VBox content = new VBox();
         content.setStyle("-fx-alignment: center; -fx-spacing: 8;");
-        content.getChildren().addAll(
-                new Label("Block ID: " + block.getBlockId()),
-                new Label("Type: " + blockType)
-        );
+        content.getChildren().addAll(new Label("Block ID: " + block.getBlockId()), new Label("Type: " + blockType));
 
         tile.getChildren().add(content);
 
@@ -522,7 +604,6 @@ public class ProgramBlockController {
         detailsStage.setScene(scene);
         detailsStage.show();
     }
-
 
 
 }

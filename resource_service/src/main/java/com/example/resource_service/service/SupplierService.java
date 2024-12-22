@@ -3,7 +3,6 @@ package com.example.resource_service.service;
 import com.example.resource_service.model.Supplier;
 import com.example.resource_service.repository.SupplierRepo;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

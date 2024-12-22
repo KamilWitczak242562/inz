@@ -1,9 +1,6 @@
 package com.example.client.controller;
 
 import javafx.animation.PauseTransition;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import static com.example.client.utils.Utils.switchToView;

@@ -2,7 +2,6 @@ package com.example.recipe_management_service.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
@@ -16,11 +15,11 @@ public class Program {
 
     private String name;
 
-    @ManyToMany
-    @JoinTable(
+    @ElementCollection
+    @CollectionTable(
             name = "program_block",
-            joinColumns = @JoinColumn(name = "program_id"),
-            inverseJoinColumns = @JoinColumn(name = "block_id")
+            joinColumns = @JoinColumn(name = "program_id")
     )
-    private List<Block> blocks;
+    @Column(name = "block_id")
+    private List<Long> blockIds;
 }

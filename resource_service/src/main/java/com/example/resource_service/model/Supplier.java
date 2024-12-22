@@ -2,12 +2,14 @@ package com.example.resource_service.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 import java.util.List;
 
 @Entity
 @Table(name = "suppliers")
 @Data
+@Audited
 public class Supplier {
 
     @Id

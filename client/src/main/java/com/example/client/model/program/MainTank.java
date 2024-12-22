@@ -3,7 +3,7 @@ package com.example.client.model.program;
 import lombok.Data;
 
 @Data
-public class MainTank extends Block{
+public class MainTank extends Block {
     private Double fillLevel;
     private Boolean isHotWater;
     private Double targetTemperature;

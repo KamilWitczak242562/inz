@@ -142,6 +142,10 @@ public class RecipeController {
             });
         });
 
+        if (!"ADMIN".equals(getRole())) {
+            updateButton.setVisible(false);
+            deleteButton.setVisible(false);
+        }
 
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> detailsStage.close());
@@ -348,8 +352,6 @@ public class RecipeController {
             return List.of();
         }
     }
-
-
 
 
     @FXML

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21"
+            fx:controller="com.example.client.controller.program.BlockController">
+    <children>
+        <Button layoutX="20.0" layoutY="20.0" onAction="#returnToMainView" text="Back to Main"/>
+        <Button layoutX="121.0" layoutY="21.0" onAction="#returnToProgramView" text="Go to Programs"/>
+        <Button fx:id="addBlockButton" layoutX="246.0" layoutY="21.0" text="Add Block"/>
+        <Button fx:id="refreshButton" layoutX="851.0" layoutY="19.0" onAction="#refresh"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Refresh"/>
+
+        <ScrollPane hbarPolicy="ALWAYS" layoutX="20.0" layoutY="80.0" prefHeight="600.0" prefWidth="910.0"
+                    vbarPolicy="NEVER">
+            <content>
+                <GridPane fx:id="blockGrid" hgap="20.0" vgap="20.0">
+                </GridPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>

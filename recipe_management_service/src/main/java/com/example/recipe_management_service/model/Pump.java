@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Data
 @DiscriminatorValue("Pump")
-public class Pump extends Block{
+public class Pump extends Block {
     private Integer rpm;
     private Integer circulationTimeInOut;
     private Integer circulationTimeOutIn;

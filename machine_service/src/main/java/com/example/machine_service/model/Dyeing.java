@@ -7,6 +7,6 @@ import lombok.Data;
 @Entity
 @Table(name = "dyeing_machines")
 @Data
-public class Dyeing extends Machine{
+public class Dyeing extends Machine {
     private int charge_diameter;
 }

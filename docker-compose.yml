@@ -16,6 +16,7 @@ services:
       - machine-service
       - resource-service
       - planning-service
+      - reporting-service
 
   recipe-service:
     build:
@@ -48,7 +49,7 @@ services:
     networks:
       - service-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -85,7 +86,7 @@ services:
     networks:
       - service-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -122,7 +123,7 @@ services:
     networks:
       - service-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -159,7 +160,7 @@ services:
     networks:
       - service-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -196,11 +197,21 @@ services:
     networks:
       - service-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 30s
+
+  reporting-service:
+    build:
+      context: ./reporting_service
+    container_name: reporting-service
+    expose:
+      - "8086"
+    networks:
+      - service-network
+    restart: always
 
 networks:
   app-network:

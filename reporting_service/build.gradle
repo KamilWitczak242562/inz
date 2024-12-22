@@ -36,10 +36,12 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
-    implementation 'mysql:mysql-connector-java'
+//    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+//    implementation 'mysql:mysql-connector-java'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-api', version: '2.6.0'
+    implementation group: 'org.hibernate.orm', name: 'hibernate-envers', version: '6.6.4.Final'
+
 }
 
 tasks.named('test') {

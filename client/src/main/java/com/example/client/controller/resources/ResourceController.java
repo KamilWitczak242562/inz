@@ -161,12 +161,26 @@ public class ResourceController {
                 showAlert("Failed to " + (isEdit ? "update" : "add") + " resource: " + ex.getMessage());
             }
         });
-        saveButton.setVisible("ADMIN".equals(getRole()));
 
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
-        deleteButton.setOnAction(e -> showDeleteConfirmation(resource, stage));
-        deleteButton.setVisible("ADMIN".equals(getRole()));
+        deleteButton.setOnAction(e -> {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Deletion");
+            confirmationAlert.setHeaderText("Are you sure you want to delete this recipe?");
+            confirmationAlert.setContentText("This action cannot be undone.");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    deleteRecipe(resource, stage);
+                }
+            });
+        });
+
+        if (!"ADMIN".equals(getRole())) {
+            saveButton.setVisible(false);
+            deleteButton.setVisible(false);
+        }
 
         Button cancelButton = new Button("Close");
         cancelButton.setOnAction(e -> stage.close());
@@ -185,31 +199,22 @@ public class ResourceController {
         stage.show();
     }
 
-    private void showDeleteConfirmation(Resource resource, Stage stage) {
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Delete Confirmation");
-        confirmationAlert.setHeaderText("Are you sure you want to delete this resource?");
-        confirmationAlert.setContentText("Resource: " + resource.getName());
+    private void deleteRecipe(Resource resource, Stage stage) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest deleteRequest = HttpRequest.newBuilder()
+                    .uri(URI.create("http://localhost:8080/api/v1/resources/resource/" + resource.getResourceId()))
+                    .header("Authorization", "Bearer " + getAuthToken())
+                    .header("Client", getClientSecret())
+                    .DELETE()
+                    .build();
 
-        confirmationAlert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                try {
-                    HttpClient client = HttpClient.newHttpClient();
-                    HttpRequest deleteRequest = HttpRequest.newBuilder()
-                            .uri(URI.create("http://localhost:8080/api/v1/resources/resource/" + resource.getResourceId()))
-                            .header("Authorization", "Bearer " + getAuthToken())
-                            .header("Client", getClientSecret())
-                            .DELETE()
-                            .build();
-
-                    client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
-                    stage.close();
-                    loadResources();
-                } catch (Exception ex) {
-                    showAlert("Failed to delete resource: " + ex.getMessage());
-                }
-            }
-        });
+            client.send(deleteRequest, HttpResponse.BodyHandlers.ofString());
+            stage.close();
+            loadResources();
+        } catch (Exception ex) {
+            showAlert("Failed to delete resource: " + ex.getMessage());
+        }
     }
 
     @FXML

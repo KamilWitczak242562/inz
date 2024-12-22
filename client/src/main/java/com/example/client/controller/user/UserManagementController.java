@@ -21,6 +21,8 @@ import static com.example.client.utils.Utils.*;
 
 public class UserManagementController {
 
+    private final HttpClient client = HttpClient.newHttpClient();
+    private final ObjectMapper mapper = new ObjectMapper();
     @FXML
     private TableView<User> userTable;
     @FXML
@@ -33,9 +35,6 @@ public class UserManagementController {
     private TableColumn<User, String> roleColumn;
     @FXML
     private TableColumn<User, Void> actionsColumn;
-
-    private final HttpClient client = HttpClient.newHttpClient();
-    private final ObjectMapper mapper = new ObjectMapper();
 
     public void initialize() {
         firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -59,8 +58,10 @@ public class UserManagementController {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                Map<String, Object> result = mapper.readValue(response.body(), new TypeReference<>() {});
-                List<User> users = mapper.convertValue(result.get("response"), new TypeReference<>() {});
+                Map<String, Object> result = mapper.readValue(response.body(), new TypeReference<>() {
+                });
+                List<User> users = mapper.convertValue(result.get("response"), new TypeReference<>() {
+                });
                 ObservableList<User> userList = FXCollections.observableArrayList(users);
                 userTable.setItems(userList);
             } else {

@@ -1,6 +1,5 @@
 package com.example.recipe_management_service.controller;
 
-import com.example.recipe_management_service.Dto.ResourceDto;
 import com.example.recipe_management_service.model.Recipe;
 import com.example.recipe_management_service.service.RecipeService;
 import lombok.AllArgsConstructor;

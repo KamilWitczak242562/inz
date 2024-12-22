@@ -1,25 +1,23 @@
 package com.example.client.utils;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
-
 public class Utils {
+    private static final String CLIENT_SECRET = "2be4986e4bf057b65a0bb9fad7b0df44";
     private static String authToken;
     private static String role;
     private static String email;
-    private static final String CLIENT_SECRET = "2be4986e4bf057b65a0bb9fad7b0df44";
 
     public static String getClientSecret() {
         return CLIENT_SECRET;

@@ -1,13 +1,10 @@
 package com.example.client.model.program;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,8 +21,6 @@ import java.util.List;
 })
 public abstract class Block {
     private Long blockId;
-
-    private List<Program> programs;
 
     private String dtype;
 

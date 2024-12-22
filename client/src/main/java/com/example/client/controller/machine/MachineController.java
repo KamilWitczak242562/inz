@@ -111,7 +111,6 @@ public class MachineController {
     }
 
 
-
     private StackPane createMachineTile(Machine machine) {
         StackPane tile = new StackPane();
         tile.setPrefSize(200, 200);
@@ -232,7 +231,18 @@ public class MachineController {
 
         Button deleteButton = new Button("Delete");
         deleteButton.setStyle("-fx-background-color: #FF5252; -fx-text-fill: white;");
-        deleteButton.setOnAction(e -> deleteMachine(machine, detailsStage));
+        deleteButton.setOnAction(e -> {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Deletion");
+            confirmationAlert.setHeaderText("Are you sure you want to delete this machine?");
+            confirmationAlert.setContentText("This action cannot be undone.");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    deleteMachine(machine, detailsStage);
+                }
+            });
+        });
 
         if (!"ADMIN".equals(getRole())) {
             updateButton.setVisible(false);
@@ -248,6 +258,7 @@ public class MachineController {
         detailsStage.setScene(scene);
         detailsStage.show();
     }
+
 
     private void updateMachine(Machine machine) {
         if (!"ADMIN".equals(getRole())) {

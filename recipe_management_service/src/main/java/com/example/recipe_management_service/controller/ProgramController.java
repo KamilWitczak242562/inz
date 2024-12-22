@@ -1,6 +1,5 @@
 package com.example.recipe_management_service.controller;
 
-import com.example.recipe_management_service.model.Block;
 import com.example.recipe_management_service.model.Program;
 import com.example.recipe_management_service.service.ProgramService;
 import lombok.AllArgsConstructor;
@@ -40,14 +39,20 @@ public class ProgramController {
 
     @PostMapping("/new")
     public ResponseEntity<?> createProgram(@RequestBody Program program) {
-        if (program == null || program.getName() == null || program.getBlocks() == null) {
+        if (program == null || program.getName() == null || program.getBlockIds() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of("response", "Invalid Program data", "ok", false));
         }
-        Program newProgram = programService.create(program);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(Map.of("response", newProgram, "ok", true));
+        try {
+            Program newProgram = programService.create(program);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(Map.of("response", newProgram, "ok", true));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("response", e.getMessage(), "ok", false));
+        }
     }
+
 
     @PostMapping("/{id}")
     public ResponseEntity<?> updateProgram(@PathVariable Long id, @RequestBody Program program) {

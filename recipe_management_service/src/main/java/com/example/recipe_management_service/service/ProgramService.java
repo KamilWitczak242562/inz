@@ -1,7 +1,6 @@
 package com.example.recipe_management_service.service;
 
 import com.example.recipe_management_service.model.Program;
-import com.example.recipe_management_service.model.Block;
 import com.example.recipe_management_service.repository.BlockRepo;
 import com.example.recipe_management_service.repository.ProgramRepo;
 import lombok.AllArgsConstructor;
@@ -28,6 +27,7 @@ public class ProgramService implements ServiceTemplate<Program> {
 
     @Override
     public Program create(Program program) {
+        validateBlockIds(program.getBlockIds());
         return programRepository.save(program);
     }
 
@@ -36,7 +36,8 @@ public class ProgramService implements ServiceTemplate<Program> {
         Program programToUpdate = programRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + id));
         programToUpdate.setName(program.getName());
-        programToUpdate.setBlocks(program.getBlocks());
+        programToUpdate.setBlockIds(program.getBlockIds());
+        validateBlockIds(program.getBlockIds());
         return programRepository.save(programToUpdate);
     }
 
@@ -51,18 +52,27 @@ public class ProgramService implements ServiceTemplate<Program> {
     }
 
     public void addBlockToProgram(Long programId, Long blockId) {
-        Block block = blockRepo.findById(blockId)
-                .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + programId));;
+        if (!blockRepo.existsById(blockId)) {
+            throw new IllegalArgumentException("No Block found with id: " + blockId);
+        }
         Program program = programRepository.findById(programId)
                 .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + programId));
-        program.getBlocks().add(block);
+        program.getBlockIds().add(blockId);
         programRepository.save(program);
     }
 
     public void removeBlockFromProgram(Long programId, Long blockId) {
         Program program = programRepository.findById(programId)
                 .orElseThrow(() -> new IllegalArgumentException("No Program found with id: " + programId));
-        program.getBlocks().removeIf(block -> block.getBlockId().equals(blockId));
+        program.getBlockIds().remove(blockId);
         programRepository.save(program);
+    }
+
+    private void validateBlockIds(List<Long> blockIds) {
+        for (Long blockId : blockIds) {
+            if (!blockRepo.existsById(blockId)) {
+                throw new IllegalArgumentException("No Block found with id: " + blockId);
+            }
+        }
     }
 }

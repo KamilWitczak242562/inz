@@ -1,13 +1,10 @@
 package com.example.resource_service.service;
 
 import com.example.resource_service.model.Resource;
-import com.example.resource_service.model.Supplier;
 import com.example.resource_service.repository.ResourceRepo;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Service

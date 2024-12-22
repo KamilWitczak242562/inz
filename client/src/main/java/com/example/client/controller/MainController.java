@@ -5,6 +5,9 @@ import com.example.client.model.machine.Dyeing;
 import com.example.client.model.resource.Resource;
 import com.example.client.utils.Utils;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,14 +17,11 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +57,22 @@ public class MainController {
     private void changePassword() {
         switchToView("change-password-view.fxml");
     }
+
+    @FXML
+    private void goToSupplierView() {
+        switchToView("supplier-view.fxml");
+    }
+
+    @FXML
+    private void goToBlockView() {
+        switchToView("block-view.fxml");
+    }
+
+    @FXML
+    private void goToReportsView() {
+        switchToView("report-view.fxml");
+    }
+
 
     @FXML
     private void goToView1() {

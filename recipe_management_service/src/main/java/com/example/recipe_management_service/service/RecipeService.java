@@ -1,17 +1,11 @@
 package com.example.recipe_management_service.service;
 
-import com.example.recipe_management_service.Dto.ResourceDto;
 import com.example.recipe_management_service.model.Recipe;
 import com.example.recipe_management_service.repository.RecipeRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.awt.*;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor

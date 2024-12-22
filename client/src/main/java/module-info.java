@@ -8,6 +8,7 @@ module com.example.client {
     requires com.fasterxml.jackson.datatype.jsr310;
     requires org.kordamp.ikonli.javafx;
     requires java.logging;
+    requires javafx.swing;
 
 
     opens com.example.client.model.machine to com.fasterxml.jackson.databind;

@@ -12,31 +12,34 @@
     <children>
         <HBox layoutX="0.0" layoutY="0.0" prefWidth="1000.0" style="-fx-background-color: #2E7D32;">
             <children>
-                <MenuBar fx:id="menuBar" style="-fx-background-color: transparent;" prefWidth="800.0">
+                <MenuBar fx:id="menuBar" prefWidth="800.0" style="-fx-background-color: transparent;">
                     <menus>
-                        <Menu text="Options" style="-fx-text-fill: white;">
+                        <Menu style="-fx-text-fill: white;" text="Options">
                             <items>
-                                <MenuItem text="Logout" onAction="#logout"/>
-                                <MenuItem text="Exit" onAction="#exitApplication"/>
+                                <MenuItem onAction="#logout" text="Logout" />
+                                <MenuItem onAction="#exitApplication" text="Exit" />
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
             </children>
         </HBox>
-        <HBox layoutX="0.0" layoutY="50.0" prefWidth="1000.0" alignment="CENTER">
+        <HBox alignment="CENTER" layoutX="0.0" layoutY="50.0" prefWidth="1000.0">
             <children>
-                <Label text="Welcome to DyeFlow" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #424242;"/>
+                <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #424242;" text="Welcome to DyeFlow" />
             </children>
         </HBox>
-        <HBox fx:id="buttonContainer" spacing="20.0" layoutX="50.0" layoutY="200.0" alignment="CENTER" prefWidth="900.0">
+        <HBox fx:id="buttonContainer" alignment="CENTER" layoutX="50.0" layoutY="200.0" prefWidth="900.0" spacing="20.0">
             <children>
-                <Button text="Program View" prefHeight="150.0" prefWidth="150.0" onAction="#goToView1" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="Recipe View" prefHeight="150.0" prefWidth="150.0" onAction="#goToView2" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="Planning View" prefHeight="150.0" prefWidth="150.0" onAction="#goToView3" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="" fx:id="resourceViewButton" prefHeight="150.0" prefWidth="150.0" onAction="#goToView4" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;"/>
-                <Button text="" fx:id="machineViewButton" prefHeight="150.0" prefWidth="150.0" onAction="#goToView5" style="-fx-background-color: #A5D6A7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 10px; -fx-background-radius: 10px;" />
+                <Button onAction="#goToView1" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Program View" />
+                <Button onAction="#goToView2" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Recipe View" />
+                <Button onAction="#goToView3" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #66BB6A; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Planning View" />
+                <Button fx:id="resourceViewButton" onAction="#goToView4" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="" />
+                <Button fx:id="machineViewButton" onAction="#goToView5" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #A5D6A7; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="" />
             </children>
         </HBox>
+      <Button layoutX="98.0" layoutY="350.0" onAction="#goToBlockView" prefHeight="47.0" prefWidth="122.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Block View" />
+      <Button layoutX="606.0" layoutY="350.0" onAction="#goToSupplierView" prefHeight="47.0" prefWidth="122.0" style="-fx-background-color: #81C784; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Supplier View" />
+      <Button layoutX="864.0" layoutY="539.0" onAction="#goToReportsView" prefHeight="47.0" prefWidth="122.0" style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-size: 16px; -fx-border-radius: 10px; -fx-background-radius: 10px;" text="Reports" />
     </children>
 </AnchorPane>

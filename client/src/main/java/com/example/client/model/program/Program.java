@@ -10,5 +10,5 @@ public class Program {
 
     private String name;
 
-    private List<Block> blocks;
+    private List<Long> blockIds;
 }

@@ -3,7 +3,6 @@ package com.example.recipe_management_service.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 import java.util.Map;
 
 @Entity

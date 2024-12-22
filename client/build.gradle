@@ -1,63 +1,66 @@
 plugins {
-  id 'java'
-  id 'application'
-  id 'org.javamodularity.moduleplugin' version '1.8.12'
-  id 'org.openjfx.javafxplugin' version '0.0.13'
-  id 'org.beryx.jlink' version '2.25.0'
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
 }
 
 group 'com.example'
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 ext {
-  junitVersion = '5.10.0'
+    junitVersion = '5.10.0'
 }
 
 sourceCompatibility = '22'
 targetCompatibility = '22'
 
 tasks.withType(JavaCompile) {
-  options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 application {
-  mainModule = 'com.example.client'
-  mainClass = 'com.example.client.HelloApplication'
+    mainModule = 'com.example.client'
+    mainClass = 'com.example.client.HelloApplication'
 }
 
 javafx {
-  version = '22-ea+11'
-  modules = ['javafx.controls', 'javafx.fxml']
+    version = '22-ea+11'
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
 }
 
 dependencies {
-  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.18.2'
-  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.2'
-  implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
-  compileOnly 'org.projectlombok:lombok:1.18.36'
-  annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.18.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
-  implementation 'org.kordamp.ikonli:ikonli-javafx:12.3.0'
-  implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.0'
+    implementation "org.openjfx:javafx-swing:21"
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.3.0'
+    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.0'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {
-useJUnitPlatform()}
+    useJUnitPlatform()
+}
 
 jlink {
-  imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-  options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-  launcher {
-    name = 'app'
-  }
+    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'app'
+    }
 }
 
 jlinkZip {
-  group = 'distribution'
+    group = 'distribution'
 }

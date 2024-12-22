@@ -1,8 +1,8 @@
 package com.example.client.controller.planning;
 
+import com.example.client.model.machine.Dryer;
 import com.example.client.model.machine.Dyeing;
 import com.example.client.model.planning.Job;
-import com.example.client.model.machine.Dryer;
 import com.example.client.model.program.Program;
 import com.example.client.model.recipe.Recipe;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -37,46 +37,33 @@ import static com.example.client.utils.Utils.*;
 
 public class PlanningController {
 
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     @FXML
     private AnchorPane root;
-
     @FXML
     private TableView<Job> jobTable;
-
     @FXML
     private TableColumn<Job, Long> jobIdColumn;
-
     @FXML
     private TableColumn<Job, String> startTimeColumn;
-
     @FXML
     private TableColumn<Job, String> endTimeColumn;
-
     @FXML
     private TableColumn<Job, String> machineNameColumn;
-
     @FXML
     private TableColumn<Job, String> machineStatusColumn;
-
     @FXML
     private TableColumn<Job, String> programNameColumn;
-
     @FXML
     private TableColumn<Job, String> recipeNameColumn;
-
     @FXML
     private TableColumn<Job, Button> detailsColumn;
-
     @FXML
     private Button refreshButton;
-
     @FXML
     private Button goToMainViewButton;
-
     @FXML
     private Button addJobButton;
-
-    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private List<Map<String, Object>> machinesCache;
     private List<Map<String, Object>> programsCache;
     private List<Map<String, Object>> recipesCache;

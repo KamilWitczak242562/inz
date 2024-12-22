@@ -6,7 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auth_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auth_service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/inz.iml" filepath="$PROJECT_DIR$/.idea/inz.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/machine_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/machine_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/planning_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/planning_service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/recipe_management_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/recipe_management_service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/reporting_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/reporting_service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/resource_service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/resource_service.main.iml" />
     </modules>
   </component>

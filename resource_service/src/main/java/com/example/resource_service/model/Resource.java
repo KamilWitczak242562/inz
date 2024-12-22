@@ -1,14 +1,13 @@
 package com.example.resource_service.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.util.List;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "resources")
 @Data
+@Audited
 public class Resource {
 
     @Id

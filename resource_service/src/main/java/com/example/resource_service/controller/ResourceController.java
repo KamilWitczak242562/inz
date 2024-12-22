@@ -4,7 +4,6 @@ import com.example.resource_service.model.Resource;
 import com.example.resource_service.service.ResourceService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

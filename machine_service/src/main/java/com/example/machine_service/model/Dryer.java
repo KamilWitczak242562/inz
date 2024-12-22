@@ -9,7 +9,7 @@ import lombok.Data;
 @Entity
 @Table(name = "dryers")
 @Data
-public class Dryer extends Machine{
+public class Dryer extends Machine {
     @Enumerated(EnumType.STRING)
     private DryerType dryerType;
 }

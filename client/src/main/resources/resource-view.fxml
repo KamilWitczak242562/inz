@@ -9,9 +9,9 @@
     <children>
         <Button layoutX="20.0" layoutY="20.0" onAction="#goToMainView" text="Back to Main" />
         <Button fx:id="addResourceButton" layoutX="120.0" layoutY="20.0" text="Add Resource" />
-        <Button layoutX="869.0" layoutY="18.0" onAction="#refreshResources" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Refresh" />
-        <Button fx:id="goToSuppliersButton" layoutX="752.0" layoutY="20.0" text="Go to Suppliers" />
-        
+        <Button layoutX="841.0" layoutY="18.0" onAction="#refreshResources" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;" text="Refresh" />
+        <Button fx:id="goToSuppliersButton" layoutX="734.0" layoutY="20.0" text="Go to Suppliers" />
+
         <ScrollPane hbarPolicy="ALWAYS" layoutX="20.0" layoutY="80.0" prefHeight="600.0" prefWidth="900.0" vbarPolicy="NEVER">
             <content>
                 <GridPane fx:id="resourceGrid" hgap="20.0" vgap="20.0" />

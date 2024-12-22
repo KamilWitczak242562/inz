@@ -3,8 +3,8 @@ package com.example.auth_service.service;
 import com.example.auth_service.model.User;
 import com.example.auth_service.repository.UserRepo;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -61,8 +61,9 @@ public class UserService {
         return userRepo.save(userToChange);
     }
 
-    public User changePassword(String email, String oldPassword, String newPassword){
-        if (email.isEmpty() || oldPassword.isEmpty() || newPassword.isEmpty()) throw new IllegalArgumentException("One of the params is invalid.");
+    public User changePassword(String email, String oldPassword, String newPassword) {
+        if (email.isEmpty() || oldPassword.isEmpty() || newPassword.isEmpty())
+            throw new IllegalArgumentException("One of the params is invalid.");
         User userToChange = userRepo.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("User not found."));
         if (BCrypt.checkpw(oldPassword, userToChange.getPassword())) {

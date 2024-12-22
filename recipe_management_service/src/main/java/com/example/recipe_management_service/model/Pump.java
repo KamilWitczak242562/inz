@@ -3,10 +3,12 @@ package com.example.recipe_management_service.model;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Data
 @DiscriminatorValue("Pump")
+@Audited
 public class Pump extends Block {
     private Integer rpm;
     private Integer circulationTimeInOut;

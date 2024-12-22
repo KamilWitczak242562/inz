@@ -1,6 +1,8 @@
 package com.example.resource_service.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 public interface ServiceTemplate<T> {
     T create(T entity);
@@ -12,4 +14,6 @@ public interface ServiceTemplate<T> {
     T getById(Long id);
 
     List<T> getAll();
+
+    List<Map<String, Object>> getHistory(LocalDateTime startTime, LocalDateTime endTime, String revisionType);
 }

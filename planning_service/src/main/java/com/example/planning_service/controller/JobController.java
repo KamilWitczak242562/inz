@@ -121,4 +121,22 @@ public class JobController {
                     .body(Map.of("response", e.getMessage(), "ok", false));
         }
     }
+
+    @GetMapping("/history/{startTime}&{endTime}")
+    public ResponseEntity<?> getResourceHistory(
+            @PathVariable LocalDateTime startTime,
+            @PathVariable LocalDateTime endTime,
+            @RequestParam(defaultValue = "ALL") String revisionType) {
+        try {
+            List<Map<String, Object>> history = jobService.getHistory(startTime, endTime, revisionType);
+            if (history.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                        .body(Map.of("response", "No history found", "ok", false));
+            }
+            return ResponseEntity.ok(Map.of("response", history, "ok", true));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("response", e.getMessage(), "ok", false));
+        }
+    }
 }

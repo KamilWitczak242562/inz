@@ -2,12 +2,14 @@ package com.example.recipe_management_service.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 import java.util.Map;
 
 @Entity
 @Table(name = "recipes")
 @Data
+@Audited
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "blocks")
@@ -20,6 +21,7 @@ import lombok.Data;
         @JsonSubTypes.Type(value = SecondaryTank.class, name = "SecondaryTank"),
         @JsonSubTypes.Type(value = Pump.class, name = "Pump")
 })
+@Audited
 public abstract class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

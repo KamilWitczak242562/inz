@@ -4,8 +4,11 @@ DELETE
 FROM resources;
 DELETE
 FROM suppliers;
+
 DELETE
-FROM notifications;
+FROM resources_aud;
+DELETE
+FROM suppliers_aud;
 
 ALTER TABLE resources
     AUTO_INCREMENT = 1;
@@ -13,13 +16,8 @@ ALTER TABLE suppliers
     AUTO_INCREMENT = 1;
 ALTER TABLE suppliers_resources
     AUTO_INCREMENT = 1;
-ALTER TABLE notifications
-    AUTO_INCREMENT = 1;
-
-INSERT INTO notifications (timestamp, type, message)
-VALUES ('2024-08-10T10:00:00', 'INFO', 'System started successfully'),
-       ('2024-08-11T11:30:00', 'ERROR', 'Failed to connect to database'),
-       ('2024-08-12T14:45:00', 'WARNING', 'Low disk space on server');
+ALTER TABLE resources_aud AUTO_INCREMENT = 1;
+ALTER TABLE suppliers_aud AUTO_INCREMENT = 1;
 
 INSERT INTO resources (name, description, current_stock, unit, reorder_level)
 VALUES ('Blue Dye', 'High-quality blue dye for fabrics', 500.0, 'l', 50.0),

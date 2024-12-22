@@ -3,10 +3,12 @@ package com.example.recipe_management_service.model;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Data
 @DiscriminatorValue("SecondaryTank")
+@Audited
 public class SecondaryTank extends Block {
     private Double fillLevel;
     private Boolean isHotWater;

@@ -3,9 +3,11 @@ package com.example.machine_service.controller;
 import com.example.machine_service.model.Dryer;
 import com.example.machine_service.service.DryerService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +45,23 @@ public class DryerController {
     public ResponseEntity<?> deleteDryer(@PathVariable Long id) {
         boolean isDeleted = dryerService.delete(id);
         return ResponseEntity.ok().body(Map.of("response", isDeleted, "ok", true));
+    }
+
+    @GetMapping("/history/{startTime}&{endTime}")
+    public ResponseEntity<?> getResourceHistory(
+            @PathVariable LocalDateTime startTime,
+            @PathVariable LocalDateTime endTime,
+            @RequestParam(defaultValue = "ALL") String revisionType) {
+        try {
+            List<Map<String, Object>> history = dryerService.getHistory(startTime, endTime, revisionType);
+            if (history.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                        .body(Map.of("response", "No history found", "ok", false));
+            }
+            return ResponseEntity.ok(Map.of("response", history, "ok", true));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("response", e.getMessage(), "ok", false));
+        }
     }
 }

@@ -8,7 +8,6 @@ import org.hibernate.envers.Audited;
 @Entity
 @Table(name = "users")
 @Data
-@Audited
 public class User {
 
     @Id

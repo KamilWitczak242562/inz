@@ -1,376 +1,729 @@
-2024-12-22T18:01:05.125+01:00  INFO 9844 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Starting RecipeManagementServiceApplication using Java 22.0.1 with PID 9844 (G:\Sem VII\inz\recipe_management_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T18:01:05.160+01:00 DEBUG 9844 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-12-22T18:01:05.161+01:00  INFO 9844 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T18:01:06.033+01:00  INFO 9844 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T18:01:06.177+01:00  INFO 9844 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 3 JPA repository interfaces.
-2024-12-22T18:01:06.677+01:00  INFO 9844 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-12-22T18:01:06.688+01:00  INFO 9844 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T18:01:06.688+01:00  INFO 9844 --- [recipe_management_service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-12-22T18:01:06.743+01:00  INFO 9844 --- [recipe_management_service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T18:01:06.744+01:00  INFO 9844 --- [recipe_management_service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1532 ms
-2024-12-22T18:01:06.865+01:00  INFO 9844 --- [recipe_management_service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-22T18:01:06.913+01:00  INFO 9844 --- [recipe_management_service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-12-22T18:01:06.941+01:00  INFO 9844 --- [recipe_management_service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-22T18:01:07.254+01:00  INFO 9844 --- [recipe_management_service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-22T18:01:07.278+01:00  INFO 9844 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-22T18:01:07.530+01:00  INFO 9844 --- [recipe_management_service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@430aae8e
-2024-12-22T18:01:07.532+01:00  INFO 9844 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-22T18:01:07.689+01:00  WARN 9844 --- [recipe_management_service] [main] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.example.recipe_management_service.model.Block] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
-2024-12-22T18:01:07.788+01:00 ERROR 9844 --- [recipe_management_service] [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Collection 'com.example.recipe_management_service.model.Block.programs' is 'mappedBy' a property named 'blocks' which does not exist in the target entity 'com.example.recipe_management_service.model.Program'
-2024-12-22T18:01:07.789+01:00  WARN 9844 --- [recipe_management_service] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Collection 'com.example.recipe_management_service.model.Block.programs' is 'mappedBy' a property named 'blocks' which does not exist in the target entity 'com.example.recipe_management_service.model.Program'
-2024-12-22T18:01:07.789+01:00  INFO 9844 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-22T18:01:07.834+01:00  INFO 9844 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-22T18:01:07.837+01:00  INFO 9844 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-12-22T18:01:07.847+01:00  INFO 9844 --- [recipe_management_service] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2024-12-23T19:17:13.129+01:00  INFO 16848 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 16848 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:17:13.199+01:00 DEBUG 16848 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:17:13.200+01:00  INFO 16848 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:17:14.482+01:00  INFO 16848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:17:14.500+01:00  INFO 16848 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:17:14.502+01:00  INFO 16848 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:17:14.577+01:00  INFO 16848 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:17:14.577+01:00  INFO 16848 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1326 ms
+2024-12-23T19:17:15.150+01:00  INFO 16848 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:17:15.158+01:00  INFO 16848 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.499 seconds (process running for 3.336)
+2024-12-23T19:18:22.431+01:00  INFO 16848 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:18:22.432+01:00  INFO 16848 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:18:22.432+01:00  INFO 16848 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T19:23:35.711+01:00  INFO 5512 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 5512 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:23:35.713+01:00 DEBUG 5512 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:23:35.714+01:00  INFO 5512 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:23:36.670+01:00  INFO 5512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:23:36.683+01:00  INFO 5512 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:23:36.683+01:00  INFO 5512 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:23:36.739+01:00  INFO 5512 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:23:36.739+01:00  INFO 5512 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 991 ms
+2024-12-23T19:23:37.226+01:00  INFO 5512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:23:37.235+01:00  INFO 5512 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.914 seconds (process running for 2.413)
+2024-12-23T19:23:40.419+01:00  INFO 5512 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:23:40.419+01:00  INFO 5512 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:23:40.420+01:00  INFO 5512 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:25:34.250+01:00  INFO 16844 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 16844 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:25:34.252+01:00 DEBUG 16844 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:25:34.252+01:00  INFO 16844 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:25:35.163+01:00  INFO 16844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:25:35.176+01:00  INFO 16844 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:25:35.176+01:00  INFO 16844 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:25:35.229+01:00  INFO 16844 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:25:35.230+01:00  INFO 16844 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 944 ms
+2024-12-23T19:25:35.688+01:00  INFO 16844 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:25:35.696+01:00  INFO 16844 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.79 seconds (process running for 2.36)
+2024-12-23T19:25:40.760+01:00  INFO 16844 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:25:40.760+01:00  INFO 16844 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:25:40.761+01:00  INFO 16844 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:25:56.701+01:00  INFO 9108 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 9108 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:25:56.703+01:00 DEBUG 9108 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:25:56.703+01:00  INFO 9108 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:25:57.670+01:00  INFO 9108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:25:57.683+01:00  INFO 9108 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:25:57.683+01:00  INFO 9108 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:25:57.738+01:00  INFO 9108 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:25:57.739+01:00  INFO 9108 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1003 ms
+2024-12-23T19:25:58.193+01:00  INFO 9108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:25:58.200+01:00  INFO 9108 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.831 seconds (process running for 2.33)
+2024-12-23T19:26:00.642+01:00  INFO 9108 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:26:00.643+01:00  INFO 9108 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:26:00.646+01:00  INFO 9108 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-23T19:27:17.016+01:00  INFO 24216 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 24216 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:27:17.017+01:00 DEBUG 24216 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:27:17.018+01:00  INFO 24216 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:27:17.976+01:00  INFO 24216 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:27:17.989+01:00  INFO 24216 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:27:17.989+01:00  INFO 24216 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:27:18.043+01:00  INFO 24216 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:27:18.044+01:00  INFO 24216 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 993 ms
+2024-12-23T19:27:18.594+01:00  INFO 24216 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:27:18.602+01:00  INFO 24216 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.913 seconds (process running for 2.413)
+2024-12-23T19:27:22.081+01:00  INFO 24216 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:27:22.082+01:00  INFO 24216 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:27:22.083+01:00  INFO 24216 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T19:29:25.024+01:00  INFO 15524 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 15524 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:29:25.025+01:00 DEBUG 15524 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:29:25.026+01:00  INFO 15524 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:29:26.174+01:00  INFO 15524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:29:26.211+01:00  INFO 15524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:29:26.212+01:00  INFO 15524 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:29:26.304+01:00  INFO 15524 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:29:26.305+01:00  INFO 15524 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1235 ms
+2024-12-23T19:29:26.925+01:00  INFO 15524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:29:26.934+01:00  INFO 15524 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.285 seconds (process running for 2.941)
+2024-12-23T19:29:33.990+01:00  INFO 22908 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 22908 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:29:33.992+01:00 DEBUG 22908 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:29:33.992+01:00  INFO 22908 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:29:34.905+01:00  INFO 22908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:29:34.918+01:00  INFO 22908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:29:34.918+01:00  INFO 22908 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:29:34.972+01:00  INFO 22908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:29:34.973+01:00  INFO 22908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 948 ms
+2024-12-23T19:29:35.427+01:00  INFO 22908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:29:35.434+01:00  INFO 22908 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.786 seconds (process running for 2.305)
+2024-12-23T19:29:40.133+01:00  INFO 22908 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:29:40.134+01:00  INFO 22908 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:29:40.135+01:00  INFO 22908 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:29:40.235+01:00  INFO 22908 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:31:09.396+01:00  INFO 8460 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 8460 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:31:09.398+01:00 DEBUG 8460 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:31:09.399+01:00  INFO 8460 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:31:10.314+01:00  INFO 8460 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:31:10.326+01:00  INFO 8460 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:31:10.327+01:00  INFO 8460 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:31:10.388+01:00  INFO 8460 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:31:10.389+01:00  INFO 8460 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 956 ms
+2024-12-23T19:31:10.846+01:00  INFO 8460 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:31:10.853+01:00  INFO 8460 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.781 seconds (process running for 2.285)
+2024-12-23T19:31:13.114+01:00  INFO 8460 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:31:13.115+01:00  INFO 8460 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:31:13.116+01:00  INFO 8460 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:31:13.220+01:00  INFO 8460 --- [http-nio-8086-exec-1] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:31:13.221+01:00  INFO 8460 --- [http-nio-8086-exec-1] c.e.r.service.ResourceReportService      : false
+2024-12-23T19:33:39.186+01:00  INFO 18400 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 18400 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:33:39.187+01:00 DEBUG 18400 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:33:39.188+01:00  INFO 18400 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:33:40.085+01:00  INFO 18400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:33:40.098+01:00  INFO 18400 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:33:40.099+01:00  INFO 18400 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:33:40.152+01:00  INFO 18400 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:33:40.153+01:00  INFO 18400 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 933 ms
+2024-12-23T19:33:40.629+01:00  INFO 18400 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:33:40.636+01:00  INFO 18400 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.784 seconds (process running for 2.277)
+2024-12-23T19:33:49.767+01:00  INFO 18400 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:33:49.767+01:00  INFO 18400 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:33:49.768+01:00  INFO 18400 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T19:33:49.887+01:00  INFO 18400 --- [http-nio-8086-exec-2] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_USAGE, isVisualization=false, currentData=[{resourceId=1, name=Steel, description=High-grade steel, currentStock=500.0, unit=kg, reorderLevel=50.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=300.0, unit=kg, reorderLevel=30.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-22T12:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=450.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-23T15:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=400.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-22T10:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=280.0, unit=kg, reorderLevel=30.0}}])
+2024-12-23T19:33:49.890+01:00  INFO 18400 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:33:49.891+01:00  INFO 18400 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : false
+2024-12-23T19:34:38.883+01:00  INFO 18400 --- [http-nio-8086-exec-3] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_USAGE, isVisualization=false, currentData=[{resourceId=1, name=Steel, description=High-grade steel, currentStock=500.0, unit=kg, reorderLevel=50.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=300.0, unit=kg, reorderLevel=30.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-22T12:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=450.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-23T15:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=400.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-22T10:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=280.0, unit=kg, reorderLevel=30.0}}])
+2024-12-23T19:34:38.884+01:00  INFO 18400 --- [http-nio-8086-exec-3] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:34:38.884+01:00  INFO 18400 --- [http-nio-8086-exec-3] c.e.r.service.ResourceReportService      : false
+2024-12-23T19:35:25.191+01:00  INFO 20912 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 20912 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:35:25.192+01:00 DEBUG 20912 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:35:25.193+01:00  INFO 20912 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:35:26.085+01:00  INFO 20912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:35:26.098+01:00  INFO 20912 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:35:26.098+01:00  INFO 20912 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:35:26.152+01:00  INFO 20912 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:35:26.152+01:00  INFO 20912 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 927 ms
+2024-12-23T19:35:26.604+01:00  INFO 20912 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:35:26.612+01:00  INFO 20912 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.752 seconds (process running for 2.254)
+2024-12-23T19:35:33.775+01:00  INFO 20912 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:35:33.775+01:00  INFO 20912 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:35:33.776+01:00  INFO 20912 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:35:33.879+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_USAGE, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel, currentStock=500.0, unit=kg, reorderLevel=50.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=300.0, unit=kg, reorderLevel=30.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-22T12:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=450.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-23T15:00:00, resource={resourceId=1, name=Steel, description=High-grade steel, currentStock=400.0, unit=kg, reorderLevel=50.0}}, {revisionType=MOD, revisionDate=2024-12-22T10:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum, currentStock=280.0, unit=kg, reorderLevel=30.0}}])
+2024-12-23T19:35:33.882+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:35:33.882+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : true
+2024-12-23T19:35:33.882+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Generate vizualization
+2024-12-23T19:35:33.882+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Generate USAGE
+2024-12-23T19:35:33.884+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Trying to generate chart
+2024-12-23T19:35:34.165+01:00  INFO 20912 --- [http-nio-8086-exec-2] c.e.r.service.ResourceReportService      : Chart generated
+2024-12-23T19:40:20.190+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_USAGE, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:40:20.191+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : Im in
+2024-12-23T19:40:20.191+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : true
+2024-12-23T19:40:20.191+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : Generate vizualization
+2024-12-23T19:40:20.191+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : Generate USAGE
+2024-12-23T19:40:20.191+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : Trying to generate chart
+2024-12-23T19:40:20.192+01:00  INFO 20912 --- [http-nio-8086-exec-5] c.e.r.service.ResourceReportService      : Chart generated
+2024-12-23T19:42:14.240+01:00  INFO 20912 --- [http-nio-8086-exec-8] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_REVISIONS, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:42:41.865+01:00  INFO 20912 --- [http-nio-8086-exec-9] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_AVAILABILITY, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:43:36.235+01:00  INFO 20912 --- [http-nio-8086-exec-10] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_REVISIONS, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:44:34.250+01:00  INFO 11788 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 11788 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:44:34.251+01:00 DEBUG 11788 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:44:34.252+01:00  INFO 11788 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:44:35.209+01:00  INFO 11788 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:44:35.221+01:00  INFO 11788 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:44:35.221+01:00  INFO 11788 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:44:35.275+01:00  INFO 11788 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:44:35.275+01:00  INFO 11788 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 985 ms
+2024-12-23T19:44:35.725+01:00  INFO 11788 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:44:35.733+01:00  INFO 11788 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.815 seconds (process running for 2.334)
+2024-12-23T19:44:43.290+01:00  INFO 11788 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:44:43.290+01:00  INFO 11788 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:44:43.291+01:00  INFO 11788 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:44:43.384+01:00  INFO 11788 --- [http-nio-8086-exec-2] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_REVISIONS, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:46:14.065+01:00  INFO 7812 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 7812 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:46:14.067+01:00 DEBUG 7812 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:46:14.067+01:00  INFO 7812 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:46:15.015+01:00  INFO 7812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:46:15.027+01:00  INFO 7812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:46:15.028+01:00  INFO 7812 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:46:15.083+01:00  INFO 7812 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:46:15.083+01:00  INFO 7812 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 980 ms
+2024-12-23T19:46:15.568+01:00  INFO 7812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:46:15.576+01:00  INFO 7812 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.835 seconds (process running for 2.339)
+2024-12-23T19:46:18.120+01:00  INFO 7812 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:46:18.120+01:00  INFO 7812 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:46:18.121+01:00  INFO 7812 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:46:18.216+01:00  INFO 7812 --- [http-nio-8086-exec-2] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_REVISIONS, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=ADD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=1000.0, unit=kg, reorderLevel=200.0}}, {revisionType=DEL, revisionDate=2024-12-10T09:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=650.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-18T16:00:00, resource={resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=950.0, unit=kg, reorderLevel=250.0}}, {revisionType=MOD, revisionDate=2024-12-22T08:30:00, resource={resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=480.0, unit=kg, reorderLevel=100.0}}])
+2024-12-23T19:49:11.491+01:00  INFO 7812 --- [http-nio-8086-exec-5] c.e.r.c.ResourceReportController         : Received ReportRequest: ReportRequest(reportType=RESOURCE_REVISIONS, isVisualization=true, currentData=[{resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}, {resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}, {resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}, {resourceId=4, name=Plastic, description=Durable plastic for manufacturing, currentStock=1000.0, unit=kg, reorderLevel=250.0}, {resourceId=5, name=Glass, description=High-quality glass for windows, currentStock=500.0, unit=kg, reorderLevel=100.0}], historicalData=[{revisionType=MOD, revisionDate=2024-12-10T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1100.0, unit=kg, reorderLevel=300.0}}, {revisionType=MOD, revisionDate=2024-12-15T12:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1150.0, unit=kg, reorderLevel=300.0}}, {revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=1, name=Steel, description=High-grade steel used in construction, currentStock=1200.0, unit=kg, reorderLevel=300.0}}, {revisionType=MOD, revisionDate=2024-12-10T10:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=700.0, unit=kg, reorderLevel=200.0}}, {revisionType=MOD, revisionDate=2024-12-15T14:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=750.0, unit=kg, reorderLevel=200.0}}, {revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=2, name=Aluminum, description=Lightweight aluminum for machinery, currentStock=800.0, unit=kg, reorderLevel=200.0}}, {revisionType=MOD, revisionDate=2024-12-10T10:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=580.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-15T12:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=590.0, unit=kg, reorderLevel=150.0}}, {revisionType=MOD, revisionDate=2024-12-20T10:00:00, resource={resourceId=3, name=Copper, description=High-conductivity copper for wiring, currentStock=600.0, unit=kg, reorderLevel=150.0}}])
+2024-12-23T19:50:03.133+01:00  INFO 10284 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 10284 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:50:03.135+01:00 DEBUG 10284 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:50:03.137+01:00  INFO 10284 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:50:04.352+01:00  INFO 10284 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:50:04.366+01:00  INFO 10284 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:50:04.366+01:00  INFO 10284 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:50:04.425+01:00  INFO 10284 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:50:04.425+01:00  INFO 10284 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1222 ms
+2024-12-23T19:50:04.934+01:00  INFO 10284 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:50:04.942+01:00  INFO 10284 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.228 seconds (process running for 2.852)
+2024-12-23T19:50:16.905+01:00  INFO 10284 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:50:16.905+01:00  INFO 10284 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:50:16.906+01:00  INFO 10284 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:54:06.192+01:00  INFO 13416 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 13416 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:54:06.194+01:00 DEBUG 13416 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:54:06.194+01:00  INFO 13416 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:54:07.125+01:00  INFO 13416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:54:07.138+01:00  INFO 13416 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:54:07.138+01:00  INFO 13416 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:54:07.192+01:00  INFO 13416 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:54:07.192+01:00  INFO 13416 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 963 ms
+2024-12-23T19:54:07.656+01:00  INFO 13416 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:54:07.664+01:00  INFO 13416 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.822 seconds (process running for 2.393)
+2024-12-23T19:54:12.106+01:00  INFO 13416 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:54:12.106+01:00  INFO 13416 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:54:12.107+01:00  INFO 13416 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T19:57:30.164+01:00  INFO 15696 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 15696 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T19:57:30.166+01:00 DEBUG 15696 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T19:57:30.167+01:00  INFO 15696 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T19:57:31.208+01:00  INFO 15696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T19:57:31.220+01:00  INFO 15696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T19:57:31.220+01:00  INFO 15696 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T19:57:31.274+01:00  INFO 15696 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T19:57:31.274+01:00  INFO 15696 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1074 ms
+2024-12-23T19:57:31.765+01:00  INFO 15696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T19:57:31.773+01:00  INFO 15696 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.944 seconds (process running for 2.447)
+2024-12-23T19:57:39.172+01:00  INFO 15696 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T19:57:39.172+01:00  INFO 15696 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T19:57:39.173+01:00  INFO 15696 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:00:08.428+01:00  INFO 11716 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 11716 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:00:08.430+01:00 DEBUG 11716 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:00:08.430+01:00  INFO 11716 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:00:09.387+01:00  INFO 11716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:00:09.399+01:00  INFO 11716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:00:09.400+01:00  INFO 11716 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:00:09.454+01:00  INFO 11716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:00:09.454+01:00  INFO 11716 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 990 ms
+2024-12-23T20:00:09.911+01:00  INFO 11716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:00:09.919+01:00  INFO 11716 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.818 seconds (process running for 2.327)
+2024-12-23T20:00:16.003+01:00  INFO 11716 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:00:16.004+01:00  INFO 11716 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:00:16.005+01:00  INFO 11716 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T20:02:41.043+01:00  INFO 3500 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 3500 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:02:41.045+01:00 DEBUG 3500 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:02:41.045+01:00  INFO 3500 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:02:42.022+01:00  INFO 3500 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:02:42.035+01:00  INFO 3500 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:02:42.035+01:00  INFO 3500 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:02:42.091+01:00  INFO 3500 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:02:42.091+01:00  INFO 3500 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1009 ms
+2024-12-23T20:02:42.550+01:00  INFO 3500 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:02:42.558+01:00  INFO 3500 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.871 seconds (process running for 2.537)
+2024-12-23T20:02:45.001+01:00  INFO 3500 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:02:45.001+01:00  INFO 3500 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:02:45.003+01:00  INFO 3500 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-23T20:09:27.253+01:00  INFO 404 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 404 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:09:27.254+01:00 DEBUG 404 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:09:27.255+01:00  INFO 404 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:09:28.166+01:00  INFO 404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:09:28.178+01:00  INFO 404 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:09:28.178+01:00  INFO 404 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:09:28.233+01:00  INFO 404 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:09:28.233+01:00  INFO 404 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 946 ms
+2024-12-23T20:09:28.725+01:00  INFO 404 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:09:28.732+01:00  INFO 404 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.804 seconds (process running for 2.304)
+2024-12-23T20:09:33.815+01:00  INFO 404 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:09:33.816+01:00  INFO 404 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:09:33.817+01:00  INFO 404 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:11:26.975+01:00  INFO 20372 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 20372 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:11:26.977+01:00 DEBUG 20372 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:11:26.977+01:00  INFO 20372 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:11:27.866+01:00  INFO 20372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:11:27.879+01:00  INFO 20372 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:11:27.879+01:00  INFO 20372 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:11:27.932+01:00  INFO 20372 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:11:27.933+01:00  INFO 20372 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 923 ms
+2024-12-23T20:11:28.399+01:00  INFO 20372 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:11:28.407+01:00  INFO 20372 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.76 seconds (process running for 2.273)
+2024-12-23T20:11:39.151+01:00  INFO 20372 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:11:39.151+01:00  INFO 20372 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:11:39.152+01:00  INFO 20372 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:12:07.487+01:00  INFO 20712 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 20712 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:12:07.488+01:00 DEBUG 20712 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:12:07.489+01:00  INFO 20712 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:12:08.377+01:00  INFO 20712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:12:08.389+01:00  INFO 20712 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:12:08.390+01:00  INFO 20712 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:12:08.446+01:00  INFO 20712 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:12:08.446+01:00  INFO 20712 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 922 ms
+2024-12-23T20:12:08.907+01:00  INFO 20712 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:12:08.915+01:00  INFO 20712 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.77 seconds (process running for 2.273)
+2024-12-23T20:12:11.307+01:00  INFO 20712 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:12:11.307+01:00  INFO 20712 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:12:11.308+01:00  INFO 20712 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T20:14:14.292+01:00  INFO 9772 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 9772 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:14:14.293+01:00 DEBUG 9772 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:14:14.294+01:00  INFO 9772 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:14:15.193+01:00  INFO 9772 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:14:15.205+01:00  INFO 9772 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:14:15.205+01:00  INFO 9772 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:14:15.259+01:00  INFO 9772 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:14:15.260+01:00  INFO 9772 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 934 ms
+2024-12-23T20:14:15.812+01:00  INFO 9772 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:14:15.820+01:00  INFO 9772 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.883 seconds (process running for 2.443)
+2024-12-23T20:14:20.139+01:00  INFO 9772 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:14:20.139+01:00  INFO 9772 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:14:20.140+01:00  INFO 9772 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:17:21.492+01:00  INFO 112 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 112 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:17:21.493+01:00 DEBUG 112 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:17:21.494+01:00  INFO 112 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:17:22.460+01:00  INFO 112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:17:22.473+01:00  INFO 112 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:17:22.474+01:00  INFO 112 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:17:22.532+01:00  INFO 112 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:17:22.532+01:00  INFO 112 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1003 ms
+2024-12-23T20:17:23.048+01:00  INFO 112 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:17:23.055+01:00  INFO 112 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.917 seconds (process running for 2.563)
+2024-12-23T20:17:26.457+01:00  INFO 112 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:17:26.457+01:00  INFO 112 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:17:26.458+01:00  INFO 112 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:20:28.587+01:00  INFO 21984 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 21984 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:20:28.588+01:00 DEBUG 21984 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:20:28.589+01:00  INFO 21984 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:20:29.663+01:00  INFO 21984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:20:29.677+01:00  INFO 21984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:20:29.678+01:00  INFO 21984 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:20:29.737+01:00  INFO 21984 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:20:29.737+01:00  INFO 21984 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1115 ms
+2024-12-23T20:20:30.267+01:00  INFO 21984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:20:30.275+01:00  INFO 21984 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.033 seconds (process running for 2.535)
+2024-12-23T20:20:39.788+01:00  INFO 21984 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:20:39.788+01:00  INFO 21984 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:20:39.789+01:00  INFO 21984 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:21:11.220+01:00  INFO 15840 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 15840 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:21:11.221+01:00 DEBUG 15840 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:21:11.221+01:00  INFO 15840 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:21:12.131+01:00  INFO 15840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:21:12.144+01:00  INFO 15840 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:21:12.144+01:00  INFO 15840 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:21:12.199+01:00  INFO 15840 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:21:12.199+01:00  INFO 15840 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 945 ms
+2024-12-23T20:21:12.671+01:00  INFO 15840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:21:12.679+01:00  INFO 15840 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.818 seconds (process running for 2.316)
+2024-12-23T20:21:18.027+01:00  INFO 15840 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:21:18.027+01:00  INFO 15840 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:21:18.028+01:00  INFO 15840 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:25:47.147+01:00  INFO 21680 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 21680 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:25:47.148+01:00 DEBUG 21680 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:25:47.149+01:00  INFO 21680 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:25:48.216+01:00  INFO 21680 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:25:48.230+01:00  INFO 21680 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:25:48.230+01:00  INFO 21680 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:25:48.287+01:00  INFO 21680 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:25:48.287+01:00  INFO 21680 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1096 ms
+2024-12-23T20:25:48.780+01:00  INFO 21680 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:25:48.788+01:00  INFO 21680 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.048 seconds (process running for 2.642)
+2024-12-23T20:25:51.395+01:00  INFO 21680 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:25:51.396+01:00  INFO 21680 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:25:51.397+01:00  INFO 21680 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:25:51.982+01:00 ERROR 21680 --- [http-nio-8086-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: Error generating PDF report] with root cause
 
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-12-22T18:01:07.861+01:00 ERROR 9844 --- [recipe_management_service] [main] o.s.boot.SpringApplication               : Application run failed
+java.lang.NullPointerException: Cannot invoke "java.io.InputStream.readAllBytes()" because the return value of "java.lang.ClassLoader.getResourceAsStream(String)" is null
+	at com.example.reporting_service.service.ResourceReportService.getLogoBytes(ResourceReportService.java:111) ~[main/:na]
+	at com.example.reporting_service.service.ResourceReportService.generatePdf(ResourceReportService.java:65) ~[main/:na]
+	at com.example.reporting_service.service.ResourceReportService.generateResourceUsageReport(ResourceReportService.java:41) ~[main/:na]
+	at com.example.reporting_service.service.ResourceReportService.generateReport(ResourceReportService.java:29) ~[main/:na]
+	at com.example.reporting_service.controller.ResourceReportController.generateResourceReport(ResourceReportController.java:24) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Collection 'com.example.recipe_management_service.model.Block.programs' is 'mappedBy' a property named 'blocks' which does not exist in the target entity 'com.example.recipe_management_service.model.Program'
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.11.jar:6.1.11]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.11.jar:6.1.11]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.2.jar:3.3.2]
-	at com.example.recipe_management_service.RecipeManagementServiceApplication.main(RecipeManagementServiceApplication.java:10) ~[main/:na]
-Caused by: org.hibernate.AnnotationException: Collection 'com.example.recipe_management_service.model.Block.programs' is 'mappedBy' a property named 'blocks' which does not exist in the target entity 'com.example.recipe_management_service.model.Program'
-	at org.hibernate.boot.model.internal.CollectionBinder.isReversePropertyInJoin(CollectionBinder.java:1639) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.model.internal.CollectionBinder.noAssociationTable(CollectionBinder.java:1653) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.model.internal.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:1614) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.model.internal.CollectionBinder$1.secondPass(CollectionBinder.java:1605) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.model.internal.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:45) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1811) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1770) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:334) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502) ~[hibernate-core-6.5.2.Final.jar:6.5.2.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.11.jar:6.1.11]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.11.jar:6.1.11]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.11.jar:6.1.11]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.11.jar:6.1.11]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.11.jar:6.1.11]
-	... 15 common frames omitted
+2024-12-23T20:27:12.229+01:00  INFO 12840 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 12840 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:27:12.230+01:00 DEBUG 12840 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:27:12.231+01:00  INFO 12840 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:27:13.234+01:00  INFO 12840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:27:13.248+01:00  INFO 12840 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:27:13.248+01:00  INFO 12840 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:27:13.302+01:00  INFO 12840 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:27:13.302+01:00  INFO 12840 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1039 ms
+2024-12-23T20:27:13.772+01:00  INFO 12840 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:27:13.779+01:00  INFO 12840 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.874 seconds (process running for 2.386)
+2024-12-23T20:27:22.829+01:00  INFO 12840 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:27:22.830+01:00  INFO 12840 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:27:22.831+01:00  INFO 12840 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:29:35.268+01:00  INFO 3156 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 3156 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:29:35.269+01:00 DEBUG 3156 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:29:35.270+01:00  INFO 3156 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:29:36.326+01:00  INFO 3156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:29:36.339+01:00  INFO 3156 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:29:36.339+01:00  INFO 3156 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:29:36.394+01:00  INFO 3156 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:29:36.395+01:00  INFO 3156 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1092 ms
+2024-12-23T20:29:36.968+01:00  INFO 3156 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:29:36.976+01:00  INFO 3156 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.094 seconds (process running for 2.691)
+2024-12-23T20:30:09.310+01:00  INFO 16692 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 16692 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:30:09.311+01:00 DEBUG 16692 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:30:09.312+01:00  INFO 16692 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:30:10.211+01:00  INFO 16692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:30:10.225+01:00  INFO 16692 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:30:10.225+01:00  INFO 16692 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:30:10.283+01:00  INFO 16692 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:30:10.283+01:00  INFO 16692 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 939 ms
+2024-12-23T20:30:10.844+01:00  INFO 16692 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:30:10.851+01:00  INFO 16692 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.875 seconds (process running for 2.374)
+2024-12-23T20:30:12.670+01:00  INFO 16692 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:30:12.670+01:00  INFO 16692 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:30:12.671+01:00  INFO 16692 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:43:53.428+01:00  INFO 7724 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 7724 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:43:53.430+01:00 DEBUG 7724 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:43:53.430+01:00  INFO 7724 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:43:54.345+01:00  INFO 7724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:43:54.357+01:00  INFO 7724 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:43:54.358+01:00  INFO 7724 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:43:54.411+01:00  INFO 7724 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:43:54.411+01:00  INFO 7724 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 949 ms
+2024-12-23T20:43:54.867+01:00  INFO 7724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:43:54.875+01:00  INFO 7724 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.785 seconds (process running for 2.292)
+2024-12-23T20:43:57.625+01:00  INFO 7724 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:43:57.626+01:00  INFO 7724 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:43:57.626+01:00  INFO 7724 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T20:45:37.458+01:00  INFO 23972 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 23972 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:45:37.459+01:00 DEBUG 23972 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:45:37.461+01:00  INFO 23972 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:45:38.391+01:00  INFO 23972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:45:38.404+01:00  INFO 23972 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:45:38.404+01:00  INFO 23972 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:45:38.461+01:00  INFO 23972 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:45:38.461+01:00  INFO 23972 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 961 ms
+2024-12-23T20:45:38.939+01:00  INFO 23972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:45:38.948+01:00  INFO 23972 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.817 seconds (process running for 2.316)
+2024-12-23T20:45:40.712+01:00  INFO 23972 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:45:40.712+01:00  INFO 23972 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:45:40.713+01:00  INFO 23972 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:46:10.111+01:00  INFO 2140 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 2140 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:46:10.113+01:00 DEBUG 2140 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:46:10.114+01:00  INFO 2140 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:46:11.058+01:00  INFO 2140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:46:11.071+01:00  INFO 2140 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:46:11.071+01:00  INFO 2140 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:46:11.129+01:00  INFO 2140 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:46:11.129+01:00  INFO 2140 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 975 ms
+2024-12-23T20:46:11.679+01:00  INFO 2140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:46:11.686+01:00  INFO 2140 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.908 seconds (process running for 2.436)
+2024-12-23T20:46:25.880+01:00  INFO 2140 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:46:25.880+01:00  INFO 2140 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:46:25.881+01:00  INFO 2140 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T20:49:06.763+01:00  INFO 11528 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 11528 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T20:49:06.765+01:00 DEBUG 11528 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T20:49:06.765+01:00  INFO 11528 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T20:49:07.700+01:00  INFO 11528 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T20:49:07.718+01:00  INFO 11528 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T20:49:07.719+01:00  INFO 11528 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T20:49:07.773+01:00  INFO 11528 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T20:49:07.774+01:00  INFO 11528 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 973 ms
+2024-12-23T20:49:08.229+01:00  INFO 11528 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T20:49:08.237+01:00  INFO 11528 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.815 seconds (process running for 2.321)
+2024-12-23T20:49:12.655+01:00  INFO 11528 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T20:49:12.655+01:00  INFO 11528 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T20:49:12.656+01:00  INFO 11528 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T21:13:38.809+01:00  INFO 14724 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 14724 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T21:13:38.811+01:00 DEBUG 14724 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T21:13:38.811+01:00  INFO 14724 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T21:13:39.711+01:00  INFO 14724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T21:13:39.724+01:00  INFO 14724 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T21:13:39.724+01:00  INFO 14724 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T21:13:39.778+01:00  INFO 14724 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T21:13:39.778+01:00  INFO 14724 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 919 ms
+2024-12-23T21:13:40.237+01:00  INFO 14724 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T21:13:40.245+01:00  INFO 14724 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.763 seconds (process running for 2.267)
+2024-12-23T21:14:05.714+01:00  INFO 14724 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T21:14:05.715+01:00  INFO 14724 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T21:14:05.716+01:00  INFO 14724 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T21:14:05.814+01:00 ERROR 14724 --- [http-nio-8086-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null] with root cause
 
-2024-12-22T18:02:42.723+01:00  INFO 1308 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Starting RecipeManagementServiceApplication using Java 22.0.1 with PID 1308 (G:\Sem VII\inz\recipe_management_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T18:02:42.724+01:00 DEBUG 1308 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-12-22T18:02:42.725+01:00  INFO 1308 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T18:02:43.493+01:00  INFO 1308 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T18:02:43.624+01:00  INFO 1308 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 3 JPA repository interfaces.
-2024-12-22T18:02:44.109+01:00  INFO 1308 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-12-22T18:02:44.120+01:00  INFO 1308 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T18:02:44.120+01:00  INFO 1308 --- [recipe_management_service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-12-22T18:02:44.190+01:00  INFO 1308 --- [recipe_management_service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T18:02:44.191+01:00  INFO 1308 --- [recipe_management_service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1428 ms
-2024-12-22T18:02:44.357+01:00  INFO 1308 --- [recipe_management_service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-22T18:02:44.440+01:00  INFO 1308 --- [recipe_management_service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-12-22T18:02:44.493+01:00  INFO 1308 --- [recipe_management_service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-22T18:02:44.855+01:00  INFO 1308 --- [recipe_management_service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-22T18:02:44.884+01:00  INFO 1308 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-22T18:02:45.243+01:00  INFO 1308 --- [recipe_management_service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@fb5d334
-2024-12-22T18:02:45.245+01:00  INFO 1308 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-22T18:02:45.432+01:00  WARN 1308 --- [recipe_management_service] [main] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.example.recipe_management_service.model.Block] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
-2024-12-22T18:02:46.328+01:00  INFO 1308 --- [recipe_management_service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-22T18:02:46.972+01:00  INFO 1308 --- [recipe_management_service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-22T18:02:47.399+01:00  WARN 1308 --- [recipe_management_service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-22T18:02:47.888+01:00  WARN 1308 --- [recipe_management_service] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute SQL script statement #3 of file [G:\Sem VII\inz\recipe_management_service\build\resources\main\data.sql]: TRUNCATE TABLE programs
-2024-12-22T18:02:47.890+01:00  INFO 1308 --- [recipe_management_service] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-22T18:02:47.891+01:00  INFO 1308 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-22T18:02:47.898+01:00  INFO 1308 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-22T18:02:47.900+01:00  INFO 1308 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-12-22T18:02:47.911+01:00  INFO 1308 --- [recipe_management_service] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierVisualization(SupplierReportService.java:167) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierOverviewReport(SupplierReportService.java:33) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateReport(SupplierReportService.java:24) ~[main/:na]
+	at com.example.reporting_service.controller.SupplierReportController.generateResourceReport(SupplierReportController.java:22) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-12-22T18:02:47.925+01:00 ERROR 1308 --- [recipe_management_service] [main] o.s.boot.SpringApplication               : Application run failed
+2024-12-23T21:15:23.319+01:00 ERROR 14724 --- [http-nio-8086-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null] with root cause
 
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Failed to execute SQL script statement #3 of file [G:\Sem VII\inz\recipe_management_service\build\resources\main\data.sql]: TRUNCATE TABLE programs
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971) ~[spring-context-6.1.11.jar:6.1.11]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.11.jar:6.1.11]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.2.jar:3.3.2]
-	at com.example.recipe_management_service.RecipeManagementServiceApplication.main(RecipeManagementServiceApplication.java:10) ~[main/:na]
-Caused by: org.springframework.jdbc.datasource.init.ScriptStatementFailedException: Failed to execute SQL script statement #3 of file [G:\Sem VII\inz\recipe_management_service\build\resources\main\data.sql]: TRUNCATE TABLE programs
-	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:282) ~[spring-jdbc-6.1.11.jar:6.1.11]
-	at org.springframework.jdbc.datasource.init.ResourceDatabasePopulator.populate(ResourceDatabasePopulator.java:254) ~[spring-jdbc-6.1.11.jar:6.1.11]
-	at org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute(DatabasePopulatorUtils.java:54) ~[spring-jdbc-6.1.11.jar:6.1.11]
-	at org.springframework.boot.jdbc.init.DataSourceScriptDatabaseInitializer.runScripts(DataSourceScriptDatabaseInitializer.java:87) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.runScripts(AbstractScriptDatabaseInitializer.java:146) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyScripts(AbstractScriptDatabaseInitializer.java:108) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.applyDataScripts(AbstractScriptDatabaseInitializer.java:102) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.initializeDatabase(AbstractScriptDatabaseInitializer.java:77) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.boot.sql.init.AbstractScriptDatabaseInitializer.afterPropertiesSet(AbstractScriptDatabaseInitializer.java:66) ~[spring-boot-3.3.2.jar:3.3.2]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.11.jar:6.1.11]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.11.jar:6.1.11]
-	... 18 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: Cannot truncate a table referenced in a foreign key constraint (`recipes`.`program_block`, CONSTRAINT `FK784ilyag349btngjh953ud10o`)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-5.1.0.jar:na]
-	at org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(ScriptUtils.java:261) ~[spring-jdbc-6.1.11.jar:6.1.11]
-	... 28 common frames omitted
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierVisualization(SupplierReportService.java:167) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierOverviewReport(SupplierReportService.java:33) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateReport(SupplierReportService.java:24) ~[main/:na]
+	at com.example.reporting_service.controller.SupplierReportController.generateResourceReport(SupplierReportController.java:22) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-2024-12-22T18:04:45.736+01:00  INFO 2540 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Starting RecipeManagementServiceApplication using Java 22.0.1 with PID 2540 (G:\Sem VII\inz\recipe_management_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T18:04:45.738+01:00 DEBUG 2540 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-12-22T18:04:45.739+01:00  INFO 2540 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T18:04:46.485+01:00  INFO 2540 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T18:04:46.646+01:00  INFO 2540 --- [recipe_management_service] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 149 ms. Found 3 JPA repository interfaces.
-2024-12-22T18:04:47.110+01:00  INFO 2540 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2024-12-22T18:04:47.124+01:00  INFO 2540 --- [recipe_management_service] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T18:04:47.124+01:00  INFO 2540 --- [recipe_management_service] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-12-22T18:04:47.190+01:00  INFO 2540 --- [recipe_management_service] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T18:04:47.190+01:00  INFO 2540 --- [recipe_management_service] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1406 ms
-2024-12-22T18:04:47.339+01:00  INFO 2540 --- [recipe_management_service] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-22T18:04:47.390+01:00  INFO 2540 --- [recipe_management_service] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-12-22T18:04:47.419+01:00  INFO 2540 --- [recipe_management_service] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-22T18:04:47.720+01:00  INFO 2540 --- [recipe_management_service] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-22T18:04:47.743+01:00  INFO 2540 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-22T18:04:48.017+01:00  INFO 2540 --- [recipe_management_service] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77cc6a28
-2024-12-22T18:04:48.019+01:00  INFO 2540 --- [recipe_management_service] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-22T18:04:48.179+01:00  WARN 2540 --- [recipe_management_service] [main] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [com.example.recipe_management_service.model.Block] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
-2024-12-22T18:04:48.982+01:00  INFO 2540 --- [recipe_management_service] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-22T18:04:49.076+01:00  INFO 2540 --- [recipe_management_service] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-22T18:04:49.447+01:00  WARN 2540 --- [recipe_management_service] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-22T18:04:49.987+01:00  INFO 2540 --- [recipe_management_service] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2024-12-22T18:04:49.995+01:00  INFO 2540 --- [recipe_management_service] [main] c.e.r.RecipeManagementServiceApplication : Started RecipeManagementServiceApplication in 4.644 seconds (process running for 5.386)
-2024-12-22T18:04:52.227+01:00  INFO 2540 --- [recipe_management_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-22T18:04:52.229+01:00  INFO 2540 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-22T18:04:52.238+01:00  INFO 2540 --- [recipe_management_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-12-22T20:07:15.540+01:00  INFO 23544 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 23544 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T20:07:15.541+01:00 DEBUG 23544 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-22T20:07:15.541+01:00  INFO 23544 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T20:07:16.166+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T20:07:16.182+01:00  INFO 23544 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 JPA repository interfaces.
-2024-12-22T20:07:16.600+01:00  INFO 23544 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
-2024-12-22T20:07:16.613+01:00  INFO 23544 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T20:07:16.613+01:00  INFO 23544 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-22T20:07:16.669+01:00  INFO 23544 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T20:07:16.669+01:00  INFO 23544 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1092 ms
-2024-12-22T20:07:16.792+01:00  INFO 23544 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-22T20:07:16.845+01:00  INFO 23544 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2024-12-22T20:07:16.880+01:00  INFO 23544 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-22T20:07:17.191+01:00  INFO 23544 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-22T20:07:17.218+01:00  INFO 23544 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-22T20:07:18.493+01:00  WARN 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1049, SQLState: 42000
-2024-12-22T20:07:18.494+01:00 ERROR 23544 --- [main] o.h.engine.jdbc.spi.SqlExceptionHelper   : Unknown database 'reporting'
-2024-12-22T20:07:18.494+01:00  WARN 23544 --- [main] o.h.e.j.e.i.JdbcEnvironmentInitiator     : HHH000342: Could not obtain connection to query metadata
+2024-12-23T21:19:15.804+01:00  INFO 17964 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 17964 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T21:19:15.806+01:00 DEBUG 17964 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T21:19:15.806+01:00  INFO 17964 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T21:19:17.295+01:00  INFO 17964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T21:19:17.308+01:00  INFO 17964 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T21:19:17.308+01:00  INFO 17964 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T21:19:17.363+01:00  INFO 17964 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T21:19:17.364+01:00  INFO 17964 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1522 ms
+2024-12-23T21:19:17.850+01:00  INFO 17964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T21:19:17.857+01:00  INFO 17964 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.433 seconds (process running for 2.999)
+2024-12-23T21:19:30.626+01:00  INFO 17964 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T21:19:30.626+01:00  INFO 17964 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T21:19:30.627+01:00  INFO 17964 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T21:22:16.446+01:00  INFO 9004 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 9004 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T21:22:16.448+01:00 DEBUG 9004 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T21:22:16.448+01:00  INFO 9004 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T21:22:17.423+01:00  INFO 9004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T21:22:17.435+01:00  INFO 9004 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T21:22:17.435+01:00  INFO 9004 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T21:22:17.489+01:00  INFO 9004 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T21:22:17.490+01:00  INFO 9004 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1006 ms
+2024-12-23T21:22:17.961+01:00  INFO 9004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T21:22:17.969+01:00  INFO 9004 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.866 seconds (process running for 2.374)
+2024-12-23T21:22:21.677+01:00  INFO 9004 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T21:22:21.677+01:00  INFO 9004 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T21:22:21.678+01:00  INFO 9004 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T21:22:47.572+01:00  INFO 8012 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 8012 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T21:22:47.573+01:00 DEBUG 8012 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T21:22:47.574+01:00  INFO 8012 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T21:22:48.475+01:00  INFO 8012 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T21:22:48.488+01:00  INFO 8012 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T21:22:48.488+01:00  INFO 8012 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T21:22:48.544+01:00  INFO 8012 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T21:22:48.544+01:00  INFO 8012 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 938 ms
+2024-12-23T21:22:49.007+01:00  INFO 8012 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T21:22:49.015+01:00  INFO 8012 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.774 seconds (process running for 2.322)
+2024-12-23T21:22:56.244+01:00  INFO 8012 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T21:22:56.244+01:00  INFO 8012 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T21:22:56.245+01:00  INFO 8012 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-23T21:23:10.040+01:00  INFO 22288 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 22288 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-23T21:23:10.041+01:00 DEBUG 22288 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-23T21:23:10.042+01:00  INFO 22288 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-23T21:23:10.934+01:00  INFO 22288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-23T21:23:10.946+01:00  INFO 22288 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-23T21:23:10.946+01:00  INFO 22288 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-23T21:23:11.001+01:00  INFO 22288 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-23T21:23:11.002+01:00  INFO 22288 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 928 ms
+2024-12-23T21:23:11.490+01:00  INFO 22288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-23T21:23:11.498+01:00  INFO 22288 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.786 seconds (process running for 2.331)
+2024-12-23T21:23:14.367+01:00  INFO 22288 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-23T21:23:14.367+01:00  INFO 22288 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-23T21:23:14.368+01:00  INFO 22288 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-23T21:27:05.879+01:00 ERROR 22288 --- [http-nio-8086-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null] with root cause
 
-org.hibernate.exception.SQLGrammarException: unable to obtain isolated JDBC connection [Unknown database 'reporting'] [n/a]
-	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:91) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:292) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:124) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:78) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:221) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:189) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.14.jar:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.14.jar:6.1.14]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.5.jar:3.3.5]
-	at com.example.reporting_service.ReportingServiceApplication.main(ReportingServiceApplication.java:10) ~[main/:na]
-Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'reporting'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:829) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:449) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:242) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198) ~[mysql-connector-java-8.0.28.jar:8.0.28]
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98) ~[HikariCP-5.1.0.jar:na]
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-5.1.0.jar:na]
-	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:439) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	... 35 common frames omitted
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "supplierData" is null
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierVisualization(SupplierReportService.java:167) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateSupplierResourcesReport(SupplierReportService.java:42) ~[main/:na]
+	at com.example.reporting_service.service.SupplierReportService.generateReport(SupplierReportService.java:26) ~[main/:na]
+	at com.example.reporting_service.controller.SupplierReportController.generateResourceReport(SupplierReportController.java:22) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
 
-2024-12-22T20:07:18.498+01:00 ERROR 23544 --- [main] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-2024-12-22T20:07:18.498+01:00  WARN 23544 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-2024-12-22T20:07:18.500+01:00  INFO 23544 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-12-22T20:07:18.511+01:00  INFO 23544 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-12-22T20:07:18.526+01:00 ERROR 23544 --- [main] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.14.jar:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.14.jar:6.1.14]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.5.jar:3.3.5]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.5.jar:3.3.5]
-	at com.example.reporting_service.ReportingServiceApplication.main(ReportingServiceApplication.java:10) ~[main/:na]
-Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment] due to: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:276) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:221) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:189) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.14.jar:6.1.14]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.14.jar:6.1.14]
-	... 15 common frames omitted
-Caused by: org.hibernate.HibernateException: Unable to determine Dialect without JDBC metadata (please set 'jakarta.persistence.jdbc.url' for common cases or 'hibernate.dialect' when a custom Dialect implementation must be provided)
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:191) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:87) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentWithDefaults(JdbcEnvironmentInitiator.java:153) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:364) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:124) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:78) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
-	... 30 common frames omitted
-
-2024-12-22T20:07:40.426+01:00  INFO 19356 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 19356 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T20:07:40.427+01:00 DEBUG 19356 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-22T20:07:40.428+01:00  INFO 19356 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T20:07:41.088+01:00  INFO 19356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T20:07:41.112+01:00  INFO 19356 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 JPA repository interfaces.
-2024-12-22T20:07:41.539+01:00  INFO 19356 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
-2024-12-22T20:07:41.559+01:00  INFO 19356 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T20:07:41.560+01:00  INFO 19356 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-22T20:07:41.625+01:00  INFO 19356 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T20:07:41.625+01:00  INFO 19356 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1160 ms
-2024-12-22T20:07:41.678+01:00  WARN 19356 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
-2024-12-22T20:07:41.681+01:00  INFO 19356 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-12-22T20:07:41.695+01:00  INFO 19356 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-12-22T20:07:41.710+01:00 ERROR 19356 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
-
-Reason: Failed to determine a suitable driver class
-
-
-Action:
-
-Consider the following:
-	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
-	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
-
-2024-12-22T20:08:36.962+01:00  INFO 18804 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 18804 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T20:08:36.963+01:00 DEBUG 18804 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-22T20:08:36.964+01:00  INFO 18804 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T20:08:37.682+01:00  INFO 18804 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-22T20:08:37.699+01:00  INFO 18804 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 0 JPA repository interfaces.
-2024-12-22T20:08:38.103+01:00  INFO 18804 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
-2024-12-22T20:08:38.116+01:00  INFO 18804 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T20:08:38.116+01:00  INFO 18804 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-22T20:08:38.173+01:00  INFO 18804 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T20:08:38.174+01:00  INFO 18804 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1175 ms
-2024-12-22T20:08:38.224+01:00  WARN 18804 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'dataSourceScriptDatabaseInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
-2024-12-22T20:08:38.226+01:00  INFO 18804 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2024-12-22T20:08:38.238+01:00  INFO 18804 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-12-22T20:08:38.253+01:00 ERROR 18804 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
-
-Reason: Failed to determine a suitable driver class
-
-
-Action:
-
-Consider the following:
-	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
-	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
-
-2024-12-22T20:09:33.109+01:00  INFO 4476 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 4476 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
-2024-12-22T20:09:33.110+01:00 DEBUG 4476 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-22T20:09:33.111+01:00  INFO 4476 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
-2024-12-22T20:09:34.060+01:00  INFO 4476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
-2024-12-22T20:09:34.074+01:00  INFO 4476 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-12-22T20:09:34.075+01:00  INFO 4476 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2024-12-22T20:09:34.130+01:00  INFO 4476 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-12-22T20:09:34.130+01:00  INFO 4476 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 983 ms
-2024-12-22T20:09:34.711+01:00  INFO 4476 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
-2024-12-22T20:09:34.719+01:00  INFO 4476 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.951 seconds (process running for 2.471)

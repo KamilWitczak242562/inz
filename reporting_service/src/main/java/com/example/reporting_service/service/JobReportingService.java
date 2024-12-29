@@ -81,6 +81,7 @@ public class JobReportingService {
             document.add(new Paragraph("Usage: " + usageDescription, FontFactory.getFont(FontFactory.HELVETICA, 12)));
 
             if (visualization != null) {
+                document.add(new Paragraph("Visualization", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
                 document.add(new Paragraph(" "));
                 Image chartImage = Image.getInstance(visualization);
                 chartImage.scaleToFit(500, 400);
@@ -89,6 +90,7 @@ public class JobReportingService {
             }
 
             if (currentData != null && !currentData.isEmpty()) {
+                document.add(new Paragraph("Current Data", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
                 document.add(new Paragraph(" "));
                 document.add(tableGenerator.generateTable(currentData, historicalData));
             }

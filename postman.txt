@@ -415,29 +415,25 @@ http://localhost:8086/api/v1/reports/suppliers/generate
       "supplierId": 1,
       "name": "Global Steel Ltd.",
       "revisionType": "MOD",
-      "revisionDate": "2024-12-01T10:00:00",
-      "details": "Updated contact information"
+      "revisionDate": "2024-12-01T10:00:00"
     },
     {
       "supplierId": 2,
       "name": "Copper Core Supplies",
       "revisionType": "ADD",
-      "revisionDate": "2024-11-15T12:00:00",
-      "details": "New supplier added"
+      "revisionDate": "2024-11-15T12:00:00"
     },
     {
       "supplierId": 3,
       "name": "Plastico Industries",
       "revisionType": "DEL",
-      "revisionDate": "2024-10-05T14:00:00",
-      "details": "Resource 'Plastic Sheets' removed"
+      "revisionDate": "2024-10-05T14:00:00"
     },
     {
       "supplierId": 4,
       "name": "Glass Solutions Ltd.",
       "revisionType": "MOD",
-      "revisionDate": "2024-09-25T16:00:00",
-      "details": "Stock update for 'Tempered Glass'"
+      "revisionDate": "2024-09-25T16:00:00"
     }
   ]
 }
@@ -582,6 +578,177 @@ http://localhost:8086/api/v1/reports/dyeing/generate
       },
       "revisionDate": "2024-12-23T20:00:00",
       "revisionType": "MOD"
+    }
+  ]
+}
+
+http://localhost:8086/api/v1/reports/job/generate
+
+{
+  "reportType": "JOB_PROGRAM_USAGE",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "job": {
+        "jobId": 1,
+        "isDryer": true,
+        "startTime": "2024-12-28T08:00:00",
+        "endTime": "2024-12-28T10:30:00",
+        "machineName": "Machine Alpha",
+        "programName": "Program 1",
+        "recipeName": "Recipe A"
+      }
+    },
+    {
+      "job": {
+        "jobId": 2,
+        "isDryer": false,
+        "startTime": "2024-12-28T09:15:00",
+        "endTime": "2024-12-28T11:00:00",
+        "machineName": "Machine Beta",
+        "programName": "Program 2",
+        "recipeName": "Recipe B"
+      }
+    },
+    {
+      "job": {
+        "jobId": 3,
+        "isDryer": true,
+        "startTime": "2024-12-28T10:00:00",
+        "endTime": "2024-12-28T12:45:00",
+        "machineName": "Machine Gamma",
+        "programName": "Program 3",
+        "recipeName": "Recipe C"
+      }
+    }
+  ],
+  "historicalData": [
+    {
+      "job": {
+        "jobId": 4,
+        "isDryer": true,
+        "startTime": "2024-12-26T08:00:00",
+        "endTime": "2024-12-26T10:00:00",
+        "machineName": "Machine Alpha",
+        "programName": "Program 1",
+        "recipeName": "Recipe A"
+      },
+      "revisionType": "MOD",
+      "revisionDate": "2024-12-26T10:30:00"
+    },
+    {
+      "job": {
+        "jobId": 5,
+        "isDryer": false,
+        "startTime": "2024-12-25T09:15:00",
+        "endTime": "2024-12-25T11:15:00",
+        "machineName": "Machine Beta",
+        "programName": "Program 2",
+        "recipeName": "Recipe B"
+      },
+      "revisionType": "MOD",
+      "revisionDate": "2024-12-25T11:30:00"
+    },
+    {
+      "job": {
+        "jobId": 6,
+        "isDryer": true,
+        "startTime": "2024-12-27T07:45:00",
+        "endTime": "2024-12-27T10:00:00",
+        "machineName": "Machine Gamma",
+        "programName": "Program 3",
+        "recipeName": "Recipe C"
+      },
+      "revisionType": "MOD",
+      "revisionDate": "2024-12-27T10:15:00"
+    }
+  ]
+}
+
+http://localhost:8086/api/v1/reports/recipes/generate
+
+{
+  "reportType": "RESOURCE_DEPENDENCY",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "recipe": {
+        "recipeId": 1,
+        "name": "Recipe A",
+        "description": "Description of Recipe A",
+        "resourcesQuantities": [
+          {
+            "resource": {
+              "resourceId": 101,
+              "name": "Steel",
+              "description": "High-grade steel for construction"
+            },
+            "quantity": 50.0
+          },
+          {
+            "resource": {
+              "resourceId": 102,
+              "name": "Copper",
+              "description": "High-conductivity copper for wiring"
+            },
+            "quantity": 30.0
+          }
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "recipeId": 2,
+        "name": "Recipe B",
+        "description": "Description of Recipe B",
+        "resourcesQuantities": [
+          {
+            "resource": {
+              "resourceId": 101,
+              "name": "Steel",
+              "description": "High-grade steel for construction"
+            },
+            "quantity": 20.0
+          },
+          {
+            "resource": {
+              "resourceId": 103,
+              "name": "Aluminum",
+              "description": "Lightweight aluminum for machinery"
+            },
+            "quantity": 20.0
+          }
+        ]
+      }
+    },
+    {
+      "recipe": {
+        "recipeId": 3,
+        "name": "Recipe C",
+        "description": "Description of Recipe C",
+        "resourcesQuantities": [
+          {
+            "resource": {
+              "resourceId": 101,
+              "name": "Steel",
+              "description": "High-grade steel for construction"
+            },
+            "quantity": 15.0
+          },
+          {
+            "resource": {
+              "resourceId": 104,
+              "name": "Plastic",
+              "description": "Durable plastic for manufacturing"
+            },
+            "quantity": 15.0
+          }
+        ]
+      }
+    }
+  ],
+  "historicalData": [
+    {
     }
   ]
 }

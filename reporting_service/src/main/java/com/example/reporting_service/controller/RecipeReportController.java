@@ -1,7 +1,7 @@
 package com.example.reporting_service.controller;
 
 import com.example.reporting_service.model.ReportRequest;
-import com.example.reporting_service.service.JobReportingService;
+import com.example.reporting_service.service.RecipeReportingService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/job")
-public class JobReportingController {
-    private final JobReportingService jobReportingService;
+@RequestMapping("/recipes")
+public class RecipeReportController {
+    private final RecipeReportingService recipeReportingService;
 
     @PostMapping("/generate")
     public ResponseEntity<?> generateResourceReport(@RequestBody ReportRequest request) {
 
-        byte[] reportContent = jobReportingService.generateReport(
+        byte[] reportContent = recipeReportingService.generateReport(
                 request.getReportType(),
                 request.getCurrentData(),
                 request.getHistoricalData(),
@@ -26,7 +26,7 @@ public class JobReportingController {
         );
 
         return ResponseEntity.ok()
-                .header("Content-Disposition", "attachment; filename=job_report.pdf")
+                .header("Content-Disposition", "attachment; filename=recipe_report.pdf")
                 .header("Content-Type", "application/pdf")
                 .body(reportContent);
     }

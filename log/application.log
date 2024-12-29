@@ -1036,3 +1036,137 @@ java.lang.ClassCastException: class java.lang.Integer cannot be cast to class ja
 2024-12-29T01:30:49.852+01:00  INFO 20632 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-12-29T01:30:49.852+01:00  INFO 20632 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-12-29T01:30:49.853+01:00  INFO 20632 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-12-29T12:34:16.013+01:00  INFO 17244 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 17244 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T12:34:16.031+01:00 DEBUG 17244 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T12:34:16.032+01:00  INFO 17244 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T12:34:17.243+01:00  INFO 17244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T12:34:17.256+01:00  INFO 17244 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T12:34:17.257+01:00  INFO 17244 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T12:34:17.321+01:00  INFO 17244 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T12:34:17.322+01:00  INFO 17244 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1251 ms
+2024-12-29T12:34:17.864+01:00  INFO 17244 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T12:34:17.871+01:00  INFO 17244 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.257 seconds (process running for 2.798)
+2024-12-29T12:38:35.450+01:00  INFO 17244 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T12:38:35.451+01:00  INFO 17244 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T12:38:35.453+01:00  INFO 17244 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T12:44:07.278+01:00  INFO 14796 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 14796 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T12:44:07.280+01:00 DEBUG 14796 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T12:44:07.281+01:00  INFO 14796 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T12:44:08.244+01:00  INFO 14796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T12:44:08.258+01:00  INFO 14796 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T12:44:08.258+01:00  INFO 14796 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T12:44:08.314+01:00  INFO 14796 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T12:44:08.314+01:00  INFO 14796 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 998 ms
+2024-12-29T12:44:08.843+01:00  INFO 14796 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T12:44:08.851+01:00  INFO 14796 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.919 seconds (process running for 2.493)
+2024-12-29T12:44:27.573+01:00  INFO 14796 --- [http-nio-8086-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T12:44:27.574+01:00  INFO 14796 --- [http-nio-8086-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T12:44:27.575+01:00  INFO 14796 --- [http-nio-8086-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T12:46:53.766+01:00  INFO 1196 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 1196 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T12:46:53.768+01:00 DEBUG 1196 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T12:46:53.768+01:00  INFO 1196 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T12:46:54.718+01:00  INFO 1196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T12:46:54.730+01:00  INFO 1196 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T12:46:54.730+01:00  INFO 1196 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T12:46:54.786+01:00  INFO 1196 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T12:46:54.786+01:00  INFO 1196 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 985 ms
+2024-12-29T12:46:55.284+01:00  INFO 1196 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T12:46:55.292+01:00  INFO 1196 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.868 seconds (process running for 2.432)
+2024-12-29T12:46:58.460+01:00  INFO 1196 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T12:46:58.461+01:00  INFO 1196 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T12:46:58.462+01:00  INFO 1196 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T12:54:27.544+01:00 ERROR 1196 --- [http-nio-8086-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.RuntimeException: Error generating PDF report] with root cause
+
+java.lang.NullPointerException: Cannot invoke "java.lang.Boolean.booleanValue()" because the return value of "java.util.Map.get(Object)" is null
+	at com.example.reporting_service.service.JobReportingService.createJobOverviewTable(JobReportingService.java:129) ~[main/:na]
+	at com.example.reporting_service.service.JobReportingService.generatePdf(JobReportingService.java:92) ~[main/:na]
+	at com.example.reporting_service.service.JobReportingService.generateReport(JobReportingService.java:36) ~[main/:na]
+	at com.example.reporting_service.controller.JobReportingController.generateResourceReport(JobReportingController.java:21) ~[main/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-12-29T13:00:43.333+01:00  INFO 1252 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 1252 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T13:00:43.334+01:00 DEBUG 1252 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T13:00:43.335+01:00  INFO 1252 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T13:00:44.289+01:00  INFO 1252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T13:00:44.302+01:00  INFO 1252 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T13:00:44.302+01:00  INFO 1252 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T13:00:44.359+01:00  INFO 1252 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T13:00:44.359+01:00  INFO 1252 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 987 ms
+2024-12-29T13:00:44.851+01:00  INFO 1252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T13:00:44.859+01:00  INFO 1252 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.869 seconds (process running for 2.457)
+2024-12-29T13:00:48.701+01:00  INFO 1252 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T13:00:48.702+01:00  INFO 1252 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T13:00:48.703+01:00  INFO 1252 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T13:04:53.394+01:00  INFO 6364 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 6364 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T13:04:53.396+01:00 DEBUG 6364 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T13:04:53.397+01:00  INFO 6364 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T13:04:54.464+01:00  INFO 6364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T13:04:54.478+01:00  INFO 6364 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T13:04:54.478+01:00  INFO 6364 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T13:04:54.538+01:00  INFO 6364 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T13:04:54.538+01:00  INFO 6364 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1092 ms
+2024-12-29T13:04:55.066+01:00  INFO 6364 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T13:04:55.074+01:00  INFO 6364 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.047 seconds (process running for 2.565)
+2024-12-29T13:04:59.236+01:00  INFO 6364 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T13:04:59.236+01:00  INFO 6364 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T13:04:59.237+01:00  INFO 6364 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T13:12:28.516+01:00  INFO 12816 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 12816 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T13:12:28.517+01:00 DEBUG 12816 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T13:12:28.518+01:00  INFO 12816 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T13:12:29.460+01:00  INFO 12816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T13:12:29.472+01:00  INFO 12816 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T13:12:29.472+01:00  INFO 12816 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T13:12:29.527+01:00  INFO 12816 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T13:12:29.528+01:00  INFO 12816 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 975 ms
+2024-12-29T13:12:29.999+01:00  INFO 12816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T13:12:30.007+01:00  INFO 12816 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 1.842 seconds (process running for 2.393)
+2024-12-29T13:12:39.634+01:00  INFO 12816 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-29T13:12:39.634+01:00  INFO 12816 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-29T13:12:39.635+01:00  INFO 12816 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

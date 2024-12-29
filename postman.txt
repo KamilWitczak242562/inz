@@ -1,0 +1,587 @@
+http://localhost:8086/api/v1/reports/dryers/generate
+
+{
+  "reportType": "DRYER_USAGE",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "dryer": {
+        "machineId": 1,
+        "name": "Dryer Alpha",
+        "dryerType": "PRESSURE",
+        "capacity": 1000,
+        "state": "WORKING",
+        "location": "Line 1",
+        "startWork": "2024-12-28T08:00:00"
+      }
+    },
+    {
+      "dryer": {
+        "machineId": 2,
+        "name": "Dryer Beta",
+        "dryerType": "HIGH_FREQUENCY",
+        "capacity": 850,
+        "state": "IDLE",
+        "location": "Line 2",
+        "startWork": "2024-12-28T09:30:00"
+      }
+    },
+    {
+      "dryer": {
+        "machineId": 3,
+        "name": "Dryer Gamma",
+        "dryerType": "VACUUM",
+        "capacity": 1200,
+        "state": "WAITING_FOR_ACTION",
+        "location": "Line 3",
+        "startWork": "2024-12-28T07:15:00"
+      }
+    }
+  ],
+  "historicalData": [
+    {
+      "dryer": {
+        "machineId": 1,
+        "name": "Dryer Alpha",
+        "dryerType": "PRESSURE",
+        "capacity": 980,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-25T08:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 1,
+        "name": "Dryer Alpha",
+        "dryerType": "PRESSURE",
+        "capacity": 980,
+        "state": "IDLE"
+      },
+      "revisionDate": "2024-12-25T18:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 1,
+        "name": "Dryer Alpha",
+        "dryerType": "PRESSURE",
+        "capacity": 1000,
+        "state": "WAITING_FOR_ACTION"
+      },
+      "revisionDate": "2024-12-26T00:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 2,
+        "name": "Dryer Beta",
+        "dryerType": "HIGH_FREQUENCY",
+        "capacity": 800,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-24T09:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 2,
+        "name": "Dryer Beta",
+        "dryerType": "HIGH_FREQUENCY",
+        "capacity": 800,
+        "state": "ERROR"
+      },
+      "revisionDate": "2024-12-24T12:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 2,
+        "name": "Dryer Beta",
+        "dryerType": "HIGH_FREQUENCY",
+        "capacity": 850,
+        "state": "IDLE"
+      },
+      "revisionDate": "2024-12-24T13:30:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 3,
+        "name": "Dryer Gamma",
+        "dryerType": "VACUUM",
+        "capacity": 1150,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-23T06:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 3,
+        "name": "Dryer Gamma",
+        "dryerType": "VACUUM",
+        "capacity": 1150,
+        "state": "WAITING_FOR_ACTION"
+      },
+      "revisionDate": "2024-12-23T15:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dryer": {
+        "machineId": 3,
+        "name": "Dryer Gamma",
+        "dryerType": "VACUUM",
+        "capacity": 1200,
+        "state": "ERROR"
+      },
+      "revisionDate": "2024-12-23T20:00:00",
+      "revisionType": "MOD"
+    }
+  ]
+}
+
+
+http://localhost:8086/api/v1/reports/resources/generate
+
+{
+    "reportType": "RESOURCE_USAGE",
+    "isVisualization": true,
+    "currentData": [
+        {
+            "resourceId": 1,
+            "name": "Steel",
+            "description": "High-grade steel used in construction",
+            "currentStock": 1200.0,
+            "unit": "kg",
+            "reorderLevel": 300.0
+        },
+        {
+            "resourceId": 2,
+            "name": "Aluminum",
+            "description": "Lightweight aluminum for machinery",
+            "currentStock": 800.0,
+            "unit": "kg",
+            "reorderLevel": 200.0
+        },
+        {
+            "resourceId": 3,
+            "name": "Copper",
+            "description": "High-conductivity copper for wiring",
+            "currentStock": 600.0,
+            "unit": "kg",
+            "reorderLevel": 150.0
+        },
+        {
+            "resourceId": 4,
+            "name": "Plastic",
+            "description": "Durable plastic for manufacturing",
+            "currentStock": 1000.0,
+            "unit": "kg",
+            "reorderLevel": 250.0
+        },
+        {
+            "resourceId": 5,
+            "name": "Glass",
+            "description": "High-quality glass for windows",
+            "currentStock": 500.0,
+            "unit": "kg",
+            "reorderLevel": 100.0
+        }
+    ],
+    "historicalData": [
+        {
+            "revisionType": "ADD",
+            "revisionDate": "2024-12-01T09:00:00",
+            "resource": {
+                "resourceId": 1,
+                "name": "Steel",
+                "description": "High-grade steel used in construction",
+                "currentStock": 1000.0,
+                "unit": "kg",
+                "reorderLevel": 300.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-05T10:00:00",
+            "resource": {
+                "resourceId": 1,
+                "name": "Steel",
+                "description": "High-grade steel used in construction",
+                "currentStock": 1100.0,
+                "unit": "kg",
+                "reorderLevel": 300.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-10T10:00:00",
+            "resource": {
+                "resourceId": 1,
+                "name": "Steel",
+                "description": "High-grade steel used in construction",
+                "currentStock": 1150.0,
+                "unit": "kg",
+                "reorderLevel": 300.0
+            }
+        },
+        {
+            "revisionType": "DEL",
+            "revisionDate": "2024-12-15T10:00:00",
+            "resource": {
+                "resourceId": 2,
+                "name": "Aluminum",
+                "description": "Lightweight aluminum for machinery",
+                "currentStock": 700.0,
+                "unit": "kg",
+                "reorderLevel": 200.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-20T10:00:00",
+            "resource": {
+                "resourceId": 2,
+                "name": "Aluminum",
+                "description": "Lightweight aluminum for machinery",
+                "currentStock": 750.0,
+                "unit": "kg",
+                "reorderLevel": 200.0
+            }
+        },
+        {
+            "revisionType": "ADD",
+            "revisionDate": "2024-12-01T09:00:00",
+            "resource": {
+                "resourceId": 3,
+                "name": "Copper",
+                "description": "High-conductivity copper for wiring",
+                "currentStock": 500.0,
+                "unit": "kg",
+                "reorderLevel": 150.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-10T10:00:00",
+            "resource": {
+                "resourceId": 3,
+                "name": "Copper",
+                "description": "High-conductivity copper for wiring",
+                "currentStock": 550.0,
+                "unit": "kg",
+                "reorderLevel": 150.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-15T10:00:00",
+            "resource": {
+                "resourceId": 3,
+                "name": "Copper",
+                "description": "High-conductivity copper for wiring",
+                "currentStock": 580.0,
+                "unit": "kg",
+                "reorderLevel": 150.0
+            }
+        },
+        {
+            "revisionType": "MOD",
+            "revisionDate": "2024-12-20T10:00:00",
+            "resource": {
+                "resourceId": 3,
+                "name": "Copper",
+                "description": "High-conductivity copper for wiring",
+                "currentStock": 600.0,
+                "unit": "kg",
+                "reorderLevel": 150.0
+            }
+        },
+        {
+            "revisionType": "DEL",
+            "revisionDate": "2024-12-25T10:00:00",
+            "resource": {
+                "resourceId": 3,
+                "name": "Copper",
+                "description": "High-conductivity copper for wiring",
+                "currentStock": 600.0,
+                "unit": "kg",
+                "reorderLevel": 150.0
+            }
+        }
+    ]
+}
+
+
+
+http://localhost:8086/api/v1/reports/suppliers/generate
+
+{
+  "reportType": "SUPPLIER_OVERVIEW",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "supplierId": 1,
+      "name": "Global Steel Ltd.",
+      "contactInfo": "info@globalsteel.com",
+      "address": "123 Steel Way, Metaltown",
+      "resources": [
+        {
+          "resourceId": 1,
+          "name": "Steel",
+          "description": "High-grade construction steel",
+          "currentStock": 5000,
+          "unit": "kg"
+        },
+        {
+          "resourceId": 2,
+          "name": "Aluminum",
+          "description": "Machinery-grade aluminum",
+          "currentStock": 1200,
+          "unit": "kg"
+        }
+      ]
+    },
+    {
+      "supplierId": 2,
+      "name": "Copper Core Supplies",
+      "contactInfo": "sales@coppercore.com",
+      "address": "45 Copper Road, Electrictown",
+      "resources": [
+        {
+          "resourceId": 3,
+          "name": "Copper",
+          "description": "Wiring-grade copper",
+          "currentStock": 3000,
+          "unit": "kg"
+        },
+        {
+          "resourceId": 4,
+          "name": "Insulation Materials",
+          "description": "High-quality insulation for wiring",
+          "currentStock": 1500,
+          "unit": "kg"
+        }
+      ]
+    },
+    {
+      "supplierId": 3,
+      "name": "Plastico Industries",
+      "contactInfo": "contact@plastico.com",
+      "address": "789 Polymer Street, Manufactown",
+      "resources": [
+        {
+          "resourceId": 5,
+          "name": "Plastic Sheets",
+          "description": "Durable manufacturing plastic",
+          "currentStock": 10000,
+          "unit": "m2"
+        },
+        {
+          "resourceId": 6,
+          "name": "Recycled Plastic",
+          "description": "Eco-friendly recycled plastic",
+          "currentStock": 7500,
+          "unit": "m2"
+        }
+      ]
+    },
+    {
+      "supplierId": 4,
+      "name": "Glass Solutions Ltd.",
+      "contactInfo": "support@glassolutions.com",
+      "address": "321 Transparent Ave, Windowtown",
+      "resources": [
+        {
+          "resourceId": 7,
+          "name": "Glass Panels",
+          "description": "High-quality glass for buildings",
+          "currentStock": 2000,
+          "unit": "m2"
+        },
+        {
+          "resourceId": 8,
+          "name": "Tempered Glass",
+          "description": "Durable tempered glass",
+          "currentStock": 1200,
+          "unit": "m2"
+        }
+      ]
+    }
+  ],
+  "historicalData": [
+    {
+      "supplierId": 1,
+      "name": "Global Steel Ltd.",
+      "revisionType": "MOD",
+      "revisionDate": "2024-12-01T10:00:00",
+      "details": "Updated contact information"
+    },
+    {
+      "supplierId": 2,
+      "name": "Copper Core Supplies",
+      "revisionType": "ADD",
+      "revisionDate": "2024-11-15T12:00:00",
+      "details": "New supplier added"
+    },
+    {
+      "supplierId": 3,
+      "name": "Plastico Industries",
+      "revisionType": "DEL",
+      "revisionDate": "2024-10-05T14:00:00",
+      "details": "Resource 'Plastic Sheets' removed"
+    },
+    {
+      "supplierId": 4,
+      "name": "Glass Solutions Ltd.",
+      "revisionType": "MOD",
+      "revisionDate": "2024-09-25T16:00:00",
+      "details": "Stock update for 'Tempered Glass'"
+    }
+  ]
+}
+
+http://localhost:8086/api/v1/reports/dyeing/generate
+
+
+{
+  "reportType": "DYEING_USAGE",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "dyeing": {
+        "machineId": 1,
+        "name": "Dyeing Alpha",
+        "chargeDiameter": 1000,
+        "capacity": 1000,
+        "state": "WORKING",
+        "location": "Line 1",
+        "startWork": "2024-12-28T08:00:00"
+      }
+    },
+    {
+      "dyeing": {
+        "machineId": 2,
+        "name": "Dyeing Beta",
+        "chargeDiameter": 850,
+        "capacity": 850,
+        "state": "IDLE",
+        "location": "Line 2",
+        "startWork": "2024-12-28T09:30:00"
+      }
+    },
+    {
+      "dyeing": {
+        "machineId": 3,
+        "name": "Dyeing Gamma",
+        "chargeDiameter": 1200,
+        "capacity": 1200,
+        "state": "WAITING_FOR_ACTION",
+        "location": "Line 3",
+        "startWork": "2024-12-28T07:15:00"
+      }
+    }
+  ],
+  "historicalData": [
+    {
+      "dyeing": {
+        "machineId": 1,
+        "name": "Dyeing Alpha",
+        "chargeDiameter": 980,
+        "capacity": 980,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-25T08:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 1,
+        "name": "Dyeing Alpha",
+        "chargeDiameter": 980,
+        "capacity": 980,
+        "state": "IDLE"
+      },
+      "revisionDate": "2024-12-25T18:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 1,
+        "name": "Dyeing Alpha",
+        "chargeDiameter": 1000,
+        "capacity": 1000,
+        "state": "WAITING_FOR_ACTION"
+      },
+      "revisionDate": "2024-12-26T00:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 2,
+        "name": "Dyeing Beta",
+        "chargeDiameter": 800,
+        "capacity": 800,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-24T09:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 2,
+        "name": "Dyeing Beta",
+        "chargeDiameter": 800,
+        "capacity": 800,
+        "state": "ERROR"
+      },
+      "revisionDate": "2024-12-24T12:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 2,
+        "name": "Dyeing Beta",
+        "chargeDiameter": 850,
+        "capacity": 850,
+        "state": "IDLE"
+      },
+      "revisionDate": "2024-12-24T13:30:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 3,
+        "name": "Dyeing Gamma",
+        "chargeDiameter": 1150,
+        "capacity": 1150,
+        "state": "WORKING"
+      },
+      "revisionDate": "2024-12-23T06:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 3,
+        "name": "Dyeing Gamma",
+        "chargeDiameter": 1150,
+        "capacity": 1150,
+        "state": "WAITING_FOR_ACTION"
+      },
+      "revisionDate": "2024-12-23T15:00:00",
+      "revisionType": "MOD"
+    },
+    {
+      "dyeing": {
+        "machineId": 3,
+        "name": "Dyeing Gamma",
+        "chargeDiameter": 1200,
+        "capacity": 1200,
+        "state": "ERROR"
+      },
+      "revisionDate": "2024-12-23T20:00:00",
+      "revisionType": "MOD"
+    }
+  ]
+}

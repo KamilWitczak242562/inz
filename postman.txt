@@ -582,7 +582,7 @@ http://localhost:8086/api/v1/reports/dyeing/generate
   ]
 }
 
-http://localhost:8086/api/v1/reports/job/generate
+http://localhost:8086/api/v1/reports/jobs/generate
 
 {
   "reportType": "JOB_PROGRAM_USAGE",
@@ -752,3 +752,138 @@ http://localhost:8086/api/v1/reports/recipes/generate
     }
   ]
 }
+
+
+http://localhost:8086/api/v1/reports/programs/generate
+
+
+{
+  "reportType": "PROGRAM_OVERVIEW",
+  "isVisualization": true,
+  "currentData": [
+    {
+      "program": {
+        "programId": 1,
+        "name": "Program A",
+        "blocks": [
+          {
+            "blockId": 1,
+            "dtype": "MainTank",
+            "fillLevel": 85.5,
+            "isHotWater": true,
+            "targetTemperature": 75.0,
+            "temperatureIncreaseRate": 1.5,
+            "holdTemperatureTime": 120,
+            "isDrainActive": true
+          },
+          {
+            "blockId": 2,
+            "dtype": "Pump",
+            "rpm": 1500,
+            "circulationTimeInOut": 30,
+            "circulationTimeOutIn": 40
+          },
+          {
+            "blockId": 3,
+            "dtype": "SecondaryTank",
+            "fillLevel": 60.0,
+            "isHotWater": false,
+            "targetTemperature": 50.0,
+            "temperatureIncreaseRate": 0.8,
+            "holdTemperatureTime": 90,
+            "isDrainActive": false,
+            "isMixerActive": true,
+            "chemicalDose": 2.0,
+            "dyeDose": 1.5
+          }
+        ]
+      }
+    },
+    {
+      "program": {
+        "programId": 2,
+        "name": "Program B",
+        "blocks": [
+          {
+            "blockId": 4,
+            "dtype": "MainTank",
+            "fillLevel": 70.0,
+            "isHotWater": true,
+            "targetTemperature": 80.0,
+            "temperatureIncreaseRate": 2.0,
+            "holdTemperatureTime": 100,
+            "isDrainActive": true
+          },
+          {
+            "blockId": 5,
+            "dtype": "Pump",
+            "rpm": 1800,
+            "circulationTimeInOut": 35,
+            "circulationTimeOutIn": 45
+          }
+        ]
+      }
+    },
+    {
+      "program": {
+        "programId": 3,
+        "name": "Program C",
+        "blocks": [
+          {
+            "blockId": 6,
+            "dtype": "SecondaryTank",
+            "fillLevel": 90.0,
+            "isHotWater": true,
+            "targetTemperature": 85.0,
+            "temperatureIncreaseRate": 1.0,
+            "holdTemperatureTime": 150,
+            "isDrainActive": true,
+            "isMixerActive": false,
+            "chemicalDose": 3.0,
+            "dyeDose": 2.0
+          },
+          {
+            "blockId": 7,
+            "dtype": "MainTank",
+            "fillLevel": 75.0,
+            "isHotWater": true,
+            "targetTemperature": 95.0,
+            "temperatureIncreaseRate": 2.5,
+            "holdTemperatureTime": 110,
+            "isDrainActive": false
+          }
+        ]
+      }
+    },
+    {
+      "program": {
+        "programId": 4,
+        "name": "Program D",
+        "blocks": [
+          {
+            "blockId": 8,
+            "dtype": "Pump",
+            "rpm": 2000,
+            "circulationTimeInOut": 40,
+            "circulationTimeOutIn": 50
+          },
+          {
+            "blockId": 9,
+            "dtype": "SecondaryTank",
+            "fillLevel": 55.0,
+            "isHotWater": false,
+            "targetTemperature": 45.0,
+            "temperatureIncreaseRate": 0.7,
+            "holdTemperatureTime": 85,
+            "isDrainActive": true,
+            "isMixerActive": true,
+            "chemicalDose": 1.5,
+            "dyeDose": 0.8
+          }
+        ]
+      }
+    }
+  ],
+  "historicalData": []
+}
+

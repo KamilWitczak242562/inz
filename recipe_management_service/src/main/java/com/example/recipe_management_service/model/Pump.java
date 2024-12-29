@@ -13,7 +13,6 @@ public class Pump extends Block {
     private Integer rpm;
     private Integer circulationTimeInOut;
     private Integer circulationTimeOutIn;
-    private String type = "pump";
 
     public void updatePropertiesFrom(Block block) {
         if (block instanceof Pump pump) {

@@ -2,6 +2,7 @@ package com.example.reporting_service.service;
 
 import com.example.reporting_service.HeaderFooterPageEvent;
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.lang3.time.FastDateFormat;
@@ -22,7 +23,7 @@ public class SupplierReportService {
     public byte[] generateReport(String reportType, List<Map<String, Object>> supplierData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         return switch (reportType.toUpperCase()) {
             case "SUPPLIER_OVERVIEW" -> generateSupplierOverviewReport(supplierData, historicalData, isVisualization);
-            case "SUPPLIER_RESOURCES" -> generateSupplierResourcesReport(supplierData, historicalData, isVisualization);
+            case "SUPPLIER_RESOURCES" -> generateSupplierResourcesReport(supplierData, isVisualization);
             default -> throw new IllegalArgumentException("Unsupported report type: " + reportType);
         };
     }
@@ -30,17 +31,17 @@ public class SupplierReportService {
     private byte[] generateSupplierOverviewReport(List<Map<String, Object>> supplierData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         byte[] visualization = null;
         if (isVisualization) {
-            visualization = generateSupplierVisualization(supplierData, historicalData);
+            visualization = generateSupplierVisualization(supplierData);
         }
-        return generatePdf("SUPPLIER_OVERVIEW", supplierData, historicalData, visualization);
+        return generatePdf("SUPPLIER_OVERVIEW", supplierData, null, visualization);
     }
 
-    private byte[] generateSupplierResourcesReport(List<Map<String, Object>> supplierData, List<Map<String, Object>> historicalData, boolean isVisualization) {
+    private byte[] generateSupplierResourcesReport(List<Map<String, Object>> supplierData, boolean isVisualization) {
         byte[] visualization = null;
         if (isVisualization) {
-            visualization = generateSupplierVisualization(supplierData, historicalData);
+            visualization = generateSupplierVisualization(supplierData);
         }
-        return generatePdf("SUPPLIER_RESOURCES", supplierData, historicalData, visualization);
+        return generatePdf("SUPPLIER_RESOURCES", supplierData, null, visualization);
     }
 
     public byte[] generatePdf(String reportType, List<Map<String, Object>> supplierData, List<Map<String, Object>> historicalData, byte[] visualization) {
@@ -54,12 +55,6 @@ public class SupplierReportService {
             document.open();
 
             document.add(new Paragraph("Supplier Report", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
-            document.add(new Paragraph("Type: " + reportType, FontFactory.getFont(FontFactory.HELVETICA, 12)));
-
-            if (historicalData != null && !historicalData.isEmpty()) {
-                String dateRange = getDateRange(historicalData);
-                document.add(new Paragraph("Date Range: " + dateRange, FontFactory.getFont(FontFactory.HELVETICA, 12)));
-            }
 
             document.add(new Paragraph(" "));
 
@@ -73,14 +68,13 @@ public class SupplierReportService {
             }
 
             if (supplierData != null && !supplierData.isEmpty()) {
-                document.add(new Paragraph("Supplier Data", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
-                document.add(createSupplierTable(supplierData));
-                document.add(new Paragraph(" "));
-            }
-
-            if (historicalData != null && !historicalData.isEmpty()) {
-                document.add(new Paragraph("Historical Data", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
-                document.add(createHistoricalTable(historicalData));
+                if ("SUPPLIER_OVERVIEW".equalsIgnoreCase(reportType)) {
+                    document.add(new Paragraph("Supplier Data", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
+                    document.add(createSupplierTable(supplierData));
+                } else if ("SUPPLIER_RESOURCES".equalsIgnoreCase(reportType)) {
+                    document.add(new Paragraph("Supplier Resources", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
+                    document.add(createSupplierResourceTable(supplierData));
+                }
                 document.add(new Paragraph(" "));
             }
 
@@ -94,71 +88,75 @@ public class SupplierReportService {
     private PdfPTable createSupplierTable(List<Map<String, Object>> data) {
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
+        try {
+            table.setWidths(new float[]{1.5f, 2f, 2f, 3f});
+        } catch (DocumentException e) {
+            throw new RuntimeException("Error setting table widths", e);
+        }
 
-        table.addCell("Supplier ID");
-        table.addCell("Name");
-        table.addCell("Contact Info");
-        table.addCell("Address");
+        Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+        Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
+
+        addCell(table, "Supplier ID", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Name", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Contact Info", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Address", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         for (Map<String, Object> supplier : data) {
-            table.addCell(String.valueOf(supplier.get("supplierId")));
-            table.addCell((String) supplier.get("name"));
-            table.addCell((String) supplier.get("contactInfo"));
-            table.addCell((String) supplier.get("address"));
+            addCell(table, String.valueOf(supplier.get("supplierId")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) supplier.get("name"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) supplier.get("contactInfo"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) supplier.get("address"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
         }
 
         return table;
     }
 
-    private PdfPTable createHistoricalTable(List<Map<String, Object>> data) {
-        PdfPTable table = new PdfPTable(5);
+    private PdfPTable createSupplierResourceTable(List<Map<String, Object>> data) {
+        PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
-
         try {
-            table.setWidths(new float[]{2, 2, 2, 2, 2});
+            table.setWidths(new float[]{1.5f, 3.5f});
         } catch (DocumentException e) {
-            throw new RuntimeException("Error setting column widths for historical table", e);
+            throw new RuntimeException("Error setting column widths for supplier resource table", e);
         }
 
-        table.addCell("Supplier ID");
-        table.addCell("Name");
-        table.addCell("Revision Type");
-        table.addCell("Revision Date");
+        Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+        Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
 
-        for (Map<String, Object> history : data) {
-            table.addCell(String.valueOf(history.get("supplierId")));
-            table.addCell((String) history.get("name"));
-            table.addCell((String) history.get("revisionType"));
-            table.addCell(formatDate((String) history.get("revisionDate")));
+        addCell(table, "Supplier", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Resources", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+
+        for (Map<String, Object> supplier : data) {
+            String supplierName = (String) supplier.get("name");
+            List<Map<String, Object>> resources = (List<Map<String, Object>>) supplier.get("resources");
+
+            StringBuilder resourceDetails = new StringBuilder();
+            if (resources != null) {
+                for (Map<String, Object> resource : resources) {
+                    resourceDetails.append("Name: ").append(resource.get("name"))
+                            .append(", Stock: ").append(resource.get("currentStock"))
+                            .append(" ").append(resource.get("unit"))
+                            .append("\n");
+                }
+            }
+
+            addCell(table, supplierName, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, resourceDetails.toString().trim(), cellFont, Element.ALIGN_LEFT, BaseColor.WHITE);
         }
 
         return table;
     }
 
-    private String getDateRange(List<Map<String, Object>> historicalData) {
-        List<String> dates = historicalData.stream()
-                .map(entry -> (String) entry.get("revisionDate"))
-                .sorted()
-                .collect(Collectors.toList());
-        if (dates.isEmpty()) {
-            return "N/A";
-        }
-        String startDate = formatDate(dates.get(0));
-        String endDate = formatDate(dates.get(dates.size() - 1));
-        return startDate + " - " + endDate;
+    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(alignment);
+        cell.setBackgroundColor(backgroundColor);
+        cell.setPadding(5);
+        table.addCell(cell);
     }
 
-    private String formatDate(String date) {
-        try {
-            FastDateFormat inputFormat = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss");
-            FastDateFormat outputFormat = FastDateFormat.getInstance("dd-MM-yyyy HH:mm:ss");
-            return outputFormat.format(inputFormat.parse(date));
-        } catch (Exception e) {
-            return date;
-        }
-    }
-
-    private byte[] generateSupplierVisualization(List<Map<String, Object>> supplierData, List<Map<String, Object>> historicalData) {
+    private byte[] generateSupplierVisualization(List<Map<String, Object>> supplierData) {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
         for (Map<String, Object> supplier : supplierData) {

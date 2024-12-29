@@ -68,12 +68,12 @@ public class ResourceReportService {
             document.open();
 
             document.add(new Paragraph("Resource Report", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20)));
-            if (!historicalData.isEmpty()) {
+
+            if (historicalData != null && !historicalData.isEmpty()) {
                 String dateRange = getDateRange(historicalData);
                 document.add(new Paragraph("Date Range: " + dateRange, FontFactory.getFont(FontFactory.HELVETICA, 12)));
             }
 
-            document.add(new Paragraph("Type: " + reportType, FontFactory.getFont(FontFactory.HELVETICA, 12)));
 
             if (reportType.equalsIgnoreCase("RESOURCE_USAGE")) {
                 document.add(new Paragraph("Usage: Analysis of resource consumption over time.", FontFactory.getFont(FontFactory.HELVETICA, 12)));
@@ -100,7 +100,7 @@ public class ResourceReportService {
                 document.add(new Paragraph(" "));
             }
 
-            if (historicalData != null && !historicalData.isEmpty()) {
+            if ("RESOURCE_REVISIONS".equalsIgnoreCase(reportType) && historicalData != null && !historicalData.isEmpty()) {
                 document.add(new Paragraph("Historical Resource Data", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16)));
                 document.add(createHistoricalTable(historicalData));
                 document.add(new Paragraph(" "));
@@ -112,6 +112,7 @@ public class ResourceReportService {
             throw new RuntimeException("Error generating PDF report", e);
         }
     }
+
 
     private String getDateRange(List<Map<String, Object>> historicalData) {
         List<String> dates = historicalData.stream()
@@ -130,42 +131,52 @@ public class ResourceReportService {
         PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
 
-        table.addCell("Resource ID");
-        table.addCell("Name");
-        table.addCell("Description");
-        table.addCell("Current Stock");
-        table.addCell("Unit");
+        try {
+            table.setWidths(new float[]{2f, 2.5f, 4f, 2f, 1.5f});
+        } catch (DocumentException e) {
+            throw new RuntimeException("Error setting column widths", e);
+        }
+
+        Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+        Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
+
+        addCell(table, "Resource ID", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Name", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Description", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Current Stock", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Unit", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         for (Map<String, Object> resource : data) {
-            table.addCell(String.valueOf(resource.get("resourceId")));
-            table.addCell((String) resource.get("name"));
-            table.addCell((String) resource.get("description"));
-            table.addCell(String.valueOf(resource.get("currentStock")));
-            table.addCell((String) resource.get("unit"));
+            addCell(table, String.valueOf(resource.get("resourceId")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) resource.get("name"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) resource.get("description"), cellFont, Element.ALIGN_LEFT, BaseColor.WHITE);
+            addCell(table, String.valueOf(resource.get("currentStock")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, (String) resource.get("unit"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
         }
 
         return table;
     }
+
 
     private PdfPTable createHistoricalTable(List<Map<String, Object>> data) {
         PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100);
 
         try {
-            table.setWidths(new float[]{2, 2, 2, 2, 2, 2});
+            table.setWidths(new float[]{2f, 3f, 2f, 2.5f, 2f, 1.5f});
         } catch (DocumentException e) {
             throw new RuntimeException("Error setting column widths for historical table", e);
         }
 
-        table.setSplitLate(true);
-        table.setHeaderRows(1);
+        Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
+        Font cellFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
 
-        table.addCell("Revision Type");
-        table.addCell("Revision Date");
-        table.addCell("Resource ID");
-        table.addCell("Name");
-        table.addCell("Current Stock");
-        table.addCell("Unit");
+        addCell(table, "Revision Type", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Revision Date", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Resource ID", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Name", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Current Stock", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Unit", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         for (Map<String, Object> history : data) {
             Map<String, Object> resource = (Map<String, Object>) history.get("resource");
@@ -177,15 +188,23 @@ public class ResourceReportService {
             String currentStock = String.valueOf(resource.getOrDefault("currentStock", "0"));
             String unit = (String) resource.getOrDefault("unit", "N/A");
 
-            table.addCell(revisionType);
-            table.addCell(revisionDate);
-            table.addCell(resourceId);
-            table.addCell(name);
-            table.addCell(currentStock);
-            table.addCell(unit);
+            addCell(table, revisionType, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, revisionDate, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, resourceId, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, name, cellFont, Element.ALIGN_LEFT, BaseColor.WHITE);
+            addCell(table, currentStock, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, unit, cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
         }
 
         return table;
+    }
+
+    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(alignment);
+        cell.setBackgroundColor(backgroundColor);
+        cell.setPadding(5);
+        table.addCell(cell);
     }
 
     private String getReadableRevisionType(String revisionType) {

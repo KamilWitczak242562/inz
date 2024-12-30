@@ -3,16 +3,15 @@ package com.example.reporting_service.controller;
 import com.example.reporting_service.model.ReportRequest;
 import com.example.reporting_service.service.ResourceReportService;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/resources")
+@RequestMapping("/resource")
 public class ResourceReportController {
 
     private final ResourceReportService resourceReportService;

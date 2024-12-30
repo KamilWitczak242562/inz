@@ -2,18 +2,16 @@ package com.example.machine_service.service;
 
 import com.example.machine_service.model.Dryer;
 import com.example.machine_service.repository.DryerRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditEntity;
-import org.springframework.stereotype.Service;
-import org.hibernate.envers.AuditReader;
-import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditQuery;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -21,12 +19,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class DryerService implements ServiceTemplate<Dryer> {
     private final DryerRepository dryerRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Dryer create(Dryer entity) {
@@ -66,9 +64,6 @@ public class DryerService implements ServiceTemplate<Dryer> {
     public List<Dryer> getAll() {
         return dryerRepository.findAll();
     }
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     public List<Map<String, Object>> getHistory(LocalDateTime startTime, LocalDateTime endTime, String revisionType) {
         Date startDate = Date.from(startTime.atZone(ZoneId.systemDefault()).toInstant());

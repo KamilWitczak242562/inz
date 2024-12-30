@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/programs")
+@RequestMapping("/program")
 public class ProgramReportController {
     private final ProgramReportService programReportService;
 

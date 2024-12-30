@@ -1,17 +1,17 @@
-2024-12-23T00:05:34.840+01:00  INFO 16592 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Starting AuthServiceApplicationTests using Java 22.0.1 with PID 16592 (started by kamil in G:\Sem VII\inz\auth_service)
-2024-12-23T00:05:34.894+01:00 DEBUG 16592 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-12-23T00:05:34.896+01:00  INFO 16592 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : No active profile set, falling back to 1 default profile: "default"
-2024-12-23T00:05:36.068+01:00  INFO 16592 --- [auth_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-23T00:05:36.146+01:00  INFO 16592 --- [auth_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 1 JPA repository interface.
-2024-12-23T00:05:36.744+01:00  INFO 16592 --- [auth_service] [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-23T00:05:36.844+01:00  INFO 16592 --- [auth_service] [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.4.Final
-2024-12-23T00:05:36.886+01:00  INFO 16592 --- [auth_service] [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-23T00:05:37.002+01:00  INFO 16592 --- [auth_service] [Test worker] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
-2024-12-23T00:05:37.259+01:00  INFO 16592 --- [auth_service] [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-23T00:05:37.293+01:00  INFO 16592 --- [auth_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-12-23T00:05:37.666+01:00  INFO 16592 --- [auth_service] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32646ecf
-2024-12-23T00:05:37.668+01:00  INFO 16592 --- [auth_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-12-23T00:05:37.769+01:00  INFO 16592 --- [auth_service] [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2024-12-29T15:14:54.667+01:00  INFO 21204 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Starting AuthServiceApplicationTests using Java 22.0.1 with PID 21204 (started by kamil in G:\Sem VII\inz\auth_service)
+2024-12-29T15:14:54.735+01:00 DEBUG 21204 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-12-29T15:14:54.738+01:00  INFO 21204 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T15:14:56.001+01:00  INFO 21204 --- [auth_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-29T15:14:56.056+01:00  INFO 21204 --- [auth_service] [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 1 JPA repository interface.
+2024-12-29T15:14:56.504+01:00  INFO 21204 --- [auth_service] [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-29T15:14:56.585+01:00  INFO 21204 --- [auth_service] [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.4.Final
+2024-12-29T15:14:56.625+01:00  INFO 21204 --- [auth_service] [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-29T15:14:56.727+01:00  INFO 21204 --- [auth_service] [Test worker] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2024-12-29T15:14:56.947+01:00  INFO 21204 --- [auth_service] [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-29T15:14:56.981+01:00  INFO 21204 --- [auth_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-29T15:14:57.325+01:00  INFO 21204 --- [auth_service] [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@103e7c7c
+2024-12-29T15:14:57.328+01:00  INFO 21204 --- [auth_service] [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-29T15:14:57.420+01:00  INFO 21204 --- [auth_service] [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.2
@@ -19,11 +19,10 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2024-12-23T00:05:38.049+01:00  INFO 16592 --- [auth_service] [Test worker] o.h.e.c.i.m.AuditMetadataGenerator       : Adding properties for entity: com.example.auth_service.model.User
-2024-12-23T00:05:38.823+01:00  INFO 16592 --- [auth_service] [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-12-23T00:05:39.112+01:00  INFO 16592 --- [auth_service] [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-23T00:05:39.821+01:00  WARN 16592 --- [auth_service] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-12-23T00:05:40.774+01:00  INFO 16592 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Started AuthServiceApplicationTests in 6.383 seconds (process running for 8.151)
-2024-12-23T00:05:41.823+01:00  INFO 16592 --- [auth_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-12-23T00:05:41.826+01:00  INFO 16592 --- [auth_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-12-23T00:05:41.840+01:00  INFO 16592 --- [auth_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-12-29T15:14:58.198+01:00  INFO 21204 --- [auth_service] [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-29T15:14:58.244+01:00  INFO 21204 --- [auth_service] [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-29T15:14:58.842+01:00  WARN 21204 --- [auth_service] [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-29T15:14:59.356+01:00  INFO 21204 --- [auth_service] [Test worker] c.e.a.AuthServiceApplicationTests        : Started AuthServiceApplicationTests in 5.293 seconds (process running for 6.587)
+2024-12-29T15:15:00.023+01:00  INFO 21204 --- [auth_service] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-29T15:15:00.026+01:00  INFO 21204 --- [auth_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-29T15:15:00.040+01:00  INFO 21204 --- [auth_service] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

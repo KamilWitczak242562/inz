@@ -25,6 +25,8 @@ import java.util.stream.Collectors;
 public class RecipeService implements ServiceTemplate<Recipe> {
 
     private final RecipeRepo recipeRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Recipe> getAll() {
@@ -60,7 +62,6 @@ public class RecipeService implements ServiceTemplate<Recipe> {
         }
     }
 
-
     public void addResourceToRecipe(Long recipeId, Long resourceId, Double quantity) {
         Recipe recipe = getById(recipeId);
         if (recipe.getResourcesQuantities().containsKey(resourceId)) {
@@ -78,9 +79,6 @@ public class RecipeService implements ServiceTemplate<Recipe> {
         recipe.getResourcesQuantities().remove(resourceId);
         recipeRepository.save(recipe);
     }
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Override
     public List<Map<String, Object>> getHistory(LocalDateTime startTime, LocalDateTime endTime, String revisionType) {

@@ -2224,3 +2224,20 @@ java.lang.NullPointerException: null
 2024-12-29T15:09:52.334+01:00  INFO 23864 --- [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-12-29T15:09:52.336+01:00  INFO 23864 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-12-29T15:09:52.338+01:00  INFO 23864 --- [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-12-29T20:39:09.966+01:00  INFO 16076 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 16076 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T20:39:09.968+01:00 DEBUG 16076 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T20:39:09.969+01:00  INFO 16076 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T20:39:11.452+01:00  INFO 16076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T20:39:11.541+01:00  INFO 16076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1521 ms
+2024-12-29T20:39:12.181+01:00  INFO 16076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T20:39:12.190+01:00  INFO 16076 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.737 seconds (process running for 3.377)
+2024-12-29T20:42:33.272+01:00  INFO 6760 --- [main] c.e.r.ReportingServiceApplication        : Starting ReportingServiceApplication using Java 22.0.1 with PID 6760 (G:\Sem VII\inz\reporting_service\build\classes\java\main started by kamil in G:\Sem VII\inz)
+2024-12-29T20:42:33.274+01:00 DEBUG 6760 --- [main] c.e.r.ReportingServiceApplication        : Running with Spring Boot v3.3.5, Spring v6.1.14
+2024-12-29T20:42:33.275+01:00  INFO 6760 --- [main] c.e.r.ReportingServiceApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-12-29T20:42:34.264+01:00  INFO 6760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8086 (http)
+2024-12-29T20:42:34.277+01:00  INFO 6760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-29T20:42:34.277+01:00  INFO 6760 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-12-29T20:42:34.335+01:00  INFO 6760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-29T20:42:34.335+01:00  INFO 6760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1014 ms
+2024-12-29T20:42:34.838+01:00  INFO 6760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8086 (http) with context path '/'
+2024-12-29T20:42:34.845+01:00  INFO 6760 --- [main] c.e.r.ReportingServiceApplication        : Started ReportingServiceApplication in 2.105 seconds (process running for 2.909)

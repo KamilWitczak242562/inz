@@ -2,19 +2,16 @@ package com.example.reporting_service.service;
 
 import com.example.reporting_service.HeaderFooterPageEvent;
 import com.itextpdf.text.*;
-import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.springframework.stereotype.Service;
-
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
+import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -187,10 +184,6 @@ public class ProgramReportService {
 
         return chartToByteArray(chart);
     }
-
-
-
-
 
 
     private byte[] generatePieChartForBlockUsage(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {

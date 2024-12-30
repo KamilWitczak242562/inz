@@ -1,9 +1,9 @@
 package com.example.reporting_service.service;
 
 import com.example.reporting_service.HeaderFooterPageEvent;
-import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -30,7 +30,8 @@ public class DyeingReportService {
     public byte[] generateReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         return switch (reportType.toUpperCase()) {
             case "DYEING_USAGE" -> generateDyeingUsageReport(reportType, currentData, historicalData, isVisualization);
-            case "DYEING_HISTORY" -> generateDyeingHistoryReport(reportType, historicalData, isVisualization, currentData);
+            case "DYEING_HISTORY" ->
+                    generateDyeingHistoryReport(reportType, historicalData, isVisualization, currentData);
             default -> throw new IllegalArgumentException("Unsupported report type: " + reportType);
         };
     }

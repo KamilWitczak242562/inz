@@ -30,7 +30,7 @@ application {
 
 javafx {
     version = '22-ea+11'
-    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing']
+    modules = ['javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.web']
 }
 
 dependencies {
@@ -39,6 +39,10 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation group: 'org.json', name: 'json', version: '20240303'
+    implementation 'org.apache.pdfbox:pdfbox:3.0.3'
+    implementation 'commons-logging:commons-logging:1.2'
+
 
     implementation "org.openjfx:javafx-swing:21"
 

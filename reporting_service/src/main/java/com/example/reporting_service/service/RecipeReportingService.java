@@ -8,9 +8,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryLabelPositions;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
@@ -94,8 +91,7 @@ public class RecipeReportingService {
     }
 
 
-
-    public PdfPTable createRecipeOverviewTable(List<Map<String, Object>> currentData) {
+    private PdfPTable createRecipeOverviewTable(List<Map<String, Object>> currentData) {
         PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
 
@@ -108,7 +104,10 @@ public class RecipeReportingService {
             String description = (String) recipe.get("description");
 
             double totalQuantity = resources.stream()
-                    .mapToDouble(resource -> resource.get("quantity") != null ? (double) resource.get("quantity") : 0.0)
+                    .mapToDouble(resource -> {
+                        Object quantity = resource.get("quantity");
+                        return quantity instanceof Number ? ((Number) quantity).doubleValue() : 0.0;
+                    })
                     .sum();
 
             addTableRow(table,
@@ -152,15 +151,21 @@ public class RecipeReportingService {
                                 .map(entry -> (String) entry.get("recipeName"))
                                 .distinct()
                                 .collect(Collectors.joining(", "));
+
                         double totalQuantity = entries.stream()
-                                .mapToDouble(entry -> (Double) entry.get("quantity"))
+                                .mapToDouble(entry -> {
+                                    Object quantity = entry.get("quantity");
+                                    return quantity instanceof Number ? ((Number) quantity).doubleValue() : 0.0;
+                                })
                                 .sum();
-                        addTableRow(table, resourceName, usedInRecipes, String.valueOf(totalQuantity));
+
+                        addTableRow(table, resourceName, usedInRecipes, String.format("%.2f", totalQuantity));
                     }
                 });
 
         return table;
     }
+
 
     private void addTableHeader(PdfPTable table, String... headers) {
         Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
@@ -191,7 +196,10 @@ public class RecipeReportingService {
 
             if (recipeName != null) {
                 double totalQuantity = resources.stream()
-                        .mapToDouble(resource -> resource.get("quantity") != null ? (double) resource.get("quantity") : 0.0)
+                        .mapToDouble(resource -> {
+                            Object quantity = resource.get("quantity");
+                            return quantity instanceof Number ? ((Number) quantity).doubleValue() : 0.0;
+                        })
                         .sum();
                 dataset.addValue(totalQuantity, "Total Quantities", recipeName);
             }
@@ -203,6 +211,7 @@ public class RecipeReportingService {
 
         return chartToByteArray(chart);
     }
+
 
     public byte[] generateResourceDependencyChart(List<Map<String, Object>> currentData) {
         DefaultPieDataset dataset = new DefaultPieDataset();
@@ -232,7 +241,6 @@ public class RecipeReportingService {
 
         return chartToByteArray(chart);
     }
-
 
 
     private byte[] chartToByteArray(JFreeChart chart) {

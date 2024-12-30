@@ -2,7 +2,6 @@ package com.example.reporting_service.controller;
 
 import com.example.reporting_service.model.ReportRequest;
 import com.example.reporting_service.service.DryerReportService;
-import com.example.reporting_service.service.ResourceReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/dryers")
+@RequestMapping("/dryer")
 public class DryerReportController {
     private final DryerReportService dryerReportService;
 

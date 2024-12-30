@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/jobs")
+@RequestMapping("/job")
 public class JobReportingController {
     private final JobReportingService jobReportingService;
 

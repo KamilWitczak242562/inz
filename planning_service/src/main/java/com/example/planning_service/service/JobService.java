@@ -2,25 +2,20 @@ package com.example.planning_service.service;
 
 import com.example.planning_service.model.Job;
 import com.example.planning_service.repository.JobRepo;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.AllArgsConstructor;
+import org.hibernate.envers.AuditReader;
+import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditEntity;
-import org.springframework.stereotype.Service;
-import org.hibernate.envers.AuditReader;
-import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditQuery;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +24,8 @@ import java.util.Map;
 public class JobService implements ServiceTemplate<Job> {
 
     private final JobRepo jobRepo;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Job> getAll() {
@@ -98,9 +95,6 @@ public class JobService implements ServiceTemplate<Job> {
         job.setEndTime(endTime);
         return jobRepo.save(job);
     }
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Override
     public List<Map<String, Object>> getHistory(LocalDateTime startTime, LocalDateTime endTime, String revisionType) {

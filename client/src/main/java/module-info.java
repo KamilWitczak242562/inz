@@ -9,6 +9,10 @@ module com.example.client {
     requires org.kordamp.ikonli.javafx;
     requires java.logging;
     requires javafx.swing;
+    requires javafx.web;
+    requires org.json;
+    requires org.apache.pdfbox;
+    requires org.apache.commons.logging;
 
 
     opens com.example.client.model.machine to com.fasterxml.jackson.databind;

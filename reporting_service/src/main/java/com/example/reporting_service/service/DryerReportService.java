@@ -1,18 +1,21 @@
 package com.example.reporting_service.service;
 
 import com.example.reporting_service.HeaderFooterPageEvent;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.slf4j.ILoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -28,7 +31,8 @@ public class DryerReportService {
     public byte[] generateReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         return switch (reportType.toUpperCase()) {
             case "DRYER_USAGE" -> generateDryerUsageReport(reportType, currentData, historicalData, isVisualization);
-            case "DRYER_HISTORY" -> generateDryerHistoryReport(reportType, historicalData, isVisualization, currentData);
+            case "DRYER_HISTORY" ->
+                    generateDryerHistoryReport(reportType, historicalData, isVisualization, currentData);
             default -> throw new IllegalArgumentException("Unsupported report type: " + reportType);
         };
     }

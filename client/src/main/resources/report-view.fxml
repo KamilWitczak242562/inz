@@ -1,67 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<AnchorPane prefHeight="624.0" prefWidth="1098.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.client.controller.ReportsController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="624.0" prefWidth="1098.0"
+            xmlns="http://javafx.com/javafx/21" fx:controller="com.example.client.controller.ReportsController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Reports" />
+        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Reports"/>
 
-        <VBox layoutX="13.0" layoutY="128.0" prefHeight="184.0" prefWidth="472.0" spacing="10.0" style="-fx-padding: 10; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-color: #F9F9F9; -fx-background-radius: 5;">
+        <VBox layoutX="13.0" layoutY="128.0" prefHeight="184.0" prefWidth="472.0" spacing="10.0"
+              style="-fx-padding: 10; -fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-color: #F9F9F9; -fx-background-radius: 5;">
             <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Filters" />
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Filters"/>
                 <HBox spacing="10.0">
-                    <Label style="-fx-font-size: 14px;" text="Date Range:" />
-                    <DatePicker fx:id="startDatePicker" promptText="Start Date" />
-                    <DatePicker fx:id="endDatePicker" promptText="End Date" />
+                    <Label style="-fx-font-size: 14px;" text="Date Range:"/>
+                    <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
+                    <DatePicker fx:id="endDatePicker" promptText="End Date"/>
                 </HBox>
                 <HBox spacing="10.0">
-                    <Label style="-fx-font-size: 14px;" text="Metric:" />
-                    <ComboBox fx:id="metricComboBox" prefWidth="200.0" promptText="Select Metric" />
-                </HBox>
-                <HBox spacing="10.0">
-                    <Label style="-fx-font-size: 14px;" text="Format:" />
-                    <ComboBox fx:id="formatComboBox" prefWidth="150.0" promptText="Select Format">
+                    <Label style="-fx-font-size: 14px;" text="Category:"/>
+                    <ComboBox fx:id="categoryComboBox" prefWidth="200.0" promptText="Select Category">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="JSON" />
-                                <String fx:value="PDF" />
-                                <String fx:value="Excel" />
+                                <String fx:value="Dryer"/>
+                                <String fx:value="Dyeing"/>
+                                <String fx:value="Job"/>
+                                <String fx:value="Program"/>
+                                <String fx:value="Recipe"/>
+                                <String fx:value="Resource"/>
+                                <String fx:value="Supplier"/>
                             </FXCollections>
                         </items>
                     </ComboBox>
                 </HBox>
-                <Button fx:id="generateReportButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Generate Report" />
+                <HBox spacing="10.0">
+                    <Label style="-fx-font-size: 14px;" text="Metric:"/>
+                    <ComboBox fx:id="metricComboBox" prefWidth="200.0" promptText="Select Metric"/>
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label style="-fx-font-size: 14px;" text="Include Charts:"/>
+                    <CheckBox fx:id="includeChartCheckBox"/>
+                </HBox>
+                <Button fx:id="generateReportButton" onAction="#onGenerateReportButtonClick"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Generate Report"/>
             </children>
         </VBox>
 
-        <VBox layoutX="495.0" layoutY="128.0" prefHeight="460.0" prefWidth="598.0" spacing="10.0" style="-fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+        <VBox layoutX="495.0" layoutY="7.0" prefHeight="611.0" prefWidth="598.0" spacing="10.0"
+              style="-fx-border-color: #CCCCCC; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-color: #FFFFFF; -fx-background-radius: 5;">
             <children>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Visualization" />
-                <LineChart fx:id="lineChart" prefHeight="400.0" prefWidth="500.0">
-                    <xAxis>
-                        <CategoryAxis label="Time" fx:id="xAxis" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis fx:id="yAxis" label="Value" />
-                    </yAxis>
-                </LineChart>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Visualization"/>
+                <ScrollPane fx:id="pdfScrollPane" prefHeight="580.0" prefWidth="597.0">
+                    <content>
+                        <Pane fx:id="pdfContainer"/>
+                    </content>
+                </ScrollPane>
             </children>
         </VBox>
 
         <HBox layoutX="20.0" layoutY="68.0" spacing="20.0">
-            <Button onAction="#returnToMainView" style="-fx-background-color: #FF5252; -fx-text-fill: white;" text="Back" />
-            <Button fx:id="exportChartButton" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Export Chart" />
+            <Button onAction="#returnToMainView" style="-fx-background-color: #FF5252; -fx-text-fill: white;"
+                    text="Back"/>
+            <Button fx:id="downloadReportButton" onAction="#onSavePdfButtonClick"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Download Report"/>
         </HBox>
     </children>
 </AnchorPane>

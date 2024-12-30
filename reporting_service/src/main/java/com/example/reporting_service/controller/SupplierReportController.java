@@ -1,7 +1,6 @@
 package com.example.reporting_service.controller;
 
 import com.example.reporting_service.model.ReportRequest;
-import com.example.reporting_service.service.ResourceReportService;
 import com.example.reporting_service.service.SupplierReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/suppliers")
+@RequestMapping("/supplier")
 public class SupplierReportController {
     private final SupplierReportService supplierReportService;
 

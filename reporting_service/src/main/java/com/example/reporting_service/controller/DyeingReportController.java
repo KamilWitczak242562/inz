@@ -1,7 +1,6 @@
 package com.example.reporting_service.controller;
 
 import com.example.reporting_service.model.ReportRequest;
-import com.example.reporting_service.service.DryerReportService;
 import com.example.reporting_service.service.DyeingReportService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

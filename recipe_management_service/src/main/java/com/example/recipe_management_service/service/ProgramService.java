@@ -25,6 +25,8 @@ import java.util.Map;
 public class ProgramService implements ServiceTemplate<Program> {
     private final ProgramRepo programRepository;
     private final BlockRepo blockRepo;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<Program> getAll() {
@@ -87,9 +89,6 @@ public class ProgramService implements ServiceTemplate<Program> {
             }
         }
     }
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Override
     public List<Map<String, Object>> getHistory(LocalDateTime startTime, LocalDateTime endTime, String revisionType) {

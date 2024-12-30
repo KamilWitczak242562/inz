@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.envers.Audited;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,5 +22,6 @@ public class Supplier {
     private String address;
 
     @OneToMany
-    private List<Resource> resources;
+    private List<Resource> resources = new ArrayList<>();
+    ;
 }

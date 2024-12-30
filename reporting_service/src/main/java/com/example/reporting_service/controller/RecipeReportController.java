@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/recipes")
+@RequestMapping("/recipe")
 public class RecipeReportController {
     private final RecipeReportingService recipeReportingService;
 

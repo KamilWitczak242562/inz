@@ -2,19 +2,18 @@ package com.example.reporting_service.service;
 
 import com.example.reporting_service.HeaderFooterPageEvent;
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -157,6 +156,22 @@ public class ResourceReportService {
         return table;
     }
 
+    private Double toDouble(Object value) {
+        if (value == null) {
+            return 0.0;
+        }
+        if (value instanceof Number) {
+            return ((Number) value).doubleValue();
+        }
+        if (value instanceof String) {
+            try {
+                return Double.parseDouble((String) value);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Invalid number format: " + value, e);
+            }
+        }
+        throw new IllegalArgumentException("Unsupported value type: " + value.getClass().getName());
+    }
 
     private PdfPTable createHistoricalTable(List<Map<String, Object>> data) {
         PdfPTable table = new PdfPTable(6);
@@ -266,8 +281,8 @@ public class ResourceReportService {
                     Map<String, Object> previous = resourceHistory.get(i - 1);
                     Map<String, Object> current = resourceHistory.get(i);
 
-                    Double previousStock = (Double) ((Map<String, Object>) previous.get("resource")).get("currentStock");
-                    Double currentStock = (Double) ((Map<String, Object>) current.get("resource")).get("currentStock");
+                    Double previousStock = toDouble(((Map<String, Object>) previous.get("resource")).get("currentStock"));
+                    Double currentStock = toDouble(((Map<String, Object>) current.get("resource")).get("currentStock"));
 
                     if (previousStock != null && currentStock != null) {
                         totalUsage += Math.abs(previousStock - currentStock);
@@ -293,6 +308,7 @@ public class ResourceReportService {
         return chartToByteArray(chart);
     }
 
+
     private java.awt.Color getColorForIndex(int index) {
         java.awt.Color[] colors = {
                 java.awt.Color.RED, java.awt.Color.BLUE, java.awt.Color.GREEN,
@@ -306,7 +322,7 @@ public class ResourceReportService {
         DefaultPieDataset dataset = new DefaultPieDataset();
         for (Map<String, Object> entry : data) {
             String resourceName = (String) entry.get("name");
-            Double stock = (Double) entry.get("currentStock");
+            Double stock = toDouble(entry.get("currentStock"));
             dataset.setValue(resourceName, stock);
         }
         JFreeChart chart = ChartFactory.createPieChart(title, dataset);
@@ -321,7 +337,7 @@ public class ResourceReportService {
                 String revisionDate = (String) entry.get("revisionDate");
                 Map<String, Object> resource = (Map<String, Object>) entry.get("resource");
                 String resourceName = (String) resource.get("name");
-                Double currentStock = (Double) resource.get("currentStock");
+                Double currentStock = toDouble(resource.get("currentStock"));
 
                 dataset.addValue(currentStock, resourceName, revisionDate);
             }
@@ -332,6 +348,7 @@ public class ResourceReportService {
         JFreeChart chart = ChartFactory.createLineChart(title, categoryAxisLabel, valueAxisLabel, dataset);
         return chartToByteArray(chart);
     }
+
 
     private byte[] chartToByteArray(JFreeChart chart) {
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {

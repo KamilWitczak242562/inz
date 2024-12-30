@@ -1,6 +1,5 @@
 package com.example.resource_service.service;
 
-import com.example.resource_service.model.Resource;
 import com.example.resource_service.model.Supplier;
 import com.example.resource_service.repository.SupplierRepo;
 import jakarta.persistence.EntityManager;

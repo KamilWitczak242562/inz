@@ -217,7 +217,7 @@ public class SupplierController {
                 String requestBody = mapper.writeValueAsString(supplier);
 
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:8080/api/v1/supplier/" + (isEdit ? "update" : "new")))
+                        .uri(URI.create("http://localhost:8080/api/v1/resources/supplier/" + (isEdit ? supplier.getSupplierId() : "new")))
                         .header("Authorization", "Bearer " + getAuthToken())
                         .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")

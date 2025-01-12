@@ -100,9 +100,15 @@ public class SupplierController {
 
             supplierGrid.getChildren().clear();
             int col = 0;
+            int row = 0;
+
             for (Supplier supplier : suppliers) {
                 StackPane supplierTile = createSupplierTile(supplier);
-                supplierGrid.add(supplierTile, col++, 0);
+                supplierGrid.add(supplierTile, col++, row);
+                if (col >= 3) {
+                    col = 0;
+                    row++;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

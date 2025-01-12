@@ -17,12 +17,12 @@ public class DataInitializer implements CommandLineRunner {
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     @Override
-    @Transactional
     public void run(String... args) {
         initJobs();
     }
 
-    private void initJobs() {
+    @Transactional
+    public void initJobs() {
         Job job1 = new Job();
         job1.setDryer(true);
         job1.setStartTime(formatDate(LocalDateTime.now().minusDays(15)));
@@ -32,7 +32,8 @@ public class DataInitializer implements CommandLineRunner {
         job1.setRecipeId(1L);
         jobRepository.save(job1);
 
-        simulateModificationForJob(job1, 2L, formatDate(LocalDateTime.now().minusDays(14).plusHours(3)));
+        jobRepository.flush();
+        performJobUpdates(job1, 2L, formatDate(LocalDateTime.now().minusDays(14).plusHours(3)));
 
         Job job2 = new Job();
         job2.setDryer(false);
@@ -43,7 +44,8 @@ public class DataInitializer implements CommandLineRunner {
         job2.setRecipeId(2L);
         jobRepository.save(job2);
 
-        simulateModificationForJob(job2, 3L, formatDate(LocalDateTime.now().minusDays(12).plusHours(2)));
+        jobRepository.flush();
+        performJobUpdates(job2, 3L, formatDate(LocalDateTime.now().minusDays(12).plusHours(2)));
 
         Job job3 = new Job();
         job3.setDryer(true);
@@ -54,7 +56,13 @@ public class DataInitializer implements CommandLineRunner {
         job3.setRecipeId(3L);
         jobRepository.save(job3);
 
-        simulateModificationForJob(job3, 2L, formatDate(LocalDateTime.now().minusDays(10).plusHours(3)));
+        jobRepository.flush();
+        performJobUpdates(job3, 2L, formatDate(LocalDateTime.now().minusDays(10).plusHours(3)));
+    }
+
+    @Transactional
+    public void performJobUpdates(Job job, Long newRecipeId, LocalDateTime newEndTime) {
+        simulateModificationForJob(job, newRecipeId, newEndTime);
     }
 
     private void simulateModificationForJob(Job job, Long newRecipeId, LocalDateTime newEndTime) {
@@ -67,5 +75,3 @@ public class DataInitializer implements CommandLineRunner {
         return LocalDateTime.parse(dateTime.format(formatter), formatter);
     }
 }
-
-

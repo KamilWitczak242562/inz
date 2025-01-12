@@ -147,7 +147,7 @@ public class ResourceController {
                 String requestBody = mapper.writeValueAsString(resource);
 
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("http://localhost:8080/api/v1/resources/resource/" + (isEdit ? "update" : "new")))
+                        .uri(URI.create("http://localhost:8080/api/v1/resources/resource/" + (isEdit ? resource.getResourceId() : "new")))
                         .header("Authorization", "Bearer " + getAuthToken())
                         .header("Client", getClientSecret())
                         .header("Content-Type", "application/json")

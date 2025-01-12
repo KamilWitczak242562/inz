@@ -1,12 +1,11 @@
-DELETE
-FROM resources;
-DELETE
-FROM suppliers;
+SET FOREIGN_KEY_CHECKS = 0;
+DELETE FROM supplier_resource_aud;
+DELETE FROM suppliers_aud;
+DELETE FROM resources_aud;
+DELETE FROM suppliers;
+DELETE FROM resources;
+SET FOREIGN_KEY_CHECKS = 1;
 
-DELETE
-FROM resources_aud;
-DELETE
-FROM suppliers_aud;
 
 ALTER TABLE resources
     AUTO_INCREMENT = 1;

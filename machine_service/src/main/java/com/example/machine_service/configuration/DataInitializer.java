@@ -6,10 +6,10 @@ import com.example.machine_service.model.Dyeing;
 import com.example.machine_service.model.State;
 import com.example.machine_service.repository.DryerRepository;
 import com.example.machine_service.repository.DyeingRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,17 +20,16 @@ public class DataInitializer implements CommandLineRunner {
 
     private final DryerRepository dryerRepository;
     private final DyeingRepository dyeingRepository;
-
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     @Override
-    @Transactional
     public void run(String... args) {
         initDryers();
         initDyeingMachines();
     }
 
-    private void initDryers() {
+    @Transactional
+    public void initDryers() {
         Dryer dryer1 = new Dryer();
         dryer1.setName("Dryer Alpha");
         dryer1.setState(State.WORKING);
@@ -38,10 +37,8 @@ public class DataInitializer implements CommandLineRunner {
         dryer1.setCapacity(980);
         dryer1.setDryerType(DryerType.PRESSURE);
         dryerRepository.save(dryer1);
-
-        simulateModificationForDryer(dryer1, State.IDLE, null, LocalDateTime.now().minusDays(5), LocalDateTime.now().minusDays(3));
-        simulateModificationForDryer(dryer1, State.WAITING_FOR_ACTION, 1000, LocalDateTime.now().minusDays(3), LocalDateTime.now().minusDays(1));
-        simulateModificationForDryer(dryer1, State.WORKING, null, LocalDateTime.now().minusDays(1), LocalDateTime.now());
+        dryerRepository.flush();
+        performDryerUpdates(dryer1, State.IDLE, null, State.WAITING_FOR_ACTION, 1000);
 
         Dryer dryer2 = new Dryer();
         dryer2.setName("Dryer Beta");
@@ -50,9 +47,8 @@ public class DataInitializer implements CommandLineRunner {
         dryer2.setState(State.WORKING);
         dryer2.setStartWork(formatDate(LocalDateTime.now().minusDays(13)));
         dryerRepository.save(dryer2);
-
-        simulateModificationForDryer(dryer2, State.ERROR, null, LocalDateTime.now().minusDays(13), LocalDateTime.now().minusDays(11));
-        simulateModificationForDryer(dryer2, State.IDLE, 850, LocalDateTime.now().minusDays(11), LocalDateTime.now().minusDays(9));
+        dryerRepository.flush();
+        performDryerUpdates(dryer2, State.ERROR, 850, State.IDLE, null);
 
         Dryer dryer3 = new Dryer();
         dryer3.setName("Dryer Gamma");
@@ -61,13 +57,19 @@ public class DataInitializer implements CommandLineRunner {
         dryer3.setState(State.WORKING);
         dryer3.setStartWork(formatDate(LocalDateTime.now().minusDays(26)));
         dryerRepository.save(dryer3);
-
-        simulateModificationForDryer(dryer3, State.WAITING_FOR_ACTION, null, LocalDateTime.now().minusDays(26), LocalDateTime.now().minusDays(20));
-        simulateModificationForDryer(dryer3, State.ERROR, 1200, LocalDateTime.now().minusDays(20), LocalDateTime.now().minusDays(15));
-        simulateModificationForDryer(dryer3, State.WAITING_FOR_ACTION, null, LocalDateTime.now().minusDays(15), LocalDateTime.now());
+        dryerRepository.flush();
+        performDryerUpdates(dryer3, State.WAITING_FOR_ACTION, 1200, State.ERROR, null);
     }
 
-    private void initDyeingMachines() {
+    @Transactional
+    public void performDryerUpdates(Dryer dryer, State firstState, Integer firstCapacity, State secondState, Integer secondCapacity) {
+        simulateModificationForDryer(dryer, firstState, firstCapacity, LocalDateTime.now().minusDays(5), LocalDateTime.now().minusDays(3));
+        simulateModificationForDryer(dryer, secondState, secondCapacity, LocalDateTime.now().minusDays(3), LocalDateTime.now().minusDays(1));
+        simulateModificationForDryer(dryer, State.WORKING, null, LocalDateTime.now().minusDays(1), LocalDateTime.now());
+    }
+
+    @Transactional
+    public void initDyeingMachines() {
         Dyeing dyeing1 = new Dyeing();
         dyeing1.setName("Dyeing Alpha");
         dyeing1.setState(State.WORKING);
@@ -75,10 +77,8 @@ public class DataInitializer implements CommandLineRunner {
         dyeing1.setCapacity(980);
         dyeing1.setCharge_diameter(980);
         dyeingRepository.save(dyeing1);
-
-        simulateModificationForDyeing(dyeing1, State.IDLE, null, LocalDateTime.now().minusDays(10), LocalDateTime.now().minusDays(7));
-        simulateModificationForDyeing(dyeing1, State.WAITING_FOR_ACTION, 1000, LocalDateTime.now().minusDays(7), LocalDateTime.now().minusDays(5));
-        simulateModificationForDyeing(dyeing1, State.WORKING, null, LocalDateTime.now().minusDays(5), LocalDateTime.now());
+        dyeingRepository.flush();
+        performDyeingUpdates(dyeing1, State.IDLE, 1000, State.WAITING_FOR_ACTION, null);
 
         Dyeing dyeing2 = new Dyeing();
         dyeing2.setName("Dyeing Beta");
@@ -87,9 +87,8 @@ public class DataInitializer implements CommandLineRunner {
         dyeing2.setCapacity(800);
         dyeing2.setCharge_diameter(800);
         dyeingRepository.save(dyeing2);
-
-        simulateModificationForDyeing(dyeing2, State.ERROR, null, LocalDateTime.now().minusDays(15), LocalDateTime.now().minusDays(13));
-        simulateModificationForDyeing(dyeing2, State.IDLE, 850, LocalDateTime.now().minusDays(13), LocalDateTime.now().minusDays(10));
+        dyeingRepository.flush();
+        performDyeingUpdates(dyeing2, State.ERROR, null, State.IDLE, 850);
 
         Dyeing dyeing3 = new Dyeing();
         dyeing3.setName("Dyeing Gamma");
@@ -98,10 +97,15 @@ public class DataInitializer implements CommandLineRunner {
         dyeing3.setCapacity(1150);
         dyeing3.setCharge_diameter(1150);
         dyeingRepository.save(dyeing3);
+        dyeingRepository.flush();
+        performDyeingUpdates(dyeing3, State.WAITING_FOR_ACTION, 1200, State.ERROR, null);
+    }
 
-        simulateModificationForDyeing(dyeing3, State.WAITING_FOR_ACTION, null, LocalDateTime.now().minusDays(30), LocalDateTime.now().minusDays(25));
-        simulateModificationForDyeing(dyeing3, State.ERROR, 1200, LocalDateTime.now().minusDays(25), LocalDateTime.now().minusDays(20));
-        simulateModificationForDyeing(dyeing3, State.WAITING_FOR_ACTION, null, LocalDateTime.now().minusDays(20), LocalDateTime.now());
+    @Transactional
+    public void performDyeingUpdates(Dyeing dyeing, State firstState, Integer firstCapacity, State secondState, Integer secondCapacity) {
+        simulateModificationForDyeing(dyeing, firstState, firstCapacity, LocalDateTime.now().minusDays(10), LocalDateTime.now().minusDays(7));
+        simulateModificationForDyeing(dyeing, secondState, secondCapacity, LocalDateTime.now().minusDays(7), LocalDateTime.now().minusDays(5));
+        simulateModificationForDyeing(dyeing, State.WORKING, null, LocalDateTime.now().minusDays(5), LocalDateTime.now());
     }
 
     private void simulateModificationForDryer(Dryer dryer, State state, Integer capacity, LocalDateTime startWork, LocalDateTime endWork) {

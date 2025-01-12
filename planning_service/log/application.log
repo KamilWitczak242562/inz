@@ -56,3 +56,61 @@
 2025-01-12T02:33:17.014+01:00  INFO 3496 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-01-12T02:33:17.016+01:00  INFO 3496 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-01-12T02:33:17.025+01:00  INFO 3496 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-12T13:14:42.669+01:00  INFO 8220 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 8220 (started by kamil in G:\Sem VII\inz\planning_service)
+2025-01-12T13:14:42.727+01:00 DEBUG 8220 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
+2025-01-12T13:14:42.729+01:00  INFO 8220 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T13:14:43.446+01:00  INFO 8220 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-12T13:14:43.494+01:00  INFO 8220 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 1 JPA repository interface.
+2025-01-12T13:14:43.916+01:00  INFO 8220 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-12T13:14:43.985+01:00  INFO 8220 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-12T13:14:44.020+01:00  INFO 8220 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-12T13:14:44.118+01:00  INFO 8220 --- [Test worker] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2025-01-12T13:14:44.324+01:00  INFO 8220 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-12T13:14:44.353+01:00  INFO 8220 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-12T13:14:44.655+01:00  INFO 8220 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47eae91d
+2025-01-12T13:14:44.658+01:00  INFO 8220 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-12T13:14:44.735+01:00  INFO 8220 --- [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-12T13:14:44.930+01:00  INFO 8220 --- [Test worker] o.h.e.c.i.m.AuditMetadataGenerator       : Adding properties for entity: com.example.planning_service.model.Job
+2025-01-12T13:14:45.600+01:00  INFO 8220 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-12T13:14:45.677+01:00  INFO 8220 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-12T13:14:46.168+01:00  WARN 8220 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-12T13:14:46.712+01:00  INFO 8220 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 4.354 seconds (process running for 5.541)
+2025-01-12T13:14:47.333+01:00  INFO 8220 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-12T13:14:47.335+01:00  INFO 8220 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-12T13:14:47.343+01:00  INFO 8220 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-01-12T13:28:22.684+01:00  INFO 24476 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Starting PlanningServiceApplicationTests using Java 22.0.1 with PID 24476 (started by kamil in G:\Sem VII\inz\planning_service)
+2025-01-12T13:28:22.685+01:00 DEBUG 24476 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Running with Spring Boot v3.3.4, Spring v6.1.13
+2025-01-12T13:28:22.686+01:00  INFO 24476 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T13:28:23.478+01:00  INFO 24476 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-12T13:28:23.531+01:00  INFO 24476 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 1 JPA repository interface.
+2025-01-12T13:28:23.955+01:00  INFO 24476 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-12T13:28:24.034+01:00  INFO 24476 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-01-12T13:28:24.071+01:00  INFO 24476 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-12T13:28:24.168+01:00  INFO 24476 --- [Test worker] o.h.e.boot.internal.EnversServiceImpl    : Envers integration enabled? : true
+2025-01-12T13:28:24.382+01:00  INFO 24476 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-12T13:28:24.413+01:00  INFO 24476 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-12T13:28:24.805+01:00  INFO 24476 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@12e2f5ab
+2025-01-12T13:28:24.807+01:00  INFO 24476 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-12T13:28:24.898+01:00  INFO 24476 --- [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-01-12T13:28:25.105+01:00  INFO 24476 --- [Test worker] o.h.e.c.i.m.AuditMetadataGenerator       : Adding properties for entity: com.example.planning_service.model.Job
+2025-01-12T13:28:25.808+01:00  INFO 24476 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-12T13:28:25.875+01:00  INFO 24476 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-12T13:28:26.387+01:00  WARN 24476 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-12T13:28:27.001+01:00  INFO 24476 --- [Test worker] c.e.p.PlanningServiceApplicationTests    : Started PlanningServiceApplicationTests in 4.659 seconds (process running for 5.857)
+2025-01-12T13:28:27.683+01:00  INFO 24476 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-12T13:28:27.686+01:00  INFO 24476 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-12T13:28:27.695+01:00  INFO 24476 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

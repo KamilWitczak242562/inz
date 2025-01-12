@@ -11,8 +11,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -40,7 +42,7 @@ public class DryerReportService {
     private byte[] generateDryerUsageReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         byte[] visualization = null;
         if (isVisualization) {
-            visualization = generateBarChart(currentData, historicalData);
+            visualization = generatePieChart(currentData, historicalData);
         }
         return generatePdf(reportType, currentData, historicalData, visualization);
     }
@@ -92,10 +94,10 @@ public class DryerReportService {
     }
 
     private PdfPTable createUsageTable(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         try {
-            table.setWidths(new float[]{1.5f, 2f, 2f, 1.5f, 2f, 2f});
+            table.setWidths(new float[]{1.5f, 2f, 2f, 2f});
         } catch (DocumentException e) {
             throw new RuntimeException("Error setting table widths", e);
         }
@@ -105,10 +107,8 @@ public class DryerReportService {
 
         addCell(table, "Dryer ID", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Name", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "Dryer Type", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Total Errors", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "% Time in WORKING", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "% Time in IDLE", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Operational Duration (Hours)", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         for (Map<String, Object> dryerData : currentData) {
             Map<String, Object> dryer = (Map<String, Object>) dryerData.get("dryer");
@@ -116,29 +116,62 @@ public class DryerReportService {
                     .filter(entry -> ((Map<String, Object>) entry.get("dryer")).get("machineId").equals(dryer.get("machineId")))
                     .collect(Collectors.toList());
 
-            Map<String, Long> stateDurations = calculateStateDurations(dryerHistory);
-            long totalTime = stateDurations.values().stream().mapToLong(Long::longValue).sum();
+            Map<String, Long> stateDurations = calculateOperationalHoursWithStartEnd(dryerHistory);
+
+            long operationalMinutes = stateDurations.getOrDefault("WORKING", 0L) + stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L);
+            long operationalHours = operationalMinutes / 60;
+
+            int totalErrors = calculateErrorCount(dryerHistory);
 
             addCell(table, String.valueOf(dryer.get("machineId")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
             addCell(table, (String) dryer.get("name"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, (String) dryer.get("dryerType"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.valueOf(stateDurations.getOrDefault("ERROR", 0L) / 60), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.format("%.2f%%", (stateDurations.getOrDefault("WORKING", 0L) * 100.0) / totalTime), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.format("%.2f%%", (stateDurations.getOrDefault("IDLE", 0L) * 100.0) / totalTime), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, String.valueOf(totalErrors), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, String.valueOf(operationalHours), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
         }
 
         return table;
     }
 
-    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
-        PdfPCell cell = new PdfPCell(new Phrase(content, font));
-        cell.setHorizontalAlignment(alignment);
-        cell.setBackgroundColor(backgroundColor);
-        cell.setPadding(5);
-        table.addCell(cell);
+    private int calculateErrorCount(List<Map<String, Object>> dryerHistory) {
+        return (int) dryerHistory.stream()
+                .filter(entry -> "ERROR".equals(((Map<String, Object>) entry.get("dryer")).get("state")))
+                .count();
     }
 
-    private Map<String, Long> calculateStateDurations(List<Map<String, Object>> history) {
+    private byte[] generatePieChart(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        for (Map<String, Object> dryerData : currentData) {
+            Map<String, Object> dryer = (Map<String, Object>) dryerData.get("dryer");
+            List<Map<String, Object>> dryerHistory = historicalData.stream()
+                    .filter(entry -> {
+                        Map<String, Object> historyDryer = (Map<String, Object>) entry.get("dryer");
+                        return historyDryer.get("machineId").equals(dryer.get("machineId"));
+                    })
+                    .collect(Collectors.toList());
+
+            Map<String, Long> stateDurations = calculateOperationalHoursWithStartEnd(dryerHistory);
+
+            long operationalMinutes = stateDurations.getOrDefault("WORKING", 0L) + stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L);
+            dataset.setValue((String) dryer.get("name"), operationalMinutes / 60.0);
+        }
+
+        JFreeChart chart = ChartFactory.createPieChart("Operational Time Distribution", dataset, true, true, false);
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setSectionPaint(0, Color.GREEN);
+        plot.setSectionPaint(1, Color.ORANGE);
+        plot.setLabelBackgroundPaint(Color.WHITE);
+
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            ChartUtils.writeChartAsPNG(outputStream, chart, 800, 600);
+            return outputStream.toByteArray();
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating pie chart", e);
+        }
+    }
+
+
+    private Map<String, Long> calculateOperationalHoursWithStartEnd(List<Map<String, Object>> history) {
         Map<String, Long> stateDurations = new HashMap<>();
         LocalDateTime previousTimestamp = null;
         String previousState = null;
@@ -157,14 +190,32 @@ public class DryerReportService {
             previousState = currentState;
         }
 
+        for (Map<String, Object> entry : history) {
+            Map<String, Object> dryer = (Map<String, Object>) entry.get("dryer");
+            if (dryer.get("startWork") != null && dryer.get("endWork") != null) {
+                LocalDateTime startWork = LocalDateTime.parse((String) dryer.get("startWork"));
+                LocalDateTime endWork = LocalDateTime.parse((String) dryer.get("endWork"));
+                long duration = Duration.between(startWork, endWork).toMinutes();
+                stateDurations.put("WORKING", stateDurations.getOrDefault("WORKING", 0L) + duration);
+            }
+        }
+
         return stateDurations;
     }
 
+    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(alignment);
+        cell.setBackgroundColor(backgroundColor);
+        cell.setPadding(5);
+        table.addCell(cell);
+    }
+
     private PdfPTable createHistoryTable(List<Map<String, Object>> historicalData, List<Map<String, Object>> currentData) {
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
         try {
-            table.setWidths(new float[]{1.5f, 2f, 2f, 2f, 2f, 3f});
+            table.setWidths(new float[]{1.5f, 2f, 2f, 2f, 2f});
         } catch (DocumentException e) {
             throw new RuntimeException("Error setting table widths", e);
         }
@@ -177,7 +228,6 @@ public class DryerReportService {
         addCell(table, "Revision Type", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Revision Date", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "State", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "Details", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         Map<String, String> revisionTypeMapping = Map.of(
                 "MOD", "Modification",
@@ -199,12 +249,6 @@ public class DryerReportService {
             String state = getStateFromCurrentData(dryer.get("machineId"), currentData);
             addCell(table, state != null ? state : "Unknown", cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
 
-            if ("Modification".equals(revisionType)) {
-                String details = calculateDifferences(dryer, currentData);
-                addCell(table, details, cellFont, Element.ALIGN_LEFT, BaseColor.WHITE);
-            } else {
-                addCell(table, "-", cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            }
         }
 
         return table;
@@ -221,59 +265,6 @@ public class DryerReportService {
                 .map(dryer -> (String) dryer.get("state"))
                 .findFirst()
                 .orElse(null);
-    }
-
-    private String calculateDifferences(Map<String, Object> historicalDryer, List<Map<String, Object>> currentData) {
-        Map<String, Object> currentDryer = currentData.stream()
-                .map(data -> (Map<String, Object>) data.get("dryer"))
-                .filter(dryer -> dryer.get("machineId").equals(historicalDryer.get("machineId")))
-                .findFirst()
-                .orElse(null);
-
-        if (currentDryer == null) {
-            return "No matching current data found";
-        }
-
-        StringBuilder differences = new StringBuilder();
-        for (Map.Entry<String, Object> entry : historicalDryer.entrySet()) {
-            String key = entry.getKey();
-            Object historicalValue = entry.getValue();
-            Object currentValue = currentDryer.get(key);
-
-            if (currentValue != null && !currentValue.equals(historicalValue)) {
-                differences.append(key).append(": ").append(historicalValue).append(" -> ").append(currentValue).append("; ");
-            }
-        }
-        return differences.toString();
-    }
-
-
-    private byte[] generateBarChart(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        for (Map<String, Object> dryerData : currentData) {
-            Map<String, Object> dryer = (Map<String, Object>) dryerData.get("dryer");
-            List<Map<String, Object>> dryerHistory = historicalData.stream()
-                    .filter(entry -> ((Map<String, Object>) entry.get("dryer")).get("machineId").equals(dryer.get("machineId")))
-                    .collect(Collectors.toList());
-
-            Map<String, Long> stateDurations = calculateStateDurations(dryerHistory);
-
-            dataset.addValue(stateDurations.getOrDefault("WORKING", 0L) / 60.0, "WORKING", (String) dryer.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("ERROR", 0L) / 60.0, "ERROR", (String) dryer.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("IDLE", 0L) / 60.0, "IDLE", (String) dryer.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L) / 60.0, "WAITING_FOR_ACTION", (String) dryer.get("name"));
-        }
-
-        JFreeChart chart = ChartFactory.createBarChart("Dryer Usage", "Dryer", "Hours", dataset);
-        CategoryPlot plot = chart.getCategoryPlot();
-        BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, Color.GREEN); // WORKING
-        renderer.setSeriesPaint(1, Color.RED);   // ERROR
-        renderer.setSeriesPaint(2, Color.BLUE);  // IDLE
-        renderer.setSeriesPaint(3, Color.ORANGE); // WAITING_FOR_ACTION
-
-        return chartToByteArray(chart);
     }
 
     private byte[] generateLineChart(String title, String categoryAxisLabel, String valueAxisLabel, List<Map<String, Object>> historicalData) {

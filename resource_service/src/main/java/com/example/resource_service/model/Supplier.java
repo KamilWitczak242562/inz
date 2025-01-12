@@ -22,6 +22,6 @@ public class Supplier {
     private String address;
 
     @OneToMany
+    @JoinColumn(name = "supplier_id")
     private List<Resource> resources = new ArrayList<>();
-    ;
 }

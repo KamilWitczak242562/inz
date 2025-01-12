@@ -11,8 +11,10 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -39,7 +41,7 @@ public class DyeingReportService {
     private byte[] generateDyeingUsageReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         byte[] visualization = null;
         if (isVisualization) {
-            visualization = generateBarChart(currentData, historicalData);
+            visualization = generatePieChart(currentData, historicalData);
         }
         return generatePdf(reportType, currentData, historicalData, visualization);
     }
@@ -91,10 +93,10 @@ public class DyeingReportService {
     }
 
     private PdfPTable createUsageTable(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(4);
         table.setWidthPercentage(100);
         try {
-            table.setWidths(new float[]{1.5f, 2f, 2f, 1.5f, 2f, 2f});
+            table.setWidths(new float[]{1.5f, 2f, 2f, 2f});
         } catch (DocumentException e) {
             throw new RuntimeException("Error setting table widths", e);
         }
@@ -104,45 +106,83 @@ public class DyeingReportService {
 
         addCell(table, "Dyeing ID", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Name", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "Charge diameter", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Total Errors", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "% Time in WORKING", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "% Time in IDLE", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
+        addCell(table, "Operational Duration (Hours)", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         for (Map<String, Object> dyeingData : currentData) {
+            @SuppressWarnings("unchecked")
             Map<String, Object> dyeing = (Map<String, Object>) dyeingData.get("dyeing");
             List<Map<String, Object>> dyeingHistory = historicalData.stream()
-                    .filter(entry -> ((Map<String, Object>) entry.get("dyeing")).get("machineId").equals(dyeing.get("machineId")))
+                    .filter(entry -> {
+                        @SuppressWarnings("unchecked")
+                        Map<String, Object> historyDyeing = (Map<String, Object>) entry.get("dyeing");
+                        return historyDyeing.get("machineId").equals(dyeing.get("machineId"));
+                    })
                     .collect(Collectors.toList());
 
-            Map<String, Long> stateDurations = calculateStateDurations(dyeingHistory);
-            long totalTime = stateDurations.values().stream().mapToLong(Long::longValue).sum();
+            Map<String, Long> stateDurations = calculateOperationalHoursWithStartEnd(dyeingHistory);
+
+            long operationalMinutes = stateDurations.getOrDefault("WORKING", 0L) + stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L);
+            long operationalHours = operationalMinutes / 60;
+
+            int totalErrors = calculateErrorCount(dyeingHistory);
 
             addCell(table, String.valueOf(dyeing.get("machineId")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
             addCell(table, (String) dyeing.get("name"), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.valueOf(dyeing.get("chargeDiameter")), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.valueOf(stateDurations.getOrDefault("ERROR", 0L) / 60), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.format("%.2f%%", (stateDurations.getOrDefault("WORKING", 0L) * 100.0) / totalTime), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            addCell(table, String.format("%.2f%%", (stateDurations.getOrDefault("IDLE", 0L) * 100.0) / totalTime), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, String.valueOf(totalErrors), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
+            addCell(table, String.valueOf(operationalHours), cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
         }
 
         return table;
     }
 
-    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
-        PdfPCell cell = new PdfPCell(new Phrase(content, font));
-        cell.setHorizontalAlignment(alignment);
-        cell.setBackgroundColor(backgroundColor);
-        cell.setPadding(5);
-        table.addCell(cell);
+    private int calculateErrorCount(List<Map<String, Object>> dyeingHistory) {
+        return (int) dyeingHistory.stream()
+                .filter(entry -> "ERROR".equals(((Map<String, Object>) entry.get("dyeing")).get("state")))
+                .count();
     }
 
-    private Map<String, Long> calculateStateDurations(List<Map<String, Object>> history) {
+    private byte[] generatePieChart(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
+        DefaultPieDataset dataset = new DefaultPieDataset();
+
+        for (Map<String, Object> dyeingData : currentData) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> dyeing = (Map<String, Object>) dyeingData.get("dyeing");
+            List<Map<String, Object>> dyeingHistory = historicalData.stream()
+                    .filter(entry -> {
+                        @SuppressWarnings("unchecked")
+                        Map<String, Object> historyDyeing = (Map<String, Object>) entry.get("dyeing");
+                        return historyDyeing.get("machineId").equals(dyeing.get("machineId"));
+                    })
+                    .collect(Collectors.toList());
+
+            Map<String, Long> stateDurations = calculateOperationalHoursWithStartEnd(dyeingHistory);
+
+            long operationalMinutes = stateDurations.getOrDefault("WORKING", 0L) + stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L);
+            dataset.setValue((String) dyeing.get("name"), operationalMinutes / 60.0);
+        }
+
+        JFreeChart chart = ChartFactory.createPieChart("Operational Time Distribution", dataset, true, true, false);
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setSectionPaint(0, Color.GREEN);
+        plot.setSectionPaint(1, Color.ORANGE);
+        plot.setLabelBackgroundPaint(Color.WHITE);
+
+        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+            ChartUtils.writeChartAsPNG(outputStream, chart, 800, 600);
+            return outputStream.toByteArray();
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating pie chart", e);
+        }
+    }
+
+    private Map<String, Long> calculateOperationalHoursWithStartEnd(List<Map<String, Object>> history) {
         Map<String, Long> stateDurations = new HashMap<>();
         LocalDateTime previousTimestamp = null;
         String previousState = null;
 
         for (Map<String, Object> entry : history) {
+            @SuppressWarnings("unchecked")
             Map<String, Object> dyeing = (Map<String, Object>) entry.get("dyeing");
             String currentState = (String) dyeing.get("state");
             LocalDateTime currentTimestamp = LocalDateTime.parse((String) entry.get("revisionDate"));
@@ -156,14 +196,33 @@ public class DyeingReportService {
             previousState = currentState;
         }
 
+        for (Map<String, Object> entry : history) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> dyeing = (Map<String, Object>) entry.get("dyeing");
+            if (dyeing.get("startWork") != null && dyeing.get("endWork") != null) {
+                LocalDateTime startWork = LocalDateTime.parse((String) dyeing.get("startWork"));
+                LocalDateTime endWork = LocalDateTime.parse((String) dyeing.get("endWork"));
+                long duration = Duration.between(startWork, endWork).toMinutes();
+                stateDurations.put("WORKING", stateDurations.getOrDefault("WORKING", 0L) + duration);
+            }
+        }
+
         return stateDurations;
     }
 
+    private void addCell(PdfPTable table, String content, Font font, int alignment, BaseColor backgroundColor) {
+        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+        cell.setHorizontalAlignment(alignment);
+        cell.setBackgroundColor(backgroundColor);
+        cell.setPadding(5);
+        table.addCell(cell);
+    }
+
     private PdfPTable createHistoryTable(List<Map<String, Object>> historicalData, List<Map<String, Object>> currentData) {
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(5);
         table.setWidthPercentage(100);
         try {
-            table.setWidths(new float[]{1.5f, 2f, 2f, 2f, 2f, 3f});
+            table.setWidths(new float[]{1.5f, 2f, 2f, 2f, 2f});
         } catch (DocumentException e) {
             throw new RuntimeException("Error setting table widths", e);
         }
@@ -176,7 +235,6 @@ public class DyeingReportService {
         addCell(table, "Revision Type", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "Revision Date", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
         addCell(table, "State", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
-        addCell(table, "Details", headerFont, Element.ALIGN_CENTER, BaseColor.LIGHT_GRAY);
 
         Map<String, String> revisionTypeMapping = Map.of(
                 "MOD", "Modification",
@@ -197,13 +255,6 @@ public class DyeingReportService {
 
             String state = getStateFromCurrentData(dyeing.get("machineId"), currentData);
             addCell(table, state != null ? state : "Unknown", cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-
-            if ("Modification".equals(revisionType)) {
-                String details = calculateDifferences(dyeing, currentData);
-                addCell(table, details, cellFont, Element.ALIGN_LEFT, BaseColor.WHITE);
-            } else {
-                addCell(table, "-", cellFont, Element.ALIGN_CENTER, BaseColor.WHITE);
-            }
         }
 
         return table;
@@ -220,59 +271,6 @@ public class DyeingReportService {
                 .map(dyeing -> (String) dyeing.get("state"))
                 .findFirst()
                 .orElse(null);
-    }
-
-    private String calculateDifferences(Map<String, Object> historicalDyeing, List<Map<String, Object>> currentData) {
-        Map<String, Object> currentDyeing = currentData.stream()
-                .map(data -> (Map<String, Object>) data.get("dyeing"))
-                .filter(dyeing -> dyeing.get("machineId").equals(historicalDyeing.get("machineId")))
-                .findFirst()
-                .orElse(null);
-
-        if (currentDyeing == null) {
-            return "No matching current data found";
-        }
-
-        StringBuilder differences = new StringBuilder();
-        for (Map.Entry<String, Object> entry : historicalDyeing.entrySet()) {
-            String key = entry.getKey();
-            Object historicalValue = entry.getValue();
-            Object currentValue = currentDyeing.get(key);
-
-            if (currentValue != null && !currentValue.equals(historicalValue)) {
-                differences.append(key).append(": ").append(historicalValue).append(" -> ").append(currentValue).append("; ");
-            }
-        }
-        return differences.toString();
-    }
-
-
-    private byte[] generateBarChart(List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        for (Map<String, Object> dyeingData : currentData) {
-            Map<String, Object> dyeing = (Map<String, Object>) dyeingData.get("dyeing");
-            List<Map<String, Object>> dyeingHistory = historicalData.stream()
-                    .filter(entry -> ((Map<String, Object>) entry.get("dyeing")).get("machineId").equals(dyeing.get("machineId")))
-                    .collect(Collectors.toList());
-
-            Map<String, Long> stateDurations = calculateStateDurations(dyeingHistory);
-
-            dataset.addValue(stateDurations.getOrDefault("WORKING", 0L) / 60.0, "WORKING", (String) dyeing.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("ERROR", 0L) / 60.0, "ERROR", (String) dyeing.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("IDLE", 0L) / 60.0, "IDLE", (String) dyeing.get("name"));
-            dataset.addValue(stateDurations.getOrDefault("WAITING_FOR_ACTION", 0L) / 60.0, "WAITING_FOR_ACTION", (String) dyeing.get("name"));
-        }
-
-        JFreeChart chart = ChartFactory.createBarChart("Dyeing Usage", "Dyeing", "Hours", dataset);
-        CategoryPlot plot = chart.getCategoryPlot();
-        BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, Color.GREEN); // WORKING
-        renderer.setSeriesPaint(1, Color.RED);   // ERROR
-        renderer.setSeriesPaint(2, Color.BLUE);  // IDLE
-        renderer.setSeriesPaint(3, Color.ORANGE); // WAITING_FOR_ACTION
-
-        return chartToByteArray(chart);
     }
 
     private byte[] generateLineChart(String title, String categoryAxisLabel, String valueAxisLabel, List<Map<String, Object>> historicalData) {

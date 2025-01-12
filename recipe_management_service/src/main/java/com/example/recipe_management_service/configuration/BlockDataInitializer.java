@@ -24,90 +24,89 @@ public class BlockDataInitializer implements CommandLineRunner {
 
     private void initMainTanks() {
         MainTank mainTank1 = new MainTank();
-        mainTank1.setFillLevel(50.0);
+        mainTank1.setFillLevel(80.0);
         mainTank1.setIsHotWater(true);
-        mainTank1.setTargetTemperature(60.0);
-        mainTank1.setTemperatureIncreaseRate(5.0);
-        mainTank1.setHoldTemperatureTime(120);
-        mainTank1.setIsDrainActive(false);
+        mainTank1.setTargetTemperature(70.0);
+        mainTank1.setTemperatureIncreaseRate(1.5);
+        mainTank1.setHoldTemperatureTime(150);
+        mainTank1.setIsDrainActive(true);
         blockRepository.save(mainTank1);
 
-        simulateModificationForMainTank(mainTank1);
-
         MainTank mainTank2 = new MainTank();
-        mainTank2.setFillLevel(30.0);
+        mainTank2.setFillLevel(65.0);
         mainTank2.setIsHotWater(false);
-        mainTank2.setTargetTemperature(40.0);
-        mainTank2.setTemperatureIncreaseRate(2.5);
-        mainTank2.setHoldTemperatureTime(60);
-        mainTank2.setIsDrainActive(true);
+        mainTank2.setTargetTemperature(55.0);
+        mainTank2.setTemperatureIncreaseRate(2.0);
+        mainTank2.setHoldTemperatureTime(120);
+        mainTank2.setIsDrainActive(false);
         blockRepository.save(mainTank2);
 
-        simulateModificationForMainTank(mainTank2);
-    }
-
-    private void simulateModificationForMainTank(MainTank mainTank) {
-        mainTank.setFillLevel(mainTank.getFillLevel() + 10.0);
-        mainTank.setIsHotWater(!mainTank.getIsHotWater());
-        blockRepository.save(mainTank);
+        MainTank mainTank3 = new MainTank();
+        mainTank3.setFillLevel(90.0);
+        mainTank3.setIsHotWater(true);
+        mainTank3.setTargetTemperature(85.0);
+        mainTank3.setTemperatureIncreaseRate(1.2);
+        mainTank3.setHoldTemperatureTime(180);
+        mainTank3.setIsDrainActive(true);
+        blockRepository.save(mainTank3);
     }
 
     private void initSecondaryTanks() {
         SecondaryTank secondaryTank1 = new SecondaryTank();
-        secondaryTank1.setFillLevel(80.0);
+        secondaryTank1.setFillLevel(75.0);
         secondaryTank1.setIsHotWater(true);
-        secondaryTank1.setTargetTemperature(70.0);
-        secondaryTank1.setTemperatureIncreaseRate(4.0);
-        secondaryTank1.setHoldTemperatureTime(100);
+        secondaryTank1.setTargetTemperature(65.0);
+        secondaryTank1.setTemperatureIncreaseRate(1.8);
+        secondaryTank1.setHoldTemperatureTime(140);
         secondaryTank1.setIsDrainActive(false);
         secondaryTank1.setIsMixerActive(true);
-        secondaryTank1.setChemicalDose(5.0);
-        secondaryTank1.setDyeDose(2.0);
+        secondaryTank1.setChemicalDose(4.5);
+        secondaryTank1.setDyeDose(2.2);
         blockRepository.save(secondaryTank1);
 
-        simulateModificationForSecondaryTank(secondaryTank1);
-
         SecondaryTank secondaryTank2 = new SecondaryTank();
-        secondaryTank2.setFillLevel(60.0);
+        secondaryTank2.setFillLevel(50.0);
         secondaryTank2.setIsHotWater(false);
-        secondaryTank2.setTargetTemperature(50.0);
-        secondaryTank2.setTemperatureIncreaseRate(3.0);
-        secondaryTank2.setHoldTemperatureTime(80);
+        secondaryTank2.setTargetTemperature(45.0);
+        secondaryTank2.setTemperatureIncreaseRate(1.0);
+        secondaryTank2.setHoldTemperatureTime(90);
         secondaryTank2.setIsDrainActive(true);
         secondaryTank2.setIsMixerActive(false);
         secondaryTank2.setChemicalDose(3.0);
-        secondaryTank2.setDyeDose(1.5);
+        secondaryTank2.setDyeDose(1.8);
         blockRepository.save(secondaryTank2);
 
-        simulateModificationForSecondaryTank(secondaryTank2);
-    }
-
-    private void simulateModificationForSecondaryTank(SecondaryTank secondaryTank) {
-        secondaryTank.setChemicalDose(secondaryTank.getChemicalDose() + 1.0);
-        secondaryTank.setIsMixerActive(!secondaryTank.getIsMixerActive());
-        blockRepository.save(secondaryTank);
+        SecondaryTank secondaryTank3 = new SecondaryTank();
+        secondaryTank3.setFillLevel(85.0);
+        secondaryTank3.setIsHotWater(true);
+        secondaryTank3.setTargetTemperature(75.0);
+        secondaryTank3.setTemperatureIncreaseRate(1.5);
+        secondaryTank3.setHoldTemperatureTime(160);
+        secondaryTank3.setIsDrainActive(false);
+        secondaryTank3.setIsMixerActive(true);
+        secondaryTank3.setChemicalDose(5.0);
+        secondaryTank3.setDyeDose(3.0);
+        blockRepository.save(secondaryTank3);
     }
 
     private void initPumps() {
         Pump pump1 = new Pump();
-        pump1.setRpm(1200);
-        pump1.setCirculationTimeInOut(10);
-        pump1.setCirculationTimeOutIn(15);
+        pump1.setRpm(1000);
+        pump1.setCirculationTimeInOut(20);
+        pump1.setCirculationTimeOutIn(25);
         blockRepository.save(pump1);
 
-        simulateModificationForPump(pump1);
-
         Pump pump2 = new Pump();
-        pump2.setRpm(1500);
-        pump2.setCirculationTimeInOut(8);
-        pump2.setCirculationTimeOutIn(12);
+        pump2.setRpm(1400);
+        pump2.setCirculationTimeInOut(15);
+        pump2.setCirculationTimeOutIn(20);
         blockRepository.save(pump2);
 
-        simulateModificationForPump(pump2);
-    }
-
-    private void simulateModificationForPump(Pump pump) {
-        pump.setRpm(pump.getRpm() + 300);
-        blockRepository.save(pump);
+        Pump pump3 = new Pump();
+        pump3.setRpm(1600);
+        pump3.setCirculationTimeInOut(10);
+        pump3.setCirculationTimeOutIn(12);
+        blockRepository.save(pump3);
     }
 }
+

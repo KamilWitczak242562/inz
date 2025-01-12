@@ -3,7 +3,7 @@ plugins {
     id 'application'
     id 'org.javamodularity.moduleplugin' version '1.8.12'
     id 'org.openjfx.javafxplugin' version '0.0.13'
-    id 'org.beryx.jlink' version '2.25.0'
+    id 'org.beryx.jlink' version '3.1.1'
 }
 
 group 'com.example'
@@ -16,8 +16,14 @@ ext {
     junitVersion = '5.10.0'
 }
 
-sourceCompatibility = '22'
-targetCompatibility = '22'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -60,8 +66,12 @@ test {
 jlink {
     imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    forceMerge('pdfbox', 'fontbox')
     launcher {
         name = 'app'
+    }
+    mergedModule {
+        additive = true
     }
 }
 

@@ -28,19 +28,19 @@ public class ProgramDataInitializer implements CommandLineRunner {
         program1.setBlockIds(new ArrayList<>(Arrays.asList(1L, 2L, 3L)));
         programRepository.save(program1);
 
-        simulateModificationForProgram(program1);
-
         Program program2 = new Program();
         program2.setName("Program B");
         program2.setBlockIds(new ArrayList<>(Arrays.asList(4L, 5L)));
         programRepository.save(program2);
 
-        simulateModificationForProgram(program2);
-    }
+        Program program3 = new Program();
+        program3.setName("Program C");
+        program3.setBlockIds(new ArrayList<>(Arrays.asList(6L, 7L)));
+        programRepository.save(program3);
 
-    private void simulateModificationForProgram(Program program) {
-        program.setName(program.getName() + " - Updated");
-        program.getBlockIds().add(6L);
-        programRepository.save(program);
+        Program program4 = new Program();
+        program4.setName("Program D");
+        program4.setBlockIds(new ArrayList<>(Arrays.asList(8L, 9L)));
+        programRepository.save(program4);
     }
 }

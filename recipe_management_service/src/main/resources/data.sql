@@ -24,64 +24,29 @@ ALTER TABLE recipes AUTO_INCREMENT = 1;
 ALTER TABLE program_block AUTO_INCREMENT = 1;
 ALTER TABLE recipe_resources AUTO_INCREMENT = 1;
 
-INSERT INTO blocks (block_id, dtype)
-VALUES (1, 'MainTank'),
-       (2, 'MainTank'),
-       (3, 'SecondaryTank'),
-       (4, 'SecondaryTank'),
-       (5, 'Pump'),
-       (6, 'Pump'),
-       (7, 'MainTank'),
-       (8, 'MainTank'),
-       (9, 'Pump');
 
-INSERT INTO main_tank (block_id, fill_level, is_hot_water, target_temperature, temperature_increase_rate,
-                       hold_temperature_time, is_drain_active)
-VALUES (1, 50.0, TRUE, 75.0, 2.5, 30, FALSE),
-       (2, 60.0, FALSE, 80.0, 3.0, 25, TRUE),
-       (7, 70.0, TRUE, 85.0, 4.0, 10, TRUE),
-       (8, 65.0, FALSE, 78.0, 3.5, 20, FALSE);
+DELETE
+FROM recipe_resources_aud;
+DELETE
+FROM program_block_aud;
+DELETE
+FROM programs_aud;
+DELETE
+FROM recipes_aud;
+DELETE
+FROM main_tank_aud;
+DELETE
+FROM secondary_tank_aud;
+DELETE
+FROM pump_aud;
+DELETE
+FROM blocks_aud;
 
-INSERT INTO secondary_tank (block_id, fill_level, is_hot_water, target_temperature, temperature_increase_rate,
-                            hold_temperature_time, is_drain_active, is_mixer_active, chemical_dose, dye_dose)
-VALUES (3, 30.0, FALSE, 60.0, 1.8, 20, TRUE, TRUE, 0.5, 0.2),
-       (4, 40.0, TRUE, 65.0, 2.0, 15, FALSE, FALSE, 0.4, 0.3);
-
-INSERT INTO pump (block_id, rpm, circulation_time_in_out, circulation_time_out_in)
-VALUES (5, 1500, 10, 15),
-       (6, 2000, 12, 18),
-       (9, 2500, 8, 10);
-
-INSERT INTO programs (program_id, name)
-VALUES (1, 'Program A'),
-       (2, 'Program B'),
-       (3, 'Program C');
-
-INSERT INTO program_block (program_id, block_id)
-VALUES (1, 1),
-       (1, 3),
-       (1, 5),
-       (2, 2),
-       (2, 4),
-       (2, 6),
-       (3, 7),
-       (3, 9);
-
-INSERT INTO recipes (id, name, description)
-VALUES (1, 'Recipe 1', 'Basic recipe for dyeing'),
-       (2, 'Recipe 2', 'Advanced recipe with chemical treatment'),
-       (3, 'Recipe 3', 'Experimental recipe with high temperature'),
-       (4, 'Recipe 4', 'Special recipe for premium dyeing');
-
-INSERT INTO recipe_resources (recipe_id, resource_id, quantity)
-VALUES (1, 1, 500.0),
-       (1, 2, 1000.0),
-       (1, 3, 200.0),
-       (2, 1, 300.0),
-       (2, 2, 800.0),
-       (2, 4, 150.0),
-       (3, 3, 400.0),
-       (3, 4, 250.0),
-       (3, 1, 100.0),
-       (4, 2, 600.0),
-       (4, 3, 300.0);
+ALTER TABLE blocks_aud AUTO_INCREMENT = 1;
+ALTER TABLE main_tank_aud AUTO_INCREMENT = 1;
+ALTER TABLE secondary_tank_aud AUTO_INCREMENT = 1;
+ALTER TABLE pump_aud AUTO_INCREMENT = 1;
+ALTER TABLE programs_aud AUTO_INCREMENT = 1;
+ALTER TABLE recipes_aud AUTO_INCREMENT = 1;
+ALTER TABLE program_block_aud AUTO_INCREMENT = 1;
+ALTER TABLE recipe_resources_aud AUTO_INCREMENT = 1;

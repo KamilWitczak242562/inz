@@ -19,5 +19,4 @@ public class Resource {
     private Double currentStock;
     private String unit;
     private Double reorderLevel;
-
 }

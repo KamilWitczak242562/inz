@@ -52,24 +52,6 @@ public class ReportsController {
     private ComboBox<String> metricComboBox;
 
     @FXML
-    private ComboBox<String> formatComboBox;
-
-    @FXML
-    private LineChart<String, Number> lineChart;
-
-    @FXML
-    private CategoryAxis xAxis;
-
-    @FXML
-    private NumberAxis yAxis;
-
-    @FXML
-    private Button generateReportButton;
-
-    @FXML
-    private Button exportChartButton;
-
-    @FXML
     private ScrollPane pdfScrollPane;
 
     @FXML
@@ -100,6 +82,8 @@ public class ReportsController {
             String responseCurrent = sendGetRequestToGetCurrentData();
 
             JSONObject body = processReportData(getCategoryKey(getSelectedCategory()), responseCurrent, responseHistory);
+
+            System.out.println(body.toString());
 
             sendPostRequestToGeneratePDF(body);
 
@@ -664,7 +648,6 @@ public class ReportsController {
         String url = buildUrlToGeneratePDF();
         cachedPdfBytes = null;
 
-        System.out.println("URL to sent to: " + url);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -895,7 +878,7 @@ public class ReportsController {
                     metricComboBox.getItems().addAll("RECIPE_OVERVIEW", "RESOURCE_DEPENDENCY");
                     break;
                 case "Resource":
-                    metricComboBox.getItems().addAll("RESOURCE_USAGE", "RESOURCE_AVAILABILITY", "RESOURCE_REVISIONS");
+                    metricComboBox.getItems().addAll("RESOURCE_AVAILABILITY", "RESOURCE_REVISIONS");
                     break;
                 case "Supplier":
                     metricComboBox.getItems().addAll("SUPPLIER_OVERVIEW", "SUPPLIER_RESOURCES");

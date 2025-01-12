@@ -1,4 +1,4 @@
-http://localhost:8086/api/v1/reports/dryers/generate
+http://localhost:8086/api/v1/reporting/dryer/generate
 
 {
   "reportType": "DRYER_USAGE",
@@ -11,7 +11,6 @@ http://localhost:8086/api/v1/reports/dryers/generate
         "dryerType": "PRESSURE",
         "capacity": 1000,
         "state": "WORKING",
-        "location": "Line 1",
         "startWork": "2024-12-28T08:00:00"
       }
     },
@@ -22,7 +21,6 @@ http://localhost:8086/api/v1/reports/dryers/generate
         "dryerType": "HIGH_FREQUENCY",
         "capacity": 850,
         "state": "IDLE",
-        "location": "Line 2",
         "startWork": "2024-12-28T09:30:00"
       }
     },
@@ -30,10 +28,9 @@ http://localhost:8086/api/v1/reports/dryers/generate
       "dryer": {
         "machineId": 3,
         "name": "Dryer Gamma",
-        "dryerType": "VACUUM",
+        "dryerType": "PRESSURE",
         "capacity": 1200,
         "state": "WAITING_FOR_ACTION",
-        "location": "Line 3",
         "startWork": "2024-12-28T07:15:00"
       }
     }
@@ -109,7 +106,7 @@ http://localhost:8086/api/v1/reports/dryers/generate
       "dryer": {
         "machineId": 3,
         "name": "Dryer Gamma",
-        "dryerType": "VACUUM",
+        "dryerType": "PRESSURE",
         "capacity": 1150,
         "state": "WORKING"
       },
@@ -120,7 +117,7 @@ http://localhost:8086/api/v1/reports/dryers/generate
       "dryer": {
         "machineId": 3,
         "name": "Dryer Gamma",
-        "dryerType": "VACUUM",
+        "dryerType": "PRESSURE",
         "capacity": 1150,
         "state": "WAITING_FOR_ACTION"
       },
@@ -131,7 +128,7 @@ http://localhost:8086/api/v1/reports/dryers/generate
       "dryer": {
         "machineId": 3,
         "name": "Dryer Gamma",
-        "dryerType": "VACUUM",
+        "dryerType": "PRESSURE",
         "capacity": 1200,
         "state": "ERROR"
       },
@@ -142,7 +139,7 @@ http://localhost:8086/api/v1/reports/dryers/generate
 }
 
 
-http://localhost:8086/api/v1/reports/resources/generate
+http://localhost:8086/api/v1/reporting/resources/generate
 
 {
     "reportType": "RESOURCE_USAGE",
@@ -315,7 +312,7 @@ http://localhost:8086/api/v1/reports/resources/generate
 
 
 
-http://localhost:8086/api/v1/reports/suppliers/generate
+http://localhost:8086/api/v1/reporting/suppliers/generate
 
 {
   "reportType": "SUPPLIER_OVERVIEW",
@@ -438,7 +435,7 @@ http://localhost:8086/api/v1/reports/suppliers/generate
   ]
 }
 
-http://localhost:8086/api/v1/reports/dyeing/generate
+http://localhost:8086/api/v1/reporting/dyeing/generate
 
 
 {
@@ -452,7 +449,6 @@ http://localhost:8086/api/v1/reports/dyeing/generate
         "chargeDiameter": 1000,
         "capacity": 1000,
         "state": "WORKING",
-        "location": "Line 1",
         "startWork": "2024-12-28T08:00:00"
       }
     },
@@ -463,7 +459,6 @@ http://localhost:8086/api/v1/reports/dyeing/generate
         "chargeDiameter": 850,
         "capacity": 850,
         "state": "IDLE",
-        "location": "Line 2",
         "startWork": "2024-12-28T09:30:00"
       }
     },
@@ -474,7 +469,6 @@ http://localhost:8086/api/v1/reports/dyeing/generate
         "chargeDiameter": 1200,
         "capacity": 1200,
         "state": "WAITING_FOR_ACTION",
-        "location": "Line 3",
         "startWork": "2024-12-28T07:15:00"
       }
     }
@@ -582,7 +576,7 @@ http://localhost:8086/api/v1/reports/dyeing/generate
   ]
 }
 
-http://localhost:8086/api/v1/reports/jobs/generate
+http://localhost:8086/api/v1/reporting/jobs/generate
 
 {
   "reportType": "JOB_PROGRAM_USAGE",
@@ -665,7 +659,7 @@ http://localhost:8086/api/v1/reports/jobs/generate
   ]
 }
 
-http://localhost:8086/api/v1/reports/recipes/generate
+http://localhost:8086/api/v1/reporting/recipes/generate
 
 {
   "reportType": "RESOURCE_DEPENDENCY",
@@ -754,7 +748,7 @@ http://localhost:8086/api/v1/reports/recipes/generate
 }
 
 
-http://localhost:8086/api/v1/reports/programs/generate
+http://localhost:8086/api/v1/reporting/programs/generate
 
 
 {

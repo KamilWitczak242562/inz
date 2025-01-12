@@ -1,12 +1,116 @@
-2024-12-30T01:30:05.536+01:00  INFO 9548 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 9548 (started by kamil in G:\Sem VII\inz\reporting_service)
-2024-12-30T01:30:05.606+01:00 DEBUG 9548 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-30T01:30:05.608+01:00  INFO 9548 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
-2024-12-30T01:30:07.449+01:00  INFO 9548 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.298 seconds (process running for 3.679)
-2024-12-30T01:46:10.180+01:00  INFO 13624 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 13624 (started by kamil in G:\Sem VII\inz\reporting_service)
-2024-12-30T01:46:10.182+01:00 DEBUG 13624 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-30T01:46:10.182+01:00  INFO 13624 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
-2024-12-30T01:46:12.191+01:00  INFO 13624 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.342 seconds (process running for 3.557)
-2024-12-30T01:48:03.738+01:00  INFO 18952 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 18952 (started by kamil in G:\Sem VII\inz\reporting_service)
-2024-12-30T01:48:03.739+01:00 DEBUG 18952 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
-2024-12-30T01:48:03.740+01:00  INFO 18952 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
-2024-12-30T01:48:05.399+01:00  INFO 18952 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.164 seconds (process running for 3.483)
+2025-01-12T01:14:45.350+01:00  INFO 3928 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 3928 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:14:45.452+01:00 DEBUG 3928 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:14:45.453+01:00  INFO 3928 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:14:47.693+01:00  INFO 3928 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.696 seconds (process running for 3.879)
+2025-01-12T01:18:42.688+01:00  INFO 21924 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 21924 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:18:42.689+01:00 DEBUG 21924 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:18:42.690+01:00  INFO 21924 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:18:44.321+01:00  INFO 21924 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.954 seconds (process running for 3.099)
+2025-01-12T01:22:51.158+01:00  INFO 18280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 18280 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:22:51.159+01:00 DEBUG 18280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:22:51.160+01:00  INFO 18280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:22:52.980+01:00  INFO 18280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.16 seconds (process running for 3.374)
+2025-01-12T01:23:55.117+01:00  INFO 23344 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 23344 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:23:55.118+01:00 DEBUG 23344 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:23:55.119+01:00  INFO 23344 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:23:56.728+01:00  INFO 23344 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.939 seconds (process running for 3.076)
+2025-01-12T01:29:01.486+01:00  INFO 11408 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 11408 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:29:01.488+01:00 DEBUG 11408 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:29:01.488+01:00  INFO 11408 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:29:03.663+01:00  INFO 11408 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.545 seconds (process running for 3.895)
+2025-01-12T01:34:19.470+01:00  INFO 20180 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 20180 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:34:19.471+01:00 DEBUG 20180 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:34:19.472+01:00  INFO 20180 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:34:21.278+01:00  INFO 20180 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.146 seconds (process running for 3.473)
+2025-01-12T01:39:14.331+01:00  INFO 24136 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 24136 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:39:14.332+01:00 DEBUG 24136 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:39:14.333+01:00  INFO 24136 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:39:16.314+01:00  INFO 24136 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.285 seconds (process running for 3.434)
+2025-01-12T01:44:54.046+01:00  INFO 19280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 19280 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:44:54.047+01:00 DEBUG 19280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:44:54.048+01:00  INFO 19280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:44:55.782+01:00  INFO 19280 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.088 seconds (process running for 3.254)
+2025-01-12T01:54:21.471+01:00  INFO 23844 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 23844 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:54:21.472+01:00 DEBUG 23844 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:54:21.473+01:00  INFO 23844 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:54:23.247+01:00  INFO 23844 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.125 seconds (process running for 3.334)
+2025-01-12T01:56:49.172+01:00  INFO 7212 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 7212 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:56:49.173+01:00 DEBUG 7212 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:56:49.174+01:00  INFO 7212 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:56:50.923+01:00  INFO 7212 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.11 seconds (process running for 3.327)
+2025-01-12T01:59:22.681+01:00  INFO 3688 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 3688 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T01:59:22.682+01:00 DEBUG 3688 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T01:59:22.683+01:00  INFO 3688 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T01:59:24.320+01:00  INFO 3688 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.96 seconds (process running for 3.098)
+2025-01-12T02:02:05.535+01:00  INFO 21260 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 21260 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:02:05.537+01:00 DEBUG 21260 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:02:05.538+01:00  INFO 21260 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:02:07.266+01:00  INFO 21260 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.064 seconds (process running for 3.267)
+2025-01-12T02:04:16.683+01:00  INFO 24004 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 24004 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:04:16.685+01:00 DEBUG 24004 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:04:16.687+01:00  INFO 24004 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:04:18.449+01:00  INFO 24004 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.127 seconds (process running for 3.334)
+2025-01-12T02:07:40.316+01:00  INFO 19108 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 19108 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:07:40.317+01:00 DEBUG 19108 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:07:40.318+01:00  INFO 19108 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:07:42.016+01:00  INFO 19108 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.027 seconds (process running for 3.173)
+2025-01-12T02:11:17.928+01:00  INFO 17336 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 17336 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:11:17.929+01:00 DEBUG 17336 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:11:17.930+01:00  INFO 17336 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:11:19.602+01:00  INFO 17336 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.992 seconds (process running for 3.122)
+2025-01-12T02:14:07.119+01:00  INFO 19980 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 19980 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:14:07.121+01:00 DEBUG 19980 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:14:07.121+01:00  INFO 19980 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:14:08.785+01:00  INFO 19980 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.987 seconds (process running for 3.204)
+2025-01-12T02:16:09.634+01:00  INFO 19500 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 19500 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:16:09.635+01:00 DEBUG 19500 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:16:09.636+01:00  INFO 19500 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:16:11.283+01:00  INFO 19500 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.973 seconds (process running for 3.114)
+2025-01-12T02:47:13.488+01:00  INFO 2676 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 2676 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:47:13.489+01:00 DEBUG 2676 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:47:13.490+01:00  INFO 2676 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:47:15.582+01:00  INFO 2676 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.424 seconds (process running for 3.705)
+2025-01-12T02:47:24.859+01:00  INFO 21792 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 21792 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:47:24.860+01:00 DEBUG 21792 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:47:24.861+01:00  INFO 21792 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:47:26.517+01:00  INFO 21792 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.017 seconds (process running for 3.18)
+2025-01-12T02:52:37.219+01:00  INFO 20392 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 20392 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:52:37.220+01:00 DEBUG 20392 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:52:37.221+01:00  INFO 20392 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:52:38.893+01:00  INFO 20392 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.007 seconds (process running for 3.235)
+2025-01-12T02:59:14.286+01:00  INFO 23132 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 23132 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T02:59:14.287+01:00 DEBUG 23132 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T02:59:14.288+01:00  INFO 23132 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T02:59:15.994+01:00  INFO 23132 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.076 seconds (process running for 3.265)
+2025-01-12T03:02:19.395+01:00  INFO 22780 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 22780 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:02:19.397+01:00 DEBUG 22780 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:02:19.398+01:00  INFO 22780 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:02:21.162+01:00  INFO 22780 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.101 seconds (process running for 3.34)
+2025-01-12T03:06:10.030+01:00  INFO 9520 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 9520 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:06:10.031+01:00 DEBUG 9520 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:06:10.032+01:00  INFO 9520 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:06:11.674+01:00  INFO 9520 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.969 seconds (process running for 3.167)
+2025-01-12T03:11:09.748+01:00  INFO 24460 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 24460 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:11:09.750+01:00 DEBUG 24460 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:11:09.751+01:00  INFO 24460 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:11:11.499+01:00  INFO 24460 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.125 seconds (process running for 3.278)
+2025-01-12T03:11:58.915+01:00  INFO 18704 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 18704 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:11:58.916+01:00 DEBUG 18704 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:11:58.917+01:00  INFO 18704 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:12:00.647+01:00  INFO 18704 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.057 seconds (process running for 3.225)
+2025-01-12T03:17:17.500+01:00  INFO 19720 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 19720 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:17:17.501+01:00 DEBUG 19720 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:17:17.502+01:00  INFO 19720 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:17:19.164+01:00  INFO 19720 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.987 seconds (process running for 3.133)
+2025-01-12T03:22:01.595+01:00  INFO 23516 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 23516 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:22:01.596+01:00 DEBUG 23516 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:22:01.597+01:00  INFO 23516 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:22:04.177+01:00  INFO 23516 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.9 seconds (process running for 4.081)
+2025-01-12T03:27:00.127+01:00  INFO 15992 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 15992 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:27:00.128+01:00 DEBUG 15992 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:27:00.129+01:00  INFO 15992 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:27:01.821+01:00  INFO 15992 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 2.028 seconds (process running for 3.181)
+2025-01-12T03:27:35.892+01:00  INFO 22028 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Starting ReportingServiceApplicationTests using Java 22.0.1 with PID 22028 (started by kamil in G:\Sem VII\inz\reporting_service)
+2025-01-12T03:27:35.893+01:00 DEBUG 22028 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T03:27:35.894+01:00  INFO 22028 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2025-01-12T03:27:37.537+01:00  INFO 22028 --- [Test worker] c.e.r.ReportingServiceApplicationTests   : Started ReportingServiceApplicationTests in 1.958 seconds (process running for 3.128)

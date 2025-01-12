@@ -23,21 +23,11 @@ public class ResourceReportService {
 
     public byte[] generateReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
         return switch (reportType.toUpperCase()) {
-            case "RESOURCE_USAGE" ->
-                    generateResourceUsageReport(reportType, currentData, historicalData, isVisualization);
             case "RESOURCE_AVAILABILITY" ->
                     generateResourceAvailabilityReport(reportType, currentData, isVisualization);
             case "RESOURCE_REVISIONS" -> generateResourceRevisionsReport(reportType, historicalData, isVisualization);
             default -> throw new IllegalArgumentException("Unsupported report type: " + reportType);
         };
-    }
-
-    private byte[] generateResourceUsageReport(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData, boolean isVisualization) {
-        byte[] visualization = null;
-        if (isVisualization) {
-            visualization = generateVisualization("RESOURCE_USAGE", currentData, historicalData);
-        }
-        return generatePdf(reportType, currentData, historicalData, visualization);
     }
 
     private byte[] generateResourceAvailabilityReport(String reportType, List<Map<String, Object>> currentData, boolean isVisualization) {
@@ -243,8 +233,6 @@ public class ResourceReportService {
 
     public byte[] generateVisualization(String reportType, List<Map<String, Object>> currentData, List<Map<String, Object>> historicalData) {
         switch (reportType.toUpperCase()) {
-            case "RESOURCE_USAGE":
-                return generateBarChart("Resource Usage", "Resource", "Usage", historicalData);
             case "RESOURCE_AVAILABILITY":
                 return generatePieChart("Resource Availability", currentData);
             case "RESOURCE_REVISIONS":
@@ -252,70 +240,6 @@ public class ResourceReportService {
             default:
                 throw new IllegalArgumentException("Unsupported visualization type: " + reportType);
         }
-    }
-
-    private byte[] generateBarChart(String title, String categoryAxisLabel, String valueAxisLabel, List<Map<String, Object>> historicalData) {
-        DefaultCategoryDataset chartDataset = new DefaultCategoryDataset();
-
-        try {
-            Map<String, List<Map<String, Object>>> groupedData = historicalData.stream()
-                    .filter(entry -> entry.containsKey("resource"))
-                    .collect(Collectors.groupingBy(entry -> {
-                        Map<String, Object> resource = (Map<String, Object>) entry.get("resource");
-                        return (String) resource.get("name");
-                    }));
-
-            for (Map.Entry<String, List<Map<String, Object>>> group : groupedData.entrySet()) {
-                String resourceName = group.getKey();
-                List<Map<String, Object>> resourceHistory = group.getValue();
-
-                resourceHistory.sort((a, b) -> {
-                    String dateA = (String) a.get("revisionDate");
-                    String dateB = (String) b.get("revisionDate");
-                    return dateA.compareTo(dateB);
-                });
-
-                Double totalUsage = 0.0;
-
-                for (int i = 1; i < resourceHistory.size(); i++) {
-                    Map<String, Object> previous = resourceHistory.get(i - 1);
-                    Map<String, Object> current = resourceHistory.get(i);
-
-                    Double previousStock = toDouble(((Map<String, Object>) previous.get("resource")).get("currentStock"));
-                    Double currentStock = toDouble(((Map<String, Object>) current.get("resource")).get("currentStock"));
-
-                    if (previousStock != null && currentStock != null) {
-                        totalUsage += Math.abs(previousStock - currentStock);
-                    }
-                }
-
-                chartDataset.addValue(totalUsage, resourceName, "");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Error while generating bar chart data", e);
-        }
-
-        JFreeChart chart = ChartFactory.createBarChart(title, categoryAxisLabel, valueAxisLabel, chartDataset);
-
-        var plot = chart.getCategoryPlot();
-        plot.getDomainAxis().setVisible(false);
-        var renderer = plot.getRenderer();
-
-        for (int i = 0; i < chartDataset.getRowCount(); i++) {
-            renderer.setSeriesPaint(i, getColorForIndex(i));
-        }
-
-        return chartToByteArray(chart);
-    }
-
-
-    private java.awt.Color getColorForIndex(int index) {
-        java.awt.Color[] colors = {
-                java.awt.Color.RED, java.awt.Color.BLUE, java.awt.Color.GREEN,
-                java.awt.Color.ORANGE, java.awt.Color.CYAN, java.awt.Color.MAGENTA,
-                java.awt.Color.YELLOW, java.awt.Color.PINK, java.awt.Color.GRAY
-        };
-        return colors[index % colors.length];
     }
 
     private byte[] generatePieChart(String title, List<Map<String, Object>> data) {
@@ -337,7 +261,7 @@ public class ResourceReportService {
                 String revisionDate = (String) entry.get("revisionDate");
                 Map<String, Object> resource = (Map<String, Object>) entry.get("resource");
                 String resourceName = (String) resource.get("name");
-                Double currentStock = toDouble(resource.get("currentStock"));
+                double currentStock = toDouble(resource.get("currentStock"));
 
                 dataset.addValue(currentStock, resourceName, revisionDate);
             }
@@ -346,6 +270,7 @@ public class ResourceReportService {
         }
 
         JFreeChart chart = ChartFactory.createLineChart(title, categoryAxisLabel, valueAxisLabel, dataset);
+
         return chartToByteArray(chart);
     }
 

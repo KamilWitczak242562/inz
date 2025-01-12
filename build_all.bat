@@ -15,4 +15,3 @@ for %%f in (%folders%) do (
 )
 
 echo All projects built successfully!
-pause
